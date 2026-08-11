@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>artifacts</title>
+    <script id="daily-briefing-data" type="application/json">
+      {
+        "date": "[% Briefing Date %]",
+        "greeting": "[% Greeting Day %]",
+        "person_name": "[% User Name %]",
+        "summary": "[% Briefing Summary and do not use em dash %]",
+        "emails": [
+          {
+            "source": "email",
+            "sourceLabel": "Important",
+            "timestamp": "[% Important Email Date Time %]",
+            "authorName": "[% Important Email Sender Name %]",
+            "authorRole": "[% Important Email Sender Email %]",
+            "subject": "[% Important Email Subject %]",
+            "summary": "[% Important Email Summary %]",
+            "url": "[% Important Email URL %]",
+            "recommendedAction": "[% Important Email Recommended Action %]"
+          },
+          {
+            "source": "email",
+            "sourceLabel": "Actionable",
+            "timestamp": "[% Actionable Email Date Time %]",
+            "authorName": "[% Actionable Email Sender Name %]",
+            "authorRole": "[% Actionable Email Sender Email %]",
+            "subject": "[% Actionable Email Subject %]",
+            "summary": "[% Actionable Email Summary %]",
+            "url": "[% Actionable Email URL %]",
+            "recommendedAction": "[% Actionable Email Recommended Action %]"
+          },
+          {
+            "source": "email",
+            "sourceLabel": "Waiting",
+            "timestamp": "[% Waiting Email Date Time %]",
+            "authorName": "[% Waiting Email Sender Name %]",
+            "authorRole": "[% Waiting Email Sender Email %]",
+            "subject": "[% Waiting Email Subject %]",
+            "summary": "[% Waiting Email Summary %]",
+            "url": "[% Waiting Email URL %]",
+            "recommendedAction": "[% Waiting Email Recommended Action %]"
+          }
+        ],
+        "calendar": [
+          {
+            "source": "calendar",
+            "sourceLabel": "Priority Meetings",
+            "timestamp": "[% Priority Meeting Date Time %]",
+            "authorName": "[% Priority Meeting Organizer Name %]",
+            "authorRole": "[% Priority Meeting Organizer Email %]",
+            "subject": "[% Priority Meeting Subject %]",
+            "summary": "[% Priority Meeting Summary %]",
+            "url": "[% Priority Meeting URL %]",
+            "recommendedAction": "[% Priority Meeting Recommended Action %]"
+          },
+          {
+            "source": "calendar",
+            "sourceLabel": "Conflicts",
+            "timestamp": "[% Conflict Meeting Date Time %]",
+            "authorName": "[% Conflict Meeting Organizer Name %]",
+            "authorRole": "[% Conflict Meeting Organizer Email %]",
+            "subject": "[% Conflict Meeting Subject %]",
+            "summary": "[% Conflict Meeting Summary %]",
+            "url": "[% Conflict Meeting URL %]",
+            "recommendedAction": "[% Conflict Meeting Recommended Action %]"
+          },
+          {
+            "source": "calendar",
+            "sourceLabel": "Prep Needed",
+            "timestamp": "[% Prep Needed Meeting Date Time %]",
+            "authorName": "[% Prep Needed Meeting Organizer Name %]",
+            "authorRole": "[% Prep Needed Meeting Organizer Email %]",
+            "subject": "[% Prep Needed Meeting Subject %]",
+            "summary": "[% Prep Needed Meeting Summary %]",
+            "url": "[% Prep Needed Meeting URL %]",
+            "recommendedAction": "[% Prep Needed Meeting Recommended Action %]"
+          },
+          {
+            "source": "calendar",
+            "sourceLabel": "FYI / Optional",
+            "timestamp": "[% FYI Optional Meeting Date Time %]",
+            "authorName": "[% FYI Optional Meeting Organizer Name %]",
+            "authorRole": "[% FYI Optional Meeting Organizer Email %]",
+            "subject": "[% FYI Optional Meeting Subject %]",
+            "summary": "[% FYI Optional Meeting Summary %]",
+            "url": "[% FYI Optional Meeting URL %]",
+            "recommendedAction": "[% FYI Optional Meeting Recommended Action %]"
+          }
+        ],
+        "chats": [
+          {
+            "source": "chat",
+            "sourceLabel": "Important",
+            "timestamp": "[% Important Teams Date Time %]",
+            "authorName": "[% Important Teams Sender Name %]",
+            "authorRole": "[% Important Teams Sender Email %]",
+            "subject": "[% Important Teams Subject %]",
+            "summary": "[% Important Teams Summary %]",
+            "url": "[% Important Teams URL %]",
+            "recommendedAction": "[% Important Teams Recommended Action %]"
+          },
+          {
+            "source": "chat",
+            "sourceLabel": "Actionable",
+            "timestamp": "[% Actionable Teams Date Time %]",
+            "authorName": "[% Actionable Teams Sender Name %]",
+            "authorRole": "[% Actionable Teams Sender Email %]",
+            "subject": "[% Actionable Teams Subject %]",
+            "summary": "[% Actionable Teams Summary %]",
+            "url": "[% Actionable Teams URL %]",
+            "recommendedAction": "[% Actionable Teams Recommended Action %]"
+          },
+          {
+            "source": "chat",
+            "sourceLabel": "Waiting",
+            "timestamp": "[% Waiting Teams Date Time %]",
+            "authorName": "[% Waiting Teams Sender Name %]",
+            "authorRole": "[% Waiting Teams Sender Email %]",
+            "subject": "[% Waiting Teams Subject %]",
+            "summary": "[% Waiting Teams Summary %]",
+            "url": "[% Waiting Teams URL %]",
+            "recommendedAction": "[% Waiting Teams Recommended Action %]"
+          }
+        ],
+        "recaps": [
+          {
+            "source": "meeting",
+            "sourceLabel": "Action Required",
+            "timestamp": "[% Action Required Meeting End Date Time %]",
+            "authorName": "[% Action Required Meeting Organizer Name %]",
+            "authorRole": "[% Action Required Meeting Organizer Email %]",
+            "subject": "[% Action Required Meeting Title %]",
+            "summary": "[% Action Required Meeting Outcome Summary %]",
+            "url": "[% Action Required Meeting Recap URL %]",
+            "recommendedAction": "[% Action Required Meeting Recommended Action %]"
+          },
+          {
+            "source": "meeting",
+            "sourceLabel": "Decision / Outcome",
+            "timestamp": "[% Decision Meeting End Date Time %]",
+            "authorName": "[% Decision Meeting Organizer Name %]",
+            "authorRole": "[% Decision Meeting Organizer Email %]",
+            "subject": "[% Decision Meeting Title %]",
+            "summary": "[% Decision Meeting Outcome Summary %]",
+            "url": "[% Decision Meeting Recap URL %]",
+            "recommendedAction": null
+          },
+          {
+            "source": "meeting",
+            "sourceLabel": "Waiting",
+            "timestamp": "[% Waiting Meeting End Date Time %]",
+            "authorName": "[% Waiting Meeting Organizer Name %]",
+            "authorRole": "[% Waiting Meeting Organizer Email %]",
+            "subject": "[% Waiting Meeting Title %]",
+            "summary": "[% Waiting Meeting Outcome Summary %]",
+            "url": "[% Waiting Meeting Recap URL %]",
+            "recommendedAction": "[% Waiting Meeting Recommended Action %]"
+          }
+        ],
+        "todo": {
+          "items": [
+            {
+              "status": "Active",
+              "source": "email",
+              "title": "[% Active Email Todo Title %]",
+              "summary": "[% Active Email Todo Summary %]",
+              "recommendedAction": "[% Active Email Todo Recommended Action %]",
+              "sourceContext": "[% Active Email Todo Source Context %]",
+              "owner": "[% User Name %]",
+              "deadline": "[% Active Email Todo Deadline %]",
+              "url": "[% Active Email Todo URL %]"
+            },
+            {
+              "status": "Active",
+              "source": "email",
+              "title": "[% Active Email Todo 2 Title %]",
+              "summary": "[% Active Email Todo 2 Summary %]",
+              "recommendedAction": "[% Active Email Todo 2 Recommended Action %]",
+              "sourceContext": "[% Active Email Todo 2 Source Context %]",
+              "owner": "[% User Name %]",
+              "deadline": "[% Active Email Todo 2 Deadline %]",
+              "url": "[% Active Email Todo 2 URL %]"
+            },
+            {
+              "status": "Active",
+              "source": "chat",
+              "title": "[% Active Teams Todo Title %]",
+              "summary": "[% Active Teams Todo Summary %]",
+              "recommendedAction": "[% Active Teams Todo Recommended Action %]",
+              "sourceContext": "[% Active Teams Todo Source Context %]",
+              "owner": "[% User Name %]",
+              "deadline": "[% Active Teams Todo Deadline %]",
+              "url": "[% Active Teams Todo URL %]"
+            },
+            {
+              "status": "Active",
+              "source": "meeting",
+              "title": "[% Active Meeting Todo Title %]",
+              "summary": "[% Active Meeting Todo Summary %]",
+              "recommendedAction": "[% Active Meeting Todo Recommended Action %]",
+              "sourceContext": "[% Active Meeting Todo Source Context %]",
+              "owner": "[% User Name %]",
+              "deadline": "[% Active Meeting Todo Deadline %]",
+              "url": "[% Active Meeting Todo URL %]"
+            },
+            {
+              "status": "Completed",
+              "source": "manual",
+              "title": "[% Completed Manual Todo Title %]",
+              "summary": "[% Completed Manual Todo Summary %]",
+              "recommendedAction": "[% Completed Manual Todo Recommended Action %]",
+              "sourceContext": "[% Completed Manual Todo Source Context %]",
+              "owner": "[% User Name %]",
+              "deadline": "[% Completed Manual Todo Deadline %]",
+              "url": "[% Completed Manual Todo URL %]"
+            }
+          ]
+        }
+      }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </head>
+  <body class="bg-background text-foreground">
+    <div id="root"></div>
+  </body>
+</html>

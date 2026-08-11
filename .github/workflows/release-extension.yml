@@ -1,0 +1,98 @@
+name: Release extension
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "extension/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Package and release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Install artifact dependencies
+        working-directory: apps/artifacts
+        run: bun install --frozen-lockfile
+
+      - name: Install packaging dependencies
+        working-directory: apps/extension-package
+        run: bun install --frozen-lockfile
+
+      - name: Package extension
+        id: package
+        working-directory: apps/extension-package
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          manifest_path="../../extension/manifest.json"
+          base_version="$(jq -r '.version' "${manifest_path}")"
+
+          if [[ ! "${base_version}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "Manifest version must use major.minor.patch: ${base_version}" >&2
+            exit 1
+          fi
+
+          major="${BASH_REMATCH[1]}"
+          minor="${BASH_REMATCH[2]}"
+          patch="${BASH_REMATCH[3]}"
+          version="${major}.${minor}.$((10#${patch} + GITHUB_RUN_NUMBER))"
+          release_tag="v${version}"
+
+          temporary_manifest="$(mktemp)"
+          jq --arg version "${version}" '.version = $version' "${manifest_path}" > "${temporary_manifest}"
+          mv "${temporary_manifest}" "${manifest_path}"
+
+          bun index.ts --no-bump
+
+          zip_path="${PWD}/chief-os-${version}.zip"
+          if [[ ! -s "${zip_path}" ]]; then
+            echo "Expected package was not created: ${zip_path}" >&2
+            exit 1
+          fi
+
+          latest_zip_path="${PWD}/chief-os-latest.zip"
+          cp "${zip_path}" "${latest_zip_path}"
+
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+          echo "release_tag=${release_tag}" >> "${GITHUB_OUTPUT}"
+          echo "zip_path=${zip_path}" >> "${GITHUB_OUTPUT}"
+          echo "latest_zip_path=${latest_zip_path}" >> "${GITHUB_OUTPUT}"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ steps.package.outputs.version }}
+          RELEASE_TAG: ${{ steps.package.outputs.release_tag }}
+          ZIP_PATH: ${{ steps.package.outputs.zip_path }}
+          LATEST_ZIP_PATH: ${{ steps.package.outputs.latest_zip_path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view "${RELEASE_TAG}" >/dev/null 2>&1; then
+            gh release upload "${RELEASE_TAG}" "${ZIP_PATH}" "${LATEST_ZIP_PATH}" --clobber
+          else
+            gh release create "${RELEASE_TAG}" "${ZIP_PATH}" "${LATEST_ZIP_PATH}" \
+              --target "${GITHUB_SHA}" \
+              --title "ChiefOS ${RELEASE_VERSION}" \
+              --generate-notes
+          fi

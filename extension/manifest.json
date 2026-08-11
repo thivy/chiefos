@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "15.0.37",
+  "id": "47824f8d-28f7-40d7-bf90-bb77f58f27c8",
+  "developer": {
+    "name": "Thivy Ruthra",
+    "websiteUrl": "https://example.com",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/terms"
+  },
+  "name": {
+    "short": "ChiefOS",
+    "full": "ChiefOS for Copilot Cowork"
+  },
+  "description": {
+    "short": "Daily briefings, Microsoft 365 triage, and task tracking",
+    "full": "ChiefOS for Copilot Cowork helps organize the day with daily briefings, Microsoft 365 email, calendar, Teams chat and meeting recap triage, and to-do tracking."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#73DFC6",
+  "agentSkills": [
+    {
+      "folder": "./skills/chief-os-brief"
+    },
+    {
+      "folder": "./skills/chief-os-image-prompt"
+    },
+    {
+      "folder": "./skills/chief-os-schedule"
+    },
+    {
+      "folder": "./skills/chief-os-todo-complete"
+    }
+  ]
+}
