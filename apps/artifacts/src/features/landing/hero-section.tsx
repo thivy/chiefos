@@ -26,7 +26,7 @@ function HeroSection() {
               <Button
                 as="a"
                 variant="secondary"
-                href="//github.com/thivy/copilot-cowork"
+                href="https://github.com/thivy/chiefos"
                 target="_blank"
                 rel="noreferrer"
               >

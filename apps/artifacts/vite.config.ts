@@ -28,7 +28,7 @@ function emitLandingAsIndex(): Plugin {
   };
 }
 
-// actions/configure-pages exposes the project-site prefix (for example "/copilot-cowork").
+// actions/configure-pages exposes the project-site prefix (for example "/chiefos").
 const pagesBase = process.env.PAGES_BASE?.trim();
 
 // https://vite.dev/config/

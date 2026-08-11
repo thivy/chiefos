@@ -28,7 +28,7 @@ function GetStartedSection() {
           <div className="flex flex-wrap gap-2">
             <Button
               as="a"
-              href="//github.com/thivy/copilot-cowork/releases/latest/download/chief-os-latest.zip"
+              href="https://github.com/thivy/chiefos/releases/latest/download/chief-os-latest.zip"
             >
               Download latest
             </Button>
