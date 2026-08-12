@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "15.0.37",
-  "id": "47824f8d-28f7-40d7-bf90-bb77f58f27c8",
+  "version": "20.0.1",
+  "id": "32f3e1b0-4c5a-4d8e-9f2b-1a2b3c4d5e6f",
   "developer": {
     "name": "Thivy Ruthra",
-    "websiteUrl": "https://example.com",
-    "privacyUrl": "https://example.com/privacy",
-    "termsOfUseUrl": "https://example.com/terms"
+    "websiteUrl": "https://thivy.github.io/chiefos/",
+    "privacyUrl": "https://github.com/thivy/chiefos#what-it-will-never-do",
+    "termsOfUseUrl": "https://github.com/thivy/chiefos#how-it-is-put-together"
   },
   "name": {
     "short": "ChiefOS",
