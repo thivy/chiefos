@@ -43,6 +43,7 @@ Tasks are the only illustrated items. Make one `chief-os-image-prompt` call per 
 - Supply the full text as context that must not be rendered.
 - Keep each returned prompt with its position. Never batch tasks into one call, and never skip a task for resembling another.
 - Every task prompt comes back from `chief-os-image-prompt`. Never write one yourself, and never carry a prompt over from a previous run. The call count must equal the expected vignette count from stage 2 before stage 6 starts.
+- When `todo.items` is empty, make zero skill calls and continue with an overview-only image. Zero calls then equals the expected vignette count.
 
 Reference each task prompt as T1, T2, and so on, in source order.
 

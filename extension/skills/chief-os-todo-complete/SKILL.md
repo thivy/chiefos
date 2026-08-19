@@ -19,7 +19,7 @@ Leave every other file in that directory untouched, including `briefing.html`, `
 
 ## Invariants
 
-- Apply `conventions.md` from the `chief-os-brief` skill to every user-facing word in the run.
+- Apply `../chief-os-brief/references/conventions.md` to every user-facing word in the run.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
 - Do not create timestamped, backup, or history copies of `todo.md`.
@@ -50,7 +50,7 @@ Ask exactly one multiple-choice question that lists every active task and accept
 
 ### 3. Update the Task File
 
-- Read `references/output-todo.md` from the `chief-os-brief` skill and follow its markdown template. Skip its generation rules: derive no new task here.
+- Read `../chief-os-brief/references/output-todo.md` and follow its markdown template. Skip its generation rules: derive no new task here.
 - Move each selected task from `## Active` to `## Completed`, change its `- [ ]` marker to `- [x]`, and change its `Next step:` label to `Completed:`.
 - Keep the task's title, summary, source, context, owner, deadline, and link exactly as they were.
 - Leave unselected active tasks under `## Active`, in their original order, unchanged, and leave previously completed tasks in place.

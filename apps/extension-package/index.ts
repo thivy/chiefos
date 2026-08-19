@@ -1,4 +1,9 @@
-import { incrementManifestVersion, zipFolder } from "./helpers";
+import {
+    assertZipContainsFiles,
+    incrementManifestVersion,
+    REQUIRED_PACKAGE_FILES,
+    zipFolder,
+} from "./helpers";
 
 const briefingFile = "briefing.html";
 const artifactsAppFolder = `${import.meta.dir}/../artifacts`;
@@ -38,5 +43,7 @@ console.log(
 
 const extensionZipFile = `${import.meta.dir}/chief-os-${version}.zip`;
 const zippedFileCount = await zipFolder(extensionFolder, extensionZipFile);
+await assertZipContainsFiles(extensionZipFile, REQUIRED_PACKAGE_FILES);
 
 console.log(`Zipped ${zippedFileCount} files from ${extensionFolder} to ${extensionZipFile}`);
+console.log(`Verified ${REQUIRED_PACKAGE_FILES.length} required package files`);

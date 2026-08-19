@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - "extension/**"
+      - "apps/artifacts/**"
+      - "apps/extension-package/**"
+      - ".github/workflows/release-extension.yml"
 
 permissions:
   contents: write
@@ -35,6 +38,12 @@ jobs:
       - name: Install packaging dependencies
         working-directory: apps/extension-package
         run: bun install --frozen-lockfile
+
+      - name: Test generator and package
+        working-directory: apps/extension-package
+        run: |
+          bun run typecheck
+          bun test
 
       - name: Package extension
         id: package

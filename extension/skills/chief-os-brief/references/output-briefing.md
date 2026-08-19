@@ -93,16 +93,26 @@ Keep the generated JSON as an in-memory value for the current run. Do not save a
 
 The generator reads the packaged `assets/briefing.html` template directly. Do not copy the template into `<working directory>`, and do not create a placeholder `briefing.html`; the working file must be generated from schema-valid current-run JSON.
 
+Before generating, confirm both `assets/briefing.html` and `scripts/inject-data.ts` exist and are non-empty in the installed skill. If either is missing, stop and report that the installed ChiefOS package is incomplete. Do not reproduce the injection logic ad hoc and do not create a substitute layout.
+
 Run the generator from `<working directory>` so it writes `briefing.html` there, replacing any existing file with the same name:
 
 ```bash
 bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data '<generated briefing JSON>'
 ```
 
-For large or quoting-sensitive payloads, pipe the in-memory JSON and pass `-` to `--data`:
+For large or quoting-sensitive payloads, pipe the in-memory JSON and pass `-` to `--data`.
+
+Bash:
 
 ```bash
 printf '%s' "$briefingJson" | bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data -
+```
+
+PowerShell:
+
+```powershell
+$briefingJson | bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data -
 ```
 
 `--data` also accepts a JSON file path for debugging or replaying a prior run.
@@ -111,5 +121,7 @@ printf '%s' "$briefingJson" | bun <path-to-chief-os-brief-skill>/scripts/inject-
 
 - Validate that the JSON parses before injecting it into the template.
 - Confirm `<working directory>/briefing.html` exists, is non-empty, and was generated during the current run.
+- Re-read the `daily-briefing-data` script element from the generated file, parse its text as JSON, and confirm the value exactly matches the in-memory current-run JSON.
+- Confirm the generated data block contains no unresolved `[% ... %]` template placeholders.
 - Do not create timestamped, backup, or history copies of `briefing.html`.
 - Treat generator failure, or a missing or empty generated file, as a failed run.

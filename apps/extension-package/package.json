@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "module": "index.ts",
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit && tsc --project tsconfig.injector.json"
+  },
   "dependencies": {
     "jszip": "^3.10.1"
   },

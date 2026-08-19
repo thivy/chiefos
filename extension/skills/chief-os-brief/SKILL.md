@@ -52,6 +52,7 @@ Follow these steps in order. Do not skip or rearrange them.
 ### 0. Prepare Working Files
 
 - Read `references/conventions.md`.
+- Confirm the packaged `assets/briefing.html` and `scripts/inject-data.ts` files both exist and are non-empty. If either is unavailable, stop and report that the installed ChiefOS package is incomplete. Do not recreate the generator, copy the template, or substitute another HTML layout.
 - Create `<working directory>` when it does not exist. Stop and report the filesystem error when it cannot be created or written.
 - Read `references/output-memory.md`. When `<working directory>/memory.md` is missing or empty, create it from that reference's template. Treat it as read-only context until step 7.
 - Read `references/output-todo.md`. When `<working directory>/todo.md` is missing or empty, create it from that reference's template, then load the existing active tasks as input to this run.
@@ -114,12 +115,13 @@ Write the top-level `summary` from the assembled email, calendar, chat, and meet
 - Set `greeting` to a mode-appropriate greeting and `date` to the current local date.
 - Include the assembled `emails`, `calendar`, `chats`, `recaps`, and `todo` collections. For Afternoon Recap, include only relevant items in each collection and use an empty array when a collection has none.
 - Run `scripts/inject-data.ts` to replace `<working directory>/briefing.html` in place from that JSON.
+- Re-read the generated `daily-briefing-data` block and confirm it parses to the same JSON value held in memory.
 - Treat generator failure, or a missing or empty generated file, as a failed run.
 
 ### 6. Apply the Artifact Image
 
 - Read `references/output-image.md`, then invoke the `chief-os-image-prompt` skill once per task in the final schema-valid JSON to compose that task's prompt.
-- This skill call is mandatory and is made on every run that reaches this step. Never batch the tasks into one call, skip a task, or substitute your own wording because a task looks simple or resembles an earlier run.
+- When tasks exist, this skill call is mandatory once per task. Never batch the tasks into one call, skip a task, or substitute your own wording because a task looks simple or resembles an earlier run. When `todo.items` is empty, make zero calls and generate the overview-only image required by `references/output-image.md`.
 - Assemble the returned prompts into one combined prompt, generate the image, and save it as `<working directory>/artifact-image.png`.
 - Record the outcome, including the number of `chief-os-image-prompt` calls made. Do not claim an image was created when image generation is unavailable or a validation check is still failing.
 
@@ -128,7 +130,7 @@ Write the top-level `summary` from the assembled email, calendar, chat, and meet
 - Confirm step 4 ran after the final todo update and that any generated email remains unsent in Outlook Drafts.
 - Confirm step 6 ran after the final JSON was assembled, that one `chief-os-image-prompt` call was made per task, and include its reported outcome.
 - Update `<working directory>/memory.md` per `references/output-memory.md`, and only when new durable context was found this run.
-- Confirm `<working directory>/briefing.html`, `<working directory>/todo.md`, and `<working directory>/memory.md` all exist, are non-empty, and were updated during this run.
+- Confirm `<working directory>/briefing.html` and `<working directory>/todo.md` exist, are non-empty, and were updated during this run. Confirm `<working directory>/memory.md` exists and is non-empty; it may remain unchanged when no new durable context was found.
 - Confirm the packaged `assets/briefing.html` template was not modified.
 - Repair any failing check from its reference and revalidate. Do not claim success while a check is failing.
 

@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["../../extension/skills/chief-os-brief/scripts/inject-data.ts"]
+}
