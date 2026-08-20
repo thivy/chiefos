@@ -91,14 +91,16 @@ Keep the generated JSON as an in-memory value for the current run. Do not save a
 
 ## 3. Generate the HTML
 
-The generator reads the packaged `assets/briefing.html` template directly. Do not copy the template into `<working directory>`, and do not create a placeholder `briefing.html`; the working file must be generated from schema-valid current-run JSON.
+Resolve `<skill directory>` as the absolute parent directory of the loaded `chief-os-brief/SKILL.md`. Do not resolve packaged paths relative to `<working directory>`, the repository root, or the shell's current directory.
 
-Before generating, confirm both `assets/briefing.html` and `scripts/inject-data.ts` exist and are non-empty in the installed skill. If either is missing, stop and report that the installed ChiefOS package is incomplete. Do not reproduce the injection logic ad hoc and do not create a substitute layout.
+The generator at `<skill directory>/scripts/inject-data.ts` reads the packaged `<skill directory>/assets/briefing.html` template directly. Do not copy the template into `<working directory>`, and do not create a placeholder `briefing.html`; the working file must be generated from schema-valid current-run JSON.
 
-Run the generator from `<working directory>` so it writes `briefing.html` there, replacing any existing file with the same name:
+Before generating, confirm both absolute packaged paths exist and are non-empty. If either is missing, report the exact absolute path that failed, then stop and report that the installed ChiefOS package is incomplete. Do not reproduce the injection logic ad hoc and do not create a substitute layout.
+
+Set the shell's current directory to `<working directory>`, then invoke the generator by its absolute path so it writes `briefing.html` there, replacing any existing file with the same name:
 
 ```bash
-bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data '<generated briefing JSON>'
+bun "<skill directory>/scripts/inject-data.ts" --data '<generated briefing JSON>'
 ```
 
 For large or quoting-sensitive payloads, pipe the in-memory JSON and pass `-` to `--data`.
@@ -106,13 +108,13 @@ For large or quoting-sensitive payloads, pipe the in-memory JSON and pass `-` to
 Bash:
 
 ```bash
-printf '%s' "$briefingJson" | bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data -
+printf '%s' "$briefingJson" | bun "<skill directory>/scripts/inject-data.ts" --data -
 ```
 
 PowerShell:
 
 ```powershell
-$briefingJson | bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data -
+$briefingJson | bun "<skill directory>\scripts\inject-data.ts" --data -
 ```
 
 `--data` also accepts a JSON file path for debugging or replaying a prior run.

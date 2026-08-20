@@ -31,6 +31,13 @@ Choose the mode before starting the workflow, using the current local date and t
 
 Do not create timestamped, backup, or history copies of these files.
 
+`<skill directory>` is the absolute parent directory of this loaded `SKILL.md`. Resolve packaged files from that directory regardless of the current working directory:
+
+- `<skill directory>/assets/briefing.html`
+- `<skill directory>/scripts/inject-data.ts`
+
+Never resolve `assets/` or `scripts/` relative to `/output`, the repository root, or the shell's current directory.
+
 ## Invariants
 
 These always hold, including when a reference file has not been read.
@@ -52,7 +59,7 @@ Follow these steps in order. Do not skip or rearrange them.
 ### 0. Prepare Working Files
 
 - Read `references/conventions.md`.
-- Confirm the packaged `assets/briefing.html` and `scripts/inject-data.ts` files both exist and are non-empty. If either is unavailable, stop and report that the installed ChiefOS package is incomplete. Do not recreate the generator, copy the template, or substitute another HTML layout.
+- Resolve `<skill directory>` from this loaded `SKILL.md`, then confirm `<skill directory>/assets/briefing.html` and `<skill directory>/scripts/inject-data.ts` both exist and are non-empty. If either absolute path is unavailable, stop and report that the installed ChiefOS package is incomplete. Do not recreate the generator, copy the template, or substitute another HTML layout.
 - Create `<working directory>` when it does not exist. Stop and report the filesystem error when it cannot be created or written.
 - Read `references/output-memory.md`. When `<working directory>/memory.md` is missing or empty, create it from that reference's template. Treat it as read-only context until step 7.
 - Read `references/output-todo.md`. When `<working directory>/todo.md` is missing or empty, create it from that reference's template, then load the existing active tasks as input to this run.
@@ -114,7 +121,7 @@ Write the top-level `summary` from the assembled email, calendar, chat, and meet
 - Read `references/output-briefing.md`, then build the schema-valid briefing JSON and keep it in memory.
 - Set `greeting` to a mode-appropriate greeting and `date` to the current local date.
 - Include the assembled `emails`, `calendar`, `chats`, `recaps`, and `todo` collections. For Afternoon Recap, include only relevant items in each collection and use an empty array when a collection has none.
-- Run `scripts/inject-data.ts` to replace `<working directory>/briefing.html` in place from that JSON.
+- From `<working directory>`, run the injector at the absolute path `<skill directory>/scripts/inject-data.ts` to replace `<working directory>/briefing.html` in place from that JSON. The injector reads `<skill directory>/assets/briefing.html`; do not generate a separate HTML document.
 - Re-read the generated `daily-briefing-data` block and confirm it parses to the same JSON value held in memory.
 - Treat generator failure, or a missing or empty generated file, as a failed run.
 
