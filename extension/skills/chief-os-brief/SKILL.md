@@ -121,7 +121,7 @@ Write the top-level `summary` from the assembled email, calendar, chat, and meet
 ### 6. Apply the Artifact Image
 
 - Read `references/output-image.md`, then invoke the `chief-os-image-prompt` skill once per task in the final schema-valid JSON to compose that task's prompt.
-- When tasks exist, this skill call is mandatory once per task. Never batch the tasks into one call, skip a task, or substitute your own wording because a task looks simple or resembles an earlier run. When `todo.items` is empty, make zero calls and generate the overview-only image required by `references/output-image.md`.
+- When tasks exist, this skill call is mandatory once per task. Never batch the tasks into one call, skip a task, or substitute your own wording because a task looks simple or resembles an earlier run. When `todo.items` is empty, make zero calls and generate the empty task composition required by `references/output-image.md`.
 - Assemble the returned prompts into one combined prompt, generate the image, and save it as `<working directory>/artifact-image.png`.
 - Record the outcome, including the number of `chief-os-image-prompt` calls made. Do not claim an image was created when image generation is unavailable or a validation check is still failing.
 
