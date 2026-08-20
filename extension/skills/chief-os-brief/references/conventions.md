@@ -17,5 +17,5 @@ Apply to all user-facing output: briefings, summaries, todos, memory notes, and 
 Apply to every step that writes a working file or reports a result.
 
 - Use the `<working directory>` defined in `SKILL.md`; do not redefine it.
-- Treat packaged files under `assets/` and `scripts/` as read-only templates. Do not modify them during a run, and confirm they were not modified before reporting completion.
+- Treat packaged files under `assets/` as read-only templates. Generate working files from copies, and confirm the packaged files were not modified before reporting completion.
 - Verify a step's postconditions before reporting it complete. Do not report success, delivery, or completion for any step whose required result you have not confirmed.

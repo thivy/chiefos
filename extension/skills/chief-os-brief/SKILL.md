@@ -40,7 +40,7 @@ These always hold, including when a reference file has not been read.
 - Never send email during the run except the single self-addressed summary at step 8. Step 4 only creates or updates unsent Outlook drafts.
 - Never invent recipients, links, facts, commitments, dates, attachments, or signatures. Skip the item instead.
 - Compose every image prompt through the `chief-os-image-prompt` skill. Never author, paraphrase, or reuse an image prompt directly.
-- Treat files under `assets/` and `scripts/` as read-only packaged templates.
+- Treat files under `assets/` as read-only packaged templates.
 - Verify a step's postconditions before reporting it complete. Never report success, delivery, or completion you have not confirmed.
 - Do not expose triage scores, priority bands, or classification logic in user-facing output.
 - Do not store passwords, keys, tokens, secrets, or sensitive personal data in `memory.md`.
@@ -52,6 +52,7 @@ Follow these steps in order. Do not skip or rearrange them.
 ### 0. Prepare Working Files
 
 - Read `references/conventions.md`.
+- Confirm the packaged `assets/briefing.html` template exists, is non-empty, and contains exactly one script element matching both `id="daily-briefing-data"` and `type="application/json"`. Other script elements are allowed. If any check fails, stop and report that the installed ChiefOS package is incomplete.
 - Create `<working directory>` when it does not exist. Stop and report the filesystem error when it cannot be created or written.
 - Read `references/output-memory.md`. When `<working directory>/memory.md` is missing or empty, create it from that reference's template. Treat it as read-only context until step 7.
 - Read `references/output-todo.md`. When `<working directory>/todo.md` is missing or empty, create it from that reference's template, then load the existing active tasks as input to this run.
@@ -113,8 +114,8 @@ Write the top-level `summary` from the assembled email, calendar, chat, and meet
 - Read `references/output-briefing.md`, then build the schema-valid briefing JSON and keep it in memory.
 - Set `greeting` to a mode-appropriate greeting and `date` to the current local date.
 - Include the assembled `emails`, `calendar`, `chats`, `recaps`, and `todo` collections. For Afternoon Recap, include only relevant items in each collection and use an empty array when a collection has none.
-- Run `scripts/inject-data.ts` to replace `<working directory>/briefing.html` in place from that JSON.
-- Treat generator failure, or a missing or empty generated file, as a failed run.
+- Copy `assets/briefing.html` to `<working directory>/briefing.html`, then insert the final briefing JSON directly into the copied template's `daily-briefing-data` script element as defined in `references/output-briefing.md`.
+- Treat template copying, data insertion, validation, or output-file failure as a failed run.
 
 ### 6. Apply the Artifact Image
 
@@ -160,4 +161,3 @@ When the user asks for one source only, such as "triage my email", "what is on m
 - [references/email-send-summary.md](references/email-send-summary.md) (step 8): summary email assembly and send.
 - [references/email-html-design.md](references/email-html-design.md) (step 8): email-safe HTML and visual language.
 - [assets/briefing.html](assets/briefing.html) (step 5): packaged briefing template, read-only.
-- [scripts/inject-data.ts](scripts/inject-data.ts) (step 5): Bun generator that injects the JSON into the template.

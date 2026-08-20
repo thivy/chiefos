@@ -170,8 +170,7 @@ other step is affected.
 chief-os-brief/
   SKILL.md      the nine-step routine and the safety rules
   references/   14 documents, grouped by what they govern
-  assets/       the packaged briefing template, read-only during a run
-  scripts/      the generator that injects your data into that template
+  assets/       the packaged briefing template, copied and populated during a run
 ```
 
 References are grouped by prefix so the relevant one is easy to find.

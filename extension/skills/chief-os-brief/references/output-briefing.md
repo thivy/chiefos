@@ -91,25 +91,22 @@ Keep the generated JSON as an in-memory value for the current run. Do not save a
 
 ## 3. Generate the HTML
 
-The generator reads the packaged `assets/briefing.html` template directly. Do not copy the template into `<working directory>`, and do not create a placeholder `briefing.html`; the working file must be generated from schema-valid current-run JSON.
+Use the packaged `assets/briefing.html` as the only HTML template. Keep that packaged file unchanged and generate `<working directory>/briefing.html` as follows:
 
-Run the generator from `<working directory>` so it writes `briefing.html` there, replacing any existing file with the same name:
+1. Confirm the template exists, is non-empty, and contains exactly one `<script>` element matching both `id="daily-briefing-data"` and `type="application/json"`. Attribute order does not matter, and other script elements are allowed. Stop if the matching element is missing or duplicated.
+2. Validate the final in-memory briefing value against the schema in section 1 before writing any output.
+3. Serialize the validated value as JSON. In the serialized string, replace every literal `<` character with the six-character JSON escape `\u003c` so briefing text cannot close the script element.
+4. Replace any existing `<working directory>/briefing.html` with an exact copy of the packaged template.
+5. In the working copy only, replace the text content of the identified `daily-briefing-data` element with the escaped serialized JSON. Preserve the element, every attribute, and all other template content exactly.
 
-```bash
-bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data '<generated briefing JSON>'
-```
-
-For large or quoting-sensitive payloads, pipe the in-memory JSON and pass `-` to `--data`:
-
-```bash
-printf '%s' "$briefingJson" | bun <path-to-chief-os-brief-skill>/scripts/inject-data.ts --data -
-```
-
-`--data` also accepts a JSON file path for debugging or replaying a prior run.
+Do not invoke a generator script, modify the packaged template, replace placeholders one by one, or save a standalone JSON file. The complete `daily-briefing-data` text content is the only part of the working copy that changes.
 
 ## 4. Validate the Output
 
-- Validate that the JSON parses before injecting it into the template.
 - Confirm `<working directory>/briefing.html` exists, is non-empty, and was generated during the current run.
+- Re-read the working file and confirm it still contains exactly one script element matching both `id="daily-briefing-data"` and `type="application/json"`; ignore other script elements.
+- Parse that element's complete text content as JSON and confirm it is deeply equal to the final in-memory briefing value.
+- Confirm the data element contains no unresolved `[% ... %]` template placeholders and no literal `</script>` from briefing data.
+- Confirm the packaged `assets/briefing.html` template remains unchanged.
 - Do not create timestamped, backup, or history copies of `briefing.html`.
-- Treat generator failure, or a missing or empty generated file, as a failed run.
+- Treat any failed copy, insertion, parse, equality, template-integrity, or output-file check as a failed run.
