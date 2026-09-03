@@ -2,7 +2,7 @@
 
 One model for triaging email, calendar, Teams chat, and completed Teams meetings. Sections 1 to 5 are shared by all four sources. Section 6 holds the per-source profile: what to exclude, which categories to assign, and what to emit.
 
-Follow `conventions.md` for voice, evidence, and reporting.
+Follow `conventions.md` for voice and formatting.
 
 ## 1. Workflow
 

@@ -21,13 +21,13 @@ prepare for tomorrow.
 
 Twice a day, five things arrive together.
 
-| Output               | What it is                                                                          |
-| -------------------- | ----------------------------------------------------------------------------------- |
-| **The briefing**     | A one-page summary of your day, ranked by what needs you most                       |
-| **Your task list**   | A running list of actions, carried forward until they are genuinely done            |
-| **Draft replies**    | Outlook drafts prepared for the emails that need a response, saved but never sent   |
-| **A briefing image** | An illustrated poster of your day, one hand-drawn vignette and note per task        |
-| **A summary email**  | The same briefing sent to you, so it is in your inbox wherever you are              |
+| Output               | What it is                                                                        |
+| -------------------- | --------------------------------------------------------------------------------- |
+| **The briefing**     | A one-page summary of your day, ranked by what needs you most                     |
+| **Your task list**   | A running list of actions, carried forward until they are genuinely done          |
+| **Draft replies**    | Outlook drafts prepared for the emails that need a response, saved but never sent |
+| **A briefing image** | An illustrated poster of your day, one hand-drawn vignette and note per task      |
+| **A summary email**  | The same briefing sent to you, so it is in your inbox wherever you are            |
 
 ### Morning Brief
 
@@ -83,13 +83,13 @@ The scoring in step two is the part that makes the output useful rather than jus
 Every email, upcoming event, Teams thread, and completed-meeting outcome is scored on the
 same five factors:
 
-| Factor          | Weight | What it measures                                     |
-| --------------- | -----: | ---------------------------------------------------- |
-| **Impact**      |     30 | What it costs the business if this is missed         |
-| **Action**      |     25 | What you personally owe, right now                   |
-| **Urgency**     |     20 | What actually happens if it waits                    |
-| **Risk**        |     15 | The exposure or dependency sitting behind it         |
-| **Stakeholder** |     10 | How closely the person is tied to the outcome        |
+| Factor          | Weight | What it measures                              |
+| --------------- | -----: | --------------------------------------------- |
+| **Impact**      |     30 | What it costs the business if this is missed  |
+| **Action**      |     25 | What you personally owe, right now            |
+| **Urgency**     |     20 | What actually happens if it waits             |
+| **Risk**        |     15 | The exposure or dependency sitting behind it  |
+| **Stakeholder** |     10 | How closely the person is tied to the outcome |
 
 One set of factors, one set of weights, every source. An email and a Teams message
 describing the same situation land on the same score, which was not true when each source
@@ -144,9 +144,9 @@ copies.
 ## Getting started
 
 1. **Install the extension** in Microsoft 365 Copilot.
-2. **Say "set up my daily runs".** You will be asked to pick a morning time (7am, 8am, or
-   9am) and an afternoon time (3pm, 4pm, or 5pm). Defaults are 7am and 4pm, in your local
-   time zone.
+2. **Say "set up my daily runs".** One question sets both times: 7am and 4pm by default,
+   or pick a morning from 7am, 8am, or 9am and an afternoon from 3pm, 4pm, or 5pm. Your
+   local time zone is used.
 3. **That is it.** The briefing arrives at both times from the next day. To run one
    immediately, just ask for your morning brief.
 
@@ -173,37 +173,39 @@ The routine itself does not change, and no other step is affected.
 
 ```
 chief-os-brief/
-  SKILL.md      the nine-step routine and the safety rules
+  SKILL.md      the nine-step routine, and the safety rules that hold on every run
   references/   9 documents, grouped by what they govern
 ```
 
-| Group         | Documents                                                                               | Governs                                                              |
-| ------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `conventions` | `conventions`                                                                           | Tone, evidence, working files, and reporting, applied at every step  |
-| `triage`      | `triage`                                                                                | How all four sources are read, scored, ranked, and categorised       |
-| `output-`     | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory` | The files written to your working folder, and how they look          |
-| `email-`      | `email-draft`, `email-html-design`                                                      | Preparing drafts, and the look of the one email that gets sent       |
+The safety rules live in `SKILL.md` rather than a reference, because references are only
+read at the step that needs them and these have to hold whether or not one was opened.
+
+| Group         | Documents                                                                               | Governs                                                        |
+| ------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `conventions` | `conventions`                                                                           | Tone, wording, and date formatting across everything you see   |
+| `triage`      | `triage`                                                                                | How all four sources are read, scored, ranked, and categorised |
+| `output-`     | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory` | The files written to your working folder, and how they look    |
+| `email-`      | `email-draft`, `email-html-design`                                                      | Preparing drafts, and the look of the one email that gets sent |
 
 The order they are consulted during a run:
 
-| Step | Reference consulted                                        | What it decides                                            |
-| ---- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| 0    | `conventions`, `output-memory`, `output-todo`              | Loads the house rules, your context, and unfinished tasks  |
-| 1    | `triage`                                                   | What matters today, and in what order                      |
-| 2    | none                                                       | Writes the executive summary                               |
-| 3    | `output-todo`                                              | Updates your task list                                     |
-| 4    | `email-draft`                                              | Prepares Outlook drafts                                    |
-| 5    | `output-briefing`, `output-html-design`                    | Builds the briefing page                                   |
-| 6    | `output-image`, then `chief-os-image-prompt` once per task | Creates the briefing image                                 |
-| 7    | `output-memory`                                            | Verifies everything, and saves anything worth remembering  |
-| 8    | `email-html-design`                                        | Sends the summary to you                                   |
+| Step | Reference consulted                                        | What it decides                                           |
+| ---- | ---------------------------------------------------------- | --------------------------------------------------------- |
+| 0    | `conventions`, `output-memory`, `output-todo`              | Loads the house rules, your context, and unfinished tasks |
+| 1    | `triage`                                                   | What matters today, and in what order                     |
+| 2    | none                                                       | Writes the executive summary                              |
+| 3    | `output-todo`                                              | Updates your task list                                    |
+| 4    | `email-draft`                                              | Prepares Outlook drafts                                   |
+| 5    | `output-briefing`, `output-html-design`                    | Builds the briefing page                                  |
+| 6    | `output-image`, then `chief-os-image-prompt` once per task | Creates the briefing image                                |
+| 7    | `output-memory`                                            | Verifies everything, and saves anything worth remembering |
+| 8    | `email-html-design`                                        | Sends the summary to you                                  |
 
-`conventions` is the single home for the rules that apply everywhere, which is why the
-tone stays consistent whether you are reading the briefing, a draft reply, or the summary
-email, and why no other file restates them. `output-html-design` and `email-html-design`
-are deliberately separate: the briefing page is read in a browser and uses the full design
-system, while the summary email is built from a stricter, email-safe subset that survives
-Outlook.
+`conventions` is the single home for house style, which is why the tone stays consistent
+whether you are reading the briefing, a draft reply, or the summary email, and why no
+other file restates it. `output-html-design` and `email-html-design` are deliberately
+separate: the briefing page is read in a browser and uses the full design system, while
+the summary email is built from a stricter, email-safe subset that survives Outlook.
 
 ---
 
@@ -244,8 +246,9 @@ Skills are registered in the `agentSkills` array of
   own references inline, so there is no separate index to keep in sync.
 - **Adding a skill:** create the folder with a `SKILL.md`, then register it in the
   manifest. A skill only earns its own folder if a user would ask for it directly.
-- **Adding a rule that applies everywhere:** put it in `conventions.md` and nowhere else.
-  No other file restates it, so a rule written twice is a bug.
+- **Adding a rule that applies everywhere:** a safety rule goes in the Invariants list in
+  `SKILL.md`; a wording or formatting rule goes in `conventions.md`. Either way it is
+  written once, so a rule stated twice is a bug.
 
 The briefing page is rendered from
 [output-html-design.md](extension/skills/chief-os-brief/references/output-html-design.md)

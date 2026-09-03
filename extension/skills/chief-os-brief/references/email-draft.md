@@ -64,7 +64,7 @@ Material changes include a changed request, recipient, decision, deadline, attac
 - Follow relevant communication preferences from `memory.md` and `conventions.md`; otherwise use neutral professional language.
 - Include a greeting and closing when appropriate.
 - Append the user's configured Outlook signature. If it is not inserted automatically, reproduce it only from a verified signature source, such as another current Outlook draft or a recent sent message from the user.
-- If no signature can be verified, do not invent one. Leave the signature absent and report that the draft requires the user's signature during review.
+- If no signature can be verified, leave it absent and report that the draft requires the user's signature during review.
 - Mention an attachment only when the source confirms it and the attachment can be included. Never claim an unavailable attachment is attached.
 - When updating a matching draft, edit that draft in place and retain useful user-authored content that does not conflict with current evidence.
 - Save the result to Outlook Drafts and do not send it.
@@ -76,7 +76,7 @@ Material changes include a changed request, recipient, decision, deadline, attac
 - Confirm the user's verified signature appears at the end of the draft, or explicitly report that no signature source was available.
 - Confirm that no additional draft was created for the same todo or source thread.
 - Do not delete pre-existing duplicate drafts automatically; report them for user review.
-- Report one concise result per eligible todo: `Created`, `Updated`, `Unchanged`, or `Skipped`, together with the draft subject and reason. Do not report success unless the draft is present in Outlook Drafts.
+- Report one concise result per eligible todo: `Created`, `Updated`, `Unchanged`, or `Skipped`, together with the draft subject and reason.
 
 ## Related References
 

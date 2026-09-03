@@ -11,10 +11,11 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 
 ## Invariants
 
-- Work only in `/output`. Read and replace `todo.md` in place, and leave `briefing.html`, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
+- Work only in the output folder. Read and replace `todo.md` in place, and leave `briefing.html`, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
 - Verify the file after writing it. Never report success you have not confirmed.
+- Write in English, without em dashes.
 
 ## Workflow
 
@@ -56,7 +57,3 @@ Ask exactly one multiple-choice question listing every active task, accepting mu
 ### 4. Confirm the Result
 
 Report a short, friendly summary covering each task marked completed by title, the number of active tasks remaining, and a warm closing line telling the user that `todo.md` is up to date and the next `chief-os-brief` run will pick the changes up, so there is nothing else for them to do now.
-
-## References
-
-- [../chief-os-brief/references/conventions.md](../chief-os-brief/references/conventions.md) (every step): voice, evidence, and reporting rules.

@@ -7,7 +7,7 @@ description: "Use when generating a daily assistant briefing or triaging Microso
 
 Produce the daily assistant briefing, refresh Microsoft 365 priorities, and update the action list. Each numbered step names the reference to read before running it.
 
-Follow `references/conventions.md` throughout. It holds the voice, evidence, working-file, and reporting rules, and no step restates them.
+Read `references/conventions.md` for house voice and formatting, and apply it to every user-facing word.
 
 ## Modes
 
@@ -18,7 +18,7 @@ Run exactly one mode unless the user asks for both. Use the mode the user names,
 
 ## Working Files
 
-In `/output`, created when missing:
+Four files in the output folder, created when missing and replaced in place every run. Never create timestamped, backup, or history copies.
 
 - `briefing.html`: the generated briefing.
 - `todo.md`: the live task file.
@@ -27,6 +27,12 @@ In `/output`, created when missing:
 
 ## Invariants
 
+These hold on every run, whether or not a reference has been read.
+
+- **Evidence only.** Never invent a person, recipient, link, fact, commitment, date, deadline, decision, owner, attachment, or signature. Omit the item instead.
+- **Verifiable sources only.** Use only what is present in the item, its linked context, the calendar, the address book, or `memory.md`. Never infer importance, relationships, or deadlines from a title, domain, tone, or metadata alone. When evidence conflicts, state the conflict and recommend verification; when it is ambiguous, take the lower defensible reading.
+- **Confirm before reporting.** Verify a step's postconditions before reporting it complete. Never report success, delivery, or completion you have not confirmed.
+- **Nothing internal leaks.** Never expose triage scores, priority bands, or classification logic in user-facing output, and never store secrets or sensitive personal data in a working file.
 - Never send email during the run except the single self-addressed summary at step 8. Step 4 only creates or updates unsent Outlook drafts.
 - Compose every image prompt through the `chief-os-image-prompt` skill, once per task. Never author, paraphrase, batch, or reuse a prompt yourself.
 - Build `briefing.html` from `references/output-html-design.md` and the summary email from `references/email-html-design.md`. Use no other framework, visual language, or design system.

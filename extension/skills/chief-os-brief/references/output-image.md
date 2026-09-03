@@ -10,7 +10,7 @@ The image carries the tasks and nothing else. No title, greeting, name, briefing
 
 For every entry in `todo.items`, in source order, prepare:
 
-- **Display label** — 4 to 6 words stating the next action in the task's own wording, with no invented facts and no padding. Rendered.
+- **Display label** — 4 to 6 words stating the next action in the task's own wording, with no padding. Rendered.
 - **Summary note** — one line of at most 12 words drawn from the task's `summary`, keeping any name or date it carries exact. Rendered.
 - **Context** — one line combining `summary` and `recommendedAction` in full, with names, dates, and commitments exact. Never rendered; it only guides the choice of object, character, and interaction.
 
@@ -60,11 +60,11 @@ Date: {LOCAL_DATE}
 
 ## 4. Generate and Validate
 
-Generate from the combined prompt and save as `artifact-image.png`, replacing any existing file. `chief-os-image-prompt` returns prompts only; generation, saving, and these checks belong here. Regenerate whenever a check fails, and never claim an image was created while generation is unavailable or a check is failing.
+Generate from the combined prompt and save as `artifact-image.png`, replacing any existing file. `chief-os-image-prompt` returns prompts only; generation, saving, and these checks belong here. Regenerate whenever a check fails.
 
 - The `chief-os-image-prompt` call count equals the number of tasks, and the image holds one vignette per task in source order.
 - The file exists, is non-empty, and is a readable 9:16 PNG in the `Everyday Doodle` style on warm ivory.
 - The date line resolves its placeholder and is the only text above the vignettes. No title, greeting, name, briefing overview, or item count appears.
-- Each vignette shows its heading, a 4-to-6-word display label, and a one-line handwritten summary note. Nothing else from the task is rendered, and no name, date, or commitment is invented.
+- Each vignette shows its heading, a 4-to-6-word display label, and a one-line handwritten summary note. Nothing else from the task is rendered.
 - No everyday object and no character repeats across vignettes.
 - No text overlaps art or other text, every handwritten note stays legible, vignettes are evenly spaced, and no instruction text or placeholder name appears in the image.
