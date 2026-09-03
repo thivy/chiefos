@@ -1,8 +1,8 @@
 # Email HTML Design
 
-The design source for the summary email, per `email-send-summary.md`. Every rule below is written for email delivery, so the result renders reliably in Outlook and other common mail clients.
+The design source for the summary email. Every rule is written for email delivery, so the result renders reliably in Outlook and other common mail clients.
 
-Read this file in full before writing any markup. Every rule is a requirement, not a suggestion, and the `Verify Before Output` checklist at the end is the gate the email must pass before it is sent. Never assemble the email body from memory, from a previous run, or from your own judgement of what looks right.
+Read this file in full before writing any markup, and build the body from it alone rather than from memory or a previous run. The `Verify Before Output` checklist at the end is the gate the email must pass before it is sent.
 
 ## Design Tokens
 
@@ -42,9 +42,9 @@ The body is `680px` wide. This is a hard constraint, not a preference.
 The base is the mail client's native font and native default text size. Do not restyle the base; declare only deliberate deviations from it.
 
 - Use the native stack `font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`, repeated inline on every text-bearing cell. Font inheritance into tables is unreliable in Outlook and Gmail.
-- Do not use `Inter`, any other webfont, or the `system-ui` keyword. Word-based Outlook does not resolve `system-ui` and falls back to a serif face.
+- Do not use `Inter`, `Inter Variable`, any other webfont, or the `system-ui` keyword. Word-based Outlook does not resolve `system-ui` and falls back to a serif face.
 - Do not declare a base `font-size` anywhere, including on `body`, the wrapper table, and body copy cells. Body text inherits the client default and the reader's own text-size preference.
-- Size every deviation relative to that inherited base with `em`:
+- Size every deviation relative to that inherited base with `em`, never `px`, `pt`, `rem`, `%`, `vw`, `clamp()`, or `!important`:
 
 | Role            | Style                                                  |
 | --------------- | ------------------------------------------------------ |
@@ -53,9 +53,6 @@ The base is the mail client's native font and native default text size. Do not r
 | Section heading | `font-size:1.125em; font-weight:600; line-height:1.25` |
 | Card title      | `font-size:0.875em; font-weight:600; line-height:1.25` |
 | Metadata        | `font-size:0.75em; line-height:1.35; color:#76685e`    |
-
-- Do not size text with `px`, `pt`, `rem`, `%`, `vw`, `clamp()`, or `!important`, and do not scale text from viewport width.
-- Do not use a fluid `clamp()` type scale or the `Inter Variable` face. Those are browser-only.
 
 ## Content Layout
 
@@ -82,46 +79,18 @@ The base is the mail client's native font and native default text size. Do not r
 - Do not use external fonts, remote stylesheets, SVG, background images, data URLs, video, forms, or animated content.
 - Do not use CSS gradients or dark surfaces.
 - Do not use fixed heights for cards or rows.
-- Do not include generated imagery inline. The artifact image reaches the reader only as the verified mail attachment described in `email-send-summary.md`.
+- Do not include generated imagery inline. The artifact image reaches the reader only as the verified mail attachment.
 
 ## Verify Before Output
 
-Check the generated HTML against every item below, one at a time, and repair it before sending. Do not send output that fails a check, and do not report the checklist as passed unless you checked each item against the actual markup.
+Check the generated HTML against each item against the actual markup, and repair it before sending. Do not send output that fails a check.
 
-**Structure and width**
-
-- Exactly one element carries `max-width:680px`, and that same element carries `width="680"`.
-- No visible content sits outside that wrapper, and no nested table declares a width other than `width="100%"`.
-- Every layout table carries `role="presentation"`, `cellpadding="0"`, `cellspacing="0"`, and `border="0"`.
-- All spacing comes from inline cell `padding`. No margin, grid, flexbox, column, or pseudo-element layout appears.
-- Every card uses `border-radius:6px`, and no card surface nests inside another card surface.
-
-**Typography**
-
-- No `font-family` value mentions `Inter`, `system-ui`, or any webfont.
-- Every text-bearing cell repeats the native font stack inline.
-- No `font-size` uses `px`, `pt`, `rem`, `%`, `vw`, or `clamp()`, and no body copy declares a `font-size` at all.
-- Each heading, card title, and metadata run matches the size, weight, and line height in the Typography table.
-
-**Colour**
-
-- Every colour resolves to one of the eight design tokens. No other hex value appears.
-- Message cards rotate Sage, Sand, Lemon, and Lilac in source order, and no pastel is used to signal status.
-
-**Content**
-
-- Sections appear in this order: Overview, To Do, Email, Calendar, Teams Chat, Meeting Recaps.
-- Each card places metadata first, then subject, summary, author details, then the recommended action below a hairline rule.
-- Every empty section renders `No items surfaced in this run.` as muted body copy with no card.
-- Item wording and source order are preserved, and absent fields are omitted rather than filled.
-
-**Links and accessibility**
-
-- Every linked subject uses a verified absolute `https://` URL and is styled `color:#311f10`, `font-weight:600`, `text-decoration:underline`. Unlinked subjects are plain text.
+- Exactly one element carries both `max-width:680px` and `width="680"`, all visible content sits inside it, and no nested table declares a width other than `width="100%"`.
+- Every layout table carries `role="presentation"`, `cellpadding="0"`, `cellspacing="0"`, and `border="0"`, and all spacing comes from inline cell `padding`.
+- No `font-family` mentions `Inter`, `system-ui`, or any webfont, and every text-bearing cell repeats the native stack inline.
+- No body copy declares a `font-size`, and no `font-size` uses `px`, `pt`, `rem`, `%`, `vw`, or `clamp()`.
+- Every colour resolves to one of the eight design tokens, and message cards rotate Sage, Sand, Lemon, and Lilac in source order with no pastel signalling status.
+- Sections appear in order: Overview, To Do, Email, Calendar, Teams Chat, Meeting Recaps. Item wording and source order are preserved, absent fields are omitted, and every empty section renders `No items surfaced in this run.` with no card.
+- Every linked subject uses a verified absolute `https://` URL styled `color:#311f10; font-weight:600; text-decoration:underline`. Unlinked subjects are plain text, and no state is conveyed by colour alone.
 - The root carries `lang="en"`, the document has a meaningful `<title>`, and a hidden preheader opens the body.
-- No status, source, or completion state is conveyed by colour alone.
-
-**Constraints**
-
-- No script, webfont, remote stylesheet, SVG, background image, data URL, video, form, animation, gradient, dark surface, or fixed height appears anywhere.
-- No generated imagery is inlined. The artifact image reaches the reader only as the mail attachment.
+- No script, webfont, remote stylesheet, SVG, background image, data URL, video, form, animation, gradient, dark surface, fixed height, or inlined imagery appears anywhere.

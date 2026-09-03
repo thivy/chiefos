@@ -1,15 +1,13 @@
 ---
 name: chief-os-image-prompt
-description: "Use only when the user explicitly asks to run or use the chief-os-image-prompt skill by name. Do not invoke it for general image, illustration, artwork, or image-prompt requests that do not name this skill."
+description: "Use when this skill is named explicitly, either by the user or by a calling skill such as chief-os-brief. Do not invoke it for general image, illustration, artwork, or image-prompt requests that do not name it."
 ---
 
 # ChiefOS Image Prompt
 
 Rebuild the supplied content into one complete image generation prompt in a named illustration style.
 
-This skill is the required first step for any image request. Compose the prompt here, then hand it back to the caller, who owns generation.
-
-This skill returns the prompt. It never generates, saves, or validates an image. The caller owns generation.
+This skill returns the prompt only. It never generates, saves, or validates an image; the caller owns that.
 
 ## Resolve the Style
 

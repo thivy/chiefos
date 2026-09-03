@@ -1,6 +1,6 @@
 # Output HTML Design
 
-The design source for `briefing.html`, per `output-briefing.md`. It is the Daily Briefing visual language rebuilt from the React briefing artifact, so every rule below assumes a browser and the full design system.
+The design source for `briefing.html`, per `output-briefing.md`. It is the Daily Briefing visual language, so every rule below assumes a browser and the full design system.
 
 Write the result as one standalone document with a single `<style>` block. Do not depend on Tailwind, a build step, a framework runtime, or any remote asset.
 
@@ -121,7 +121,7 @@ Draw every icon as inline SVG in the Lucide style: `viewBox="0 0 24 24"`, `fill=
 - No Tailwind, no framework runtime, no build step, no script payload, and no embedded briefing JSON.
 - No remote stylesheets, remote fonts, tracking pixels, iframes, forms, or video.
 - No dark surfaces, gradients, or fixed card heights. Cards grow to fit their content.
-- No inline image data. The artifact image is delivered only as the mail attachment described in `email-send-summary.md`.
+- No inline image data. The artifact image is delivered only as the mail attachment described in step 8 of `SKILL.md`.
 - Escape `&`, `<`, and `>` in every value taken from the briefing, and `"` in every attribute value, before it reaches the markup.
 
 ## Verify Before Output

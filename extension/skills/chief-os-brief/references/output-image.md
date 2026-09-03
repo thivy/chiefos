@@ -1,104 +1,70 @@
 # Briefing Visual
 
-Compose one prompt per task, assemble them into a single combined prompt, then generate `artifact-image.png`.
+Compose one prompt per task through `chief-os-image-prompt`, assemble them into a single combined prompt, then generate `artifact-image.png`. Run this only once the briefing JSON is schema-valid.
 
-## Workflow
+## 1. Prepare the Content
 
-Run these stages in order once the briefing JSON is schema-valid.
+Read only `date` and `todo.items` from the briefing JSON. Ignore `summary`, `person_name`, `emails`, `calendar`, `chats`, and `recaps`; each task keeps whatever source context already sits inside `todo.items`.
 
-### 1. Load Content
+The image carries the tasks and nothing else. No title, greeting, name, briefing overview, or item count appears anywhere in it.
 
-Read only the top-level `summary` and `todo.items` from the final briefing JSON defined in `output-briefing.md`. Ignore `emails`, `calendar`, `chats`, and `recaps`; tasks keep any source context already inside `todo.items`.
+For every entry in `todo.items`, in source order, prepare:
 
-### 2. Prepare Content
+- **Display label** — 4 to 6 words stating the next action in the task's own wording, with no invented facts and no padding. Rendered.
+- **Summary note** — one line of at most 12 words drawn from the task's `summary`, keeping any name or date it carries exact. Rendered.
+- **Context** — one line combining `summary` and `recommendedAction` in full, with names, dates, and commitments exact. Never rendered; it only guides the choice of object, character, and interaction.
 
-- **Overview**: the complete top-level `summary`, headed `Brief overview`. Text only, never illustrated, no action.
-- **Tasks**: every entry in `todo.items`, in source order, headed by its exact `title`. For each, prepare:
-  - **Full text** — one short line combining `summary` and `recommendedAction`. Keep names, dates, and commitments exact, add nothing, omit no recommended action. Context only, never rendered.
-  - **Display label** — 4 to 6 words stating the next action in the task's own wording. No invented facts, no padding.
-- Expected vignette count = the number of tasks. The overview is not a vignette.
+One vignette per task.
 
-### 3. Set the Shared Style
+## 2. Compose One Prompt per Task
 
-Fresh start: reuse no prompt or image from a previous run. Apply to every stage 5 prompt.
+Make one `chief-os-image-prompt` call per task, in source order. Pass the task's exact `title` as the heading, its display label and summary note as the only text to render, and its context as non-rendering material. Give every call this shared style:
 
-- Style `Everyday Doodle` on a warm-ivory background, identical across vignettes.
-- Each call composes one self-contained vignette with high detail, not a full composition.
-- The heading and display label sit in clear ivory space beside or below the art, with a margin around every line. Nothing overlaps: text never crosses the object or character, and neither crosses the text.
-- Avoid borders, underlines, frames, or separators; abstract corporate or stock imagery; and rendering any task text beyond the display label.
+- `Everyday Doodle` on a warm-ivory background, identical across vignettes.
+- One self-contained, highly detailed vignette per call, not a full composition.
+- Heading and display label in the sans. The summary note in a small handwritten script, in the same warm-black ink as the linework and clearly legible.
+- All three sit in clear ivory space beside or below the art, with a margin around every line. Text never crosses the art, and art never crosses the text.
+- Avoid borders, underlines, frames, and separators; abstract corporate or stock imagery; and any task text beyond the display label and summary note.
 
-Ratio and layout belong to the assembled image. Do not pass them here.
+Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
 
-### 4. Prepare the Overview Text
+## 3. Assemble the Final Prompt
 
-No `chief-os-image-prompt` call, no object, character, scene, or drawn element. Keep `Brief overview` as the heading and the complete top-level summary verbatim as plain text, never shortened into a label and never given a recommended action. It is placed in stage 6.
+The final prompt is the block below with two substitutions:
 
-Reference the overview text as O1.
+- `{LOCAL_DATE}` is the top-level `date`, used verbatim and never reformatted.
+- `{TASK_PROMPTS}` is every prompt returned in stage 2, in source order, separated by blank lines.
 
-### 5. Compose a Prompt for Each Task
-
-Tasks are the only illustrated items. Make one `chief-os-image-prompt` call per task, in source order, with the stage 3 style:
-
-- Heading: the task's exact `title`. Rendered text: its display label and nothing else.
-- Supply the full text as context that must not be rendered.
-- Keep each returned prompt with its position. Never batch tasks into one call, and never skip a task for resembling another.
-- Every task prompt comes back from `chief-os-image-prompt`. Never write one yourself, and never carry a prompt over from a previous run. The call count must equal the expected vignette count from stage 2 before stage 6 starts.
-
-Reference each task prompt as T1, T2, and so on, in source order.
-
-### 6. Final Image Prompt
-
-Fill the template below and send the result as a single prompt. Nothing outside the template reaches the image.
-
-- `{PERSON_NAME}` = top-level `person_name`; `{LOCAL_DATE}` = top-level `date`, never derived or reformatted; `{ITEM_COUNT}` = the number of entries in `todo.items`.
-- Replace O1 with the stage 4 overview text, and T1, T2 … TN with the stage 5 prompts in source order until every task is placed. Add a block per task; the template shows the first two only.
-- Substitution is verbatim. Never summarise, condense, merge, reword, paraphrase, or drop a prompt to save length, tokens, or readability.
-- Never collapse shared wording into one description, and never back-reference with "same as above", "repeat for the remaining items", or an ellipsis. Each block repeats its own full description.
-- The only permitted edit is de-duplication: where two independently composed vignettes picked the same everyday object or character, vary one and leave every other detail intact.
-- Before generating, confirm the number of task blocks equals the expected vignette count from stage 2 and that each block still carries its own object, character, interaction, heading, and display label.
+Substitute verbatim. Never summarise, condense, merge, reword, or drop a prompt, and never back-reference one with "same as above" or an ellipsis. The only permitted edit is de-duplication: where two vignettes independently picked the same everyday object or character, vary one and leave every other detail intact. Nothing outside the block reaches the image.
 
 ```
 **Typography**
 
-- Title: A transitional or old-style serif such as Baskerville, Caslon, or Garamond, set medium font size as the dominant text.
-- Subtitle: the same serif, set small and clearly smaller than the title, directly beneath it.
-- Overview, headings, and display labels: a humanist or grotesque sans such as Inter, Helvetica Neue, or Univers. Set the overview at reading size and headings slightly heavier than their labels.
+- Date line: a transitional or old-style serif such as Baskerville, Caslon, or Garamond, set small and quiet.
+- Headings and display labels: a humanist or grotesque sans such as Inter, Helvetica Neue, or Univers, with headings slightly heavier than their labels.
+- Summary notes: a small handwritten script in warm-black ink, matching the hand-drawn linework and set smaller than the display label.
 
 **Overall image look**
 
 - 9:16 vertical, Everyday Doodle style, warm ivory, masonry fluid grid with no borders, frames, or separators.
-- Generous, even ivory gutters: at least one display-label line between neighbouring vignettes, plus a clear band below the title block and below the overview text.
-- Nothing overlaps. No vignette, object, or character crosses a gutter or reaches into the overview block, and no text sits over art or over other text.
+- Generous, even ivory gutters: at least one display-label line between neighbouring vignettes, plus a clear band below the date line.
+- The date line is the only text above the vignettes. No title, greeting, name, briefing overview, or item count appears.
+- Nothing overlaps. No vignette, object, or character crosses a gutter, and no text sits over art or over other text.
 
 **Composition**
 
-Title: {PERSON_NAME}, here's a clear, focused snapshot for {LOCAL_DATE}.
+Date: {LOCAL_DATE}
 
-Subtitle: {ITEM_COUNT} items to focus on today.
-
-Overview: O1
-
-T1
-
-T2
+{TASK_PROMPTS}
 ```
 
-### 7. Generate and Save
+## 4. Generate and Validate
 
-Generate from the combined prompt and save as `artifact-image.png`, replacing any existing file.
+Generate from the combined prompt and save as `artifact-image.png`, replacing any existing file. `chief-os-image-prompt` returns prompts only; generation, saving, and these checks belong here. Regenerate whenever a check fails, and never claim an image was created while generation is unavailable or a check is failing.
 
-### 8. Validate the Image
-
-`chief-os-image-prompt` returns prompts only; generation, saving, and these checks belong here. Regenerate whenever a check fails. Do not report success until every check passes, and never claim an image was created when generation is unavailable or a check is still failing.
-
-- One `chief-os-image-prompt` call was made per task, matching the expected vignette count from stage 2.
-- The file exists, is non-empty, and is a readable PNG.
-- 9:16 ratio, warm-ivory background, masonry layout, and `Everyday Doodle` style were applied.
-- Title and subtitle resolve every placeholder, are set in the serif, and the subtitle is clearly smaller than the title.
-- The overview sits directly under the subtitle as a text block carrying the complete summary, with no object, character, drawing, or decoration.
-- One vignette per task, in source order, matching the expected vignette count from stage 2, each showing its heading and a 4-to-6-word display label in the sans, and no full task text.
-- Display labels invented no names, dates, or commitments.
+- The `chief-os-image-prompt` call count equals the number of tasks, and the image holds one vignette per task in source order.
+- The file exists, is non-empty, and is a readable 9:16 PNG in the `Everyday Doodle` style on warm ivory.
+- The date line resolves its placeholder and is the only text above the vignettes. No title, greeting, name, briefing overview, or item count appears.
+- Each vignette shows its heading, a 4-to-6-word display label, and a one-line handwritten summary note. Nothing else from the task is rendered, and no name, date, or commitment is invented.
 - No everyday object and no character repeats across vignettes.
-- No text overlaps art or other text, and every line is legible against the ivory.
-- Vignettes are separated by generous, even spacing, with no crowding or bleed into a neighbour.
-- No placeholder names or instruction text appear in the image.
+- No text overlaps art or other text, every handwritten note stays legible, vignettes are evenly spaced, and no instruction text or placeholder name appears in the image.

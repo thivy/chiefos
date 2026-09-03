@@ -8,7 +8,7 @@ These invariants always hold; the workflow steps own the operational detail.
 
 - Read only the live `todo.md`; do not create, complete, remove, or rewrite todos.
 - Never send an email; only create or update drafts in the Outlook Drafts folder, at most one per todo or source thread.
-- Never invent recipients, facts, commitments, dates, links, attachments, or signature details; skip a todo when the evidence is insufficient.
+- Skip a todo when the evidence is insufficient to verify its recipients or content.
 - Begin every draft with **AI-GENERATED DRAFT - REVIEW BEFORE SENDING** as a bold, uppercase line, and end it with the user's verified signature.
 
 ## Workflow
@@ -81,5 +81,5 @@ Material changes include a changed request, recipient, decision, deadline, attac
 ## Related References
 
 - `output-todo.md`: owns the creation, consolidation, and replacement of `todo.md`.
-- `triage-email.md`: supplies current email thread context and recommended actions.
+- `triage.md`: supplies current email thread context and recommended actions.
 - `output-memory.md`: supplies durable communication preferences and relationship context when available.
