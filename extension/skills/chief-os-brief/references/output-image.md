@@ -1,6 +1,6 @@
 # Briefing Visual
 
-Compose one prompt per task, assemble them into a single combined prompt, then generate `<working directory>/artifact-image.png`.
+Compose one prompt per task, assemble them into a single combined prompt, then generate `artifact-image.png`.
 
 ## Workflow
 
@@ -85,7 +85,7 @@ T2
 
 ### 7. Generate and Save
 
-Generate from the combined prompt and save as `<working directory>/artifact-image.png`, replacing any existing file.
+Generate from the combined prompt and save as `artifact-image.png`, replacing any existing file.
 
 ### 8. Validate the Image
 

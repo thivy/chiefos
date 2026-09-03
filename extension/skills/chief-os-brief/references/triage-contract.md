@@ -16,7 +16,7 @@ Write all user-facing text, including subjects, summaries, and recommended actio
 
 Step 2 establishes these shared signals for every source, then each source adds its own:
 
-- Known relationship: the sender or organiser appears in `<working directory>/memory.md` or the address book.
+- Known relationship: the sender or organiser appears in `memory.md` or the address book.
 - Direct team membership: the sender or organiser is part of the immediate team.
 - Stakeholder relevance: their documented relationship to the outcome, such as accountable owner, affected customer, decision-maker, dependency owner, sponsor, manager, direct report, peer, or another relevant role.
 - Explicit ask or decision: approval, decision, deliverable, or sign-off.
@@ -29,7 +29,7 @@ The `triage-email.md` and `triage-chat.md` references also establish:
 - Attachments or deliverables: files or items requiring review.
 - Thread state: who owns the next move, what remains unresolved, and whether the user has already responded.
 
-Use only evidence present in the item, its linked context, the calendar, the address book, or `<working directory>/memory.md`.
+Use only evidence present in the item, its linked context, the calendar, the address book, or `memory.md`.
 
 ## Message Categories
 

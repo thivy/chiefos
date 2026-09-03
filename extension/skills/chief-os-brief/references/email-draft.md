@@ -1,13 +1,12 @@
 # Email Draft
 
-Turn active email actions in the live `<working directory>/todo.md` file into saved Outlook drafts without creating duplicates or sending mail.
+Turn active email actions in the live `todo.md` file into saved Outlook drafts without creating duplicates or sending mail.
 
 ## Core Rules
 
 These invariants always hold; the workflow steps own the operational detail.
 
-- Use the `<working directory>` defined in `SKILL.md`.
-- Read only the live `<working directory>/todo.md`; do not create, complete, remove, or rewrite todos.
+- Read only the live `todo.md`; do not create, complete, remove, or rewrite todos.
 - Never send an email; only create or update drafts in the Outlook Drafts folder, at most one per todo or source thread.
 - Never invent recipients, facts, commitments, dates, links, attachments, or signature details; skip a todo when the evidence is insufficient.
 - Begin every draft with **AI-GENERATED DRAFT - REVIEW BEFORE SENDING** as a bold, uppercase line, and end it with the user's verified signature.
@@ -18,7 +17,7 @@ Follow these stages in order for each eligible todo. Complete the duplicate chec
 
 ### 1. Load Active Email Actions
 
-- Read `<working directory>/todo.md` once the working directory has been established.
+- Read `todo.md`.
 - If the file is missing or contains no eligible active todos, do not create a draft and report that no email action was available.
 - Treat a todo as eligible when either:
   - `Source: email` and its next step requires the user to reply, respond, follow up, approve, decide, or deliver something by email; or
@@ -32,7 +31,7 @@ Follow these stages in order for each eligible todo. Complete the duplicate chec
 - For a reply, identify the source conversation, latest message, sender, relevant participants, subject, explicit asks, decisions, and deadlines.
 - For a new outbound email, identify the intended recipients, purpose, and subject from verified source evidence.
 - If current evidence shows that the user has already sent the required response or the action is otherwise resolved, skip the todo and do not create or change a draft.
-- Use `<working directory>/memory.md` only when it is already available and contains relevant communication preferences or durable relationship context.
+- Use `memory.md` only when it is already available and contains relevant communication preferences or durable relationship context.
 
 ### 3. Find an Existing Draft
 
@@ -62,7 +61,7 @@ Material changes include a changed request, recipient, decision, deadline, attac
 - Place the AI-generated review banner from Core Rules at the very top of the message as bold, uppercase text on its own line, followed by a blank line before the greeting or body.
 - Write a concise, professional body that directly handles the verified ask and next step. Organize it into short, coherent paragraphs with blank lines between distinct ideas.
 - Use a bulleted or numbered list only when communicating multiple actions, questions, decisions, or deliverables that are clearer as a list.
-- Follow relevant communication preferences from `<working directory>/memory.md` and `conventions.md`; otherwise use neutral professional language.
+- Follow relevant communication preferences from `memory.md` and `conventions.md`; otherwise use neutral professional language.
 - Include a greeting and closing when appropriate.
 - Append the user's configured Outlook signature. If it is not inserted automatically, reproduce it only from a verified signature source, such as another current Outlook draft or a recent sent message from the user.
 - If no signature can be verified, do not invent one. Leave the signature absent and report that the draft requires the user's signature during review.
@@ -81,6 +80,6 @@ Material changes include a changed request, recipient, decision, deadline, attac
 
 ## Related References
 
-- `output-todo.md`: owns the creation, consolidation, and replacement of `<working directory>/todo.md`.
+- `output-todo.md`: owns the creation, consolidation, and replacement of `todo.md`.
 - `triage-email.md`: supplies current email thread context and recommended actions.
 - `output-memory.md`: supplies durable communication preferences and relationship context when available.

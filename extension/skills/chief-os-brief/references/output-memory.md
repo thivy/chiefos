@@ -1,10 +1,10 @@
 # Memory
 
-Create and maintain the live `<working directory>/memory.md` file used by daily brief runs.
+Create and maintain the live `memory.md` file used by daily brief runs.
 
 ## Core Rules
 
-- Maintain only the live `<working directory>/memory.md` file.
+- Maintain only the live `memory.md` file.
 - Keep memory brief, factual, stable, and useful for future triage.
 - Follow `conventions.md` for voice and formatting.
 - Do not store passwords, API keys, tokens, secrets, private credentials, or sensitive personal data.
@@ -14,7 +14,7 @@ Create and maintain the live `<working directory>/memory.md` file used by daily 
 
 ## Creation Rules
 
-- If `<working directory>/memory.md` is missing, create it from markdown template below.
+- If `memory.md` is missing, create it from markdown template below.
 - After creating the file, replace placeholder customer domains with known domains only when reliable source evidence or user input is available.
 - If no reliable context exists, leave the template structure in place and avoid inventing relationships, domains, or preferences.
 

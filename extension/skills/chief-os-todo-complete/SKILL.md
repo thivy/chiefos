@@ -9,16 +9,9 @@ Mark existing tasks in `todo.md` as completed. That is the whole job.
 
 This skill only changes task status. It never triages email, calendar, chat, or meeting recaps, never creates tasks, never drafts or sends email, and never regenerates the briefing or the artifact image. Those are refreshed the next time the `chief-os-brief` skill runs.
 
-## Working Directory
-
-`<working directory>` is `/output`, the same directory `chief-os-brief` uses. This skill reads and replaces one file in place:
-
-- `todo.md`: the live task file.
-
-Leave every other file in that directory untouched, including `briefing.html`, `artifact-image.png`, and `memory.md`.
-
 ## Invariants
 
+- Work only in `/output`. Read and replace `todo.md` in place, and leave every other file there untouched, including `briefing.html`, `artifact-image.png`, and `memory.md`.
 - Apply `conventions.md` from the `chief-os-brief` skill to every user-facing word in the run.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
@@ -31,7 +24,7 @@ Follow these steps in order. Do not skip or rearrange them.
 
 ### 1. Load the Active Tasks
 
-- Read `<working directory>/todo.md`.
+- Read `todo.md`.
 - When the file is missing or empty, stop and tell the user to run the `chief-os-brief` skill first. Do not create a task file here.
 - Load every active `- [ ]` task under `## Active`, in file order, keeping each task's title, summary, next step, source, context, owner, deadline, and link.
 - When there are no active tasks, report that everything is already complete and stop. Do not run any further step.
@@ -54,7 +47,7 @@ Ask exactly one multiple-choice question that lists every active task and accept
 - Move each selected task from `## Active` to `## Completed`, change its `- [ ]` marker to `- [x]`, and change its `Next step:` label to `Completed:`.
 - Keep the task's title, summary, source, context, owner, deadline, and link exactly as they were.
 - Leave unselected active tasks under `## Active`, in their original order, unchanged, and leave previously completed tasks in place.
-- Replace `<working directory>/todo.md` in place, then confirm the file is non-empty and every selected task now appears under `## Completed`.
+- Replace `todo.md` in place, then confirm the file is non-empty and every selected task now appears under `## Completed`.
 
 ### 4. Confirm the Result
 

@@ -1,6 +1,8 @@
-# HTML Email Design
+# Email HTML Design
 
-Use this reference to translate the Daily Briefing visual language into HTML that renders reliably in Outlook and other common mail clients.
+The design source for the summary email, per `email-send-summary.md`. Every rule below is written for email delivery, so the result renders reliably in Outlook and other common mail clients.
+
+Read this file in full before writing any markup. Every rule is a requirement, not a suggestion, and the `Verify Before Output` checklist at the end is the gate the email must pass before it is sent. Never assemble the email body from memory, from a previous run, or from your own judgement of what looks right.
 
 ## Design Tokens
 
@@ -17,19 +19,19 @@ Use this reference to translate the Daily Briefing visual language into HTML tha
 
 Pastels are peers, not status colors. Rotate them by item order across email, calendar, chat, and meeting recap cards.
 
-## Email-Safe Structure
+## Structure
 
 - Set `role="presentation"`, `cellpadding="0"`, `cellspacing="0"`, and `border="0"` on layout tables.
 - Put spacing on table cells with inline `padding`. Do not depend on margins, CSS grid, flexbox, columns, pseudo-elements, or JavaScript.
-- Put critical visual styles inline on every element. A small reset in `<style>` may improve responsive rendering, but the message must remain readable if the client removes it.
+- Put critical visual styles inline on every element. A small reset in `<style>` may improve responsive rendering, but the output must remain readable if it is stripped.
 - Use `border-radius:6px`. Do not nest one card surface inside another card surface.
 - Use `word-break:break-word` on long subject text and links so mobile layouts do not overflow.
 
 ## Layout Width
 
-The message body is `680px` wide. This is a hard constraint, not a preference.
+The body is `680px` wide. This is a hard constraint, not a preference.
 
-- Use one outer presentation table at `width="100%"` for the warm paper page. It carries the page background and page gutter padding only. Never place a heading, card, or any other message content directly in it.
+- Use one outer presentation table at `width="100%"` for the warm paper page. It carries the page background and page gutter padding only. Never place a heading, card, or any other content directly in it.
 - Nest exactly one wrapper table inside it, using `align="center"`, `width="680"`, and `style="width:100%; max-width:680px;"`. Every visible element, including the preheader, greeting, section headings, cards, and footer, sits inside this wrapper.
 - Keep the `width="680"` attribute. Outlook on Windows renders through Word, ignores `max-width`, and would otherwise fill the full reading pane.
 - Give every table nested inside the wrapper `width="100%"` and no other width. Do not restate `680` further down the tree.
@@ -53,7 +55,7 @@ The base is the mail client's native font and native default text size. Do not r
 | Metadata        | `font-size:0.75em; line-height:1.35; color:#76685e`    |
 
 - Do not size text with `px`, `pt`, `rem`, `%`, `vw`, `clamp()`, or `!important`, and do not scale text from viewport width.
-- Do not carry the canvas artifact's fluid `clamp()` type scale or its `Inter Variable` face into email. Those are canvas-only.
+- Do not use a fluid `clamp()` type scale or the `Inter Variable` face. Those are browser-only.
 
 ## Content Layout
 
@@ -76,18 +78,50 @@ The base is the mail client's native font and native default text size. Do not r
 
 ## Compatibility Constraints
 
-- Do not embed the artifact canvas application or its script payload.
+- Do not embed a client-side application, framework runtime, or script payload.
 - Do not use external fonts, remote stylesheets, SVG, background images, data URLs, video, forms, or animated content.
 - Do not use CSS gradients or dark surfaces.
 - Do not use fixed heights for cards or rows.
-- Do not include generated imagery unless it is embedded through a separately approved and verified mail-safe attachment workflow.
+- Do not include generated imagery inline. The artifact image reaches the reader only as the verified mail attachment described in `email-send-summary.md`.
 
-## Verify Before Sending
+## Verify Before Output
 
-Check the generated HTML against every item below and repair it before the send. Do not send output that fails a check.
+Check the generated HTML against every item below, one at a time, and repair it before sending. Do not send output that fails a check, and do not report the checklist as passed unless you checked each item against the actual markup.
+
+**Structure and width**
 
 - Exactly one element carries `max-width:680px`, and that same element carries `width="680"`.
 - No visible content sits outside that wrapper, and no nested table declares a width other than `width="100%"`.
+- Every layout table carries `role="presentation"`, `cellpadding="0"`, `cellspacing="0"`, and `border="0"`.
+- All spacing comes from inline cell `padding`. No margin, grid, flexbox, column, or pseudo-element layout appears.
+- Every card uses `border-radius:6px`, and no card surface nests inside another card surface.
+
+**Typography**
+
 - No `font-family` value mentions `Inter`, `system-ui`, or any webfont.
 - Every text-bearing cell repeats the native font stack inline.
 - No `font-size` uses `px`, `pt`, `rem`, `%`, `vw`, or `clamp()`, and no body copy declares a `font-size` at all.
+- Each heading, card title, and metadata run matches the size, weight, and line height in the Typography table.
+
+**Colour**
+
+- Every colour resolves to one of the eight design tokens. No other hex value appears.
+- Message cards rotate Sage, Sand, Lemon, and Lilac in source order, and no pastel is used to signal status.
+
+**Content**
+
+- Sections appear in this order: Overview, To Do, Email, Calendar, Teams Chat, Meeting Recaps.
+- Each card places metadata first, then subject, summary, author details, then the recommended action below a hairline rule.
+- Every empty section renders `No items surfaced in this run.` as muted body copy with no card.
+- Item wording and source order are preserved, and absent fields are omitted rather than filled.
+
+**Links and accessibility**
+
+- Every linked subject uses a verified absolute `https://` URL and is styled `color:#311f10`, `font-weight:600`, `text-decoration:underline`. Unlinked subjects are plain text.
+- The root carries `lang="en"`, the document has a meaningful `<title>`, and a hidden preheader opens the body.
+- No status, source, or completion state is conveyed by colour alone.
+
+**Constraints**
+
+- No script, webfont, remote stylesheet, SVG, background image, data URL, video, form, animation, gradient, dark surface, or fixed height appears anywhere.
+- No generated imagery is inlined. The artifact image reaches the reader only as the mail attachment.

@@ -1,29 +1,7 @@
 import { incrementManifestVersion, zipFolder } from "./helpers";
 
-const briefingFile = "briefing.html";
-const artifactsAppFolder = `${import.meta.dir}/../artifacts`;
-const sourceBriefingFile = `${artifactsAppFolder}/dist/${briefingFile}`;
 const extensionFolder = `${import.meta.dir}/../../extension`;
-const destinationBriefingFile = `${extensionFolder}/skills/chief-os-brief/assets/${briefingFile}`;
 const manifestFile = `${extensionFolder}/manifest.json`;
-
-console.log("Building single-file briefing artifact...");
-
-const build = Bun.spawn(["bun", "build:singlefile"], {
-  cwd: artifactsAppFolder,
-  stdout: "inherit",
-  stderr: "inherit",
-});
-
-const buildExitCode = await build.exited;
-
-if (buildExitCode !== 0) {
-  throw new Error(`bun build:singlefile failed with exit code ${buildExitCode}`);
-}
-
-await Bun.write(destinationBriefingFile, Bun.file(sourceBriefingFile));
-
-console.log(`Copied ${sourceBriefingFile} to ${destinationBriefingFile}`);
 
 const shouldBumpVersion = !Bun.argv.includes("--no-bump");
 const version = shouldBumpVersion

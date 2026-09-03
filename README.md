@@ -52,13 +52,13 @@ ask for out loud.
 | -------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **chief-os-brief**         | "Give me my morning brief"                      | The whole daily routine, from reading your inbox to sending the summary email                                                                         |
 | **chief-os-schedule**      | "Set up my daily runs"                          | Sets the two daily times. Run once, then forget about it                                                                                              |
-| **chief-os-todo-complete** | "Tick off the tasks I finished"                 | Lists your active tasks, asks which ones are done, then refreshes the briefing and the image                                                          |
-| **chief-os-image-prompt**  | "Write me an image prompt for a coastal sunset" | Composes an illustration prompt in a named style, Everyday Doodle or Scientific Editorial. It returns the prompt and never generates the image itself |
+| **chief-os-todo-complete** | "Tick off the tasks I finished"                 | Lists your active tasks, asks which ones are done, then ticks them off in your task list                                                              |
+| **chief-os-image-prompt**  | "Use chief-os-image-prompt for a coastal scene" | Composes an illustration prompt in a named style, Everyday Doodle or Scientific Editorial. It returns the prompt and never generates the image itself |
 
 **chief-os-brief** is the one that does the work. The other three exist because they are
 genuinely separate things you might want: setting your schedule happens once at setup,
-closing out tasks happens whenever you finish something, and generating an image is
-useful outside a briefing entirely.
+closing out tasks happens whenever you finish something, and composing an image prompt
+is useful outside a briefing entirely.
 
 You can also ask for one part on its own, such as "triage my email" or "what is on my
 calendar", without running the full routine.
@@ -169,8 +169,7 @@ other step is affected.
 ```
 chief-os-brief/
   SKILL.md      the nine-step routine and the safety rules
-  references/   14 documents, grouped by what they govern
-  assets/       the packaged briefing template, copied and populated during a run
+  references/   15 documents, grouped by what they govern
 ```
 
 References are grouped by prefix so the relevant one is easy to find.
@@ -178,8 +177,8 @@ References are grouped by prefix so the relevant one is easy to find.
 | Group         | Documents                                                                                                     | Governs                                                      |
 | ------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | `triage-`     | `triage-contract`, `triage-scoring`, `triage-email`, `triage-calendar`, `triage-chat`, `triage-meeting-recap` | How each source is read, scored, and ranked                  |
-| `output-`     | `output-briefing`, `output-image`, `output-todo`, `output-memory`                                             | The four things written to your OneDrive                     |
-| `email-`      | `email-draft`, `email-html-design`, `email-send-summary`                                                      | Preparing drafts, and the one email that does get sent       |
+| `output-`     | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory`                       | The files written to your working folder, and how they look  |
+| `email-`      | `email-draft`, `email-html-design`, `email-send-summary`                                                      | Preparing drafts, the one email that gets sent, and its look |
 | `conventions` | `conventions`                                                                                                 | Tone, wording, and date formatting across everything you see |
 
 The order they are consulted during a run:
@@ -191,13 +190,16 @@ The order they are consulted during a run:
 | 2    | none                                                            | Writes the executive summary                              |
 | 3    | `output-todo`                                                   | Updates your task list                                    |
 | 4    | `email-draft`                                                   | Prepares Outlook drafts                                   |
-| 5    | `output-briefing`                                               | Builds the briefing page                                  |
+| 5    | `output-briefing`, `output-html-design`                         | Builds the briefing page                                  |
 | 6    | `output-image`, then `chief-os-image-prompt` once per task      | Creates the briefing image                                |
 | 7    | `output-memory`                                                 | Verifies everything, and saves anything worth remembering |
 | 8    | `email-send-summary`, `email-html-design`                       | Sends the summary to you                                  |
 
 `conventions` applies at every step, which is why the tone stays consistent whether you
-are reading the briefing, a draft reply, or the summary email.
+are reading the briefing, a draft reply, or the summary email. `output-html-design` and
+`email-html-design` are deliberately separate: the briefing page is read in a browser and
+uses the full design system, while the summary email is built from a stricter, email-safe
+subset that survives Outlook.
 
 ---
 
@@ -205,27 +207,26 @@ are reading the briefing, a draft reply, or the summary email.
 
 Requires [Bun](https://bun.sh).
 
-Build and package the extension. The packaging script builds the briefing template from
-`apps/artifacts`, so install that workspace first:
+Build and package the extension:
 
 ```bash
-cd apps/artifacts
-bun install
-
-cd ../extension-package
+cd apps/extension-package
 bun install
 bun index.ts
 ```
 
-This builds the briefing template, copies it into the extension, bumps the version in
-`extension/manifest.json`, and writes `chief-os-<version>.zip` ready to upload.
+This bumps the version in `extension/manifest.json` and writes `chief-os-<version>.zip`
+ready to upload. The extension is skills only, so packaging is just a version bump and a
+zip.
 
 Every push to `main` that changes a file under `extension/` automatically publishes a
 GitHub Release. The `Release extension` workflow derives a unique patch version from the
 manifest version and workflow run number, builds `chief-os-<version>.zip`, creates the
 matching release tag, and attaches the ZIP. No manual tag is required.
 
-Work on the briefing template on its own:
+`apps/artifacts` is a React reference implementation of the briefing layout. It is no
+longer built into the extension, and is kept only as a visual reference for
+`output-html-design.md`, which was derived from it:
 
 ```bash
 cd apps/artifacts
@@ -236,7 +237,7 @@ bun run dev
 | Path                      | Contents                                                              |
 | ------------------------- | --------------------------------------------------------------------- |
 | `extension/`              | The shipped extension: `manifest.json`, icons, and the skills         |
-| `apps/artifacts/`         | React app that builds the single-file briefing template               |
+| `apps/artifacts/`         | React reference implementation of the briefing layout, not shipped    |
 | `apps/extension-package/` | Build script that packages `extension/` into `chief-os-<version>.zip` |
 
 Skills are registered in the `agentSkills` array of
@@ -250,10 +251,13 @@ Skills are registered in the `agentSkills` array of
 - **Adding a skill:** create the folder with a `SKILL.md`, then register it in the
   manifest. A skill only earns its own folder if a user would ask for it directly.
 
-The briefing template reads its data from a `daily-briefing-data` script element. The
-shape of that payload is defined as TypeScript interfaces in
-[output-briefing.md](extension/skills/chief-os-brief/references/output-briefing.md), which
-mirror the ones in [App.tsx](apps/artifacts/src/App.tsx). Change both together.
+The briefing page is rendered from
+[output-html-design.md](extension/skills/chief-os-brief/references/output-html-design.md)
+and the summary email from
+[email-html-design.md](extension/skills/chief-os-brief/references/email-html-design.md).
+Each output has exactly one design source, and the two must never be swapped. The shape of
+the data they render is defined as TypeScript interfaces in
+[output-briefing.md](extension/skills/chief-os-brief/references/output-briefing.md).
 
 House style for everything the user sees is set in
 [conventions.md](extension/skills/chief-os-brief/references/conventions.md): Australian

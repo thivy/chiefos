@@ -1,6 +1,6 @@
 # To-Do
 
-Generate the current run's `<working directory>/todo.md` output from email, Teams chat, calendar, and completed-meeting triage results.
+Generate the current run's `todo.md` output from email, Teams chat, calendar, and completed-meeting triage results.
 
 ## Core Rules
 
@@ -17,12 +17,12 @@ Follow these stages in order. Do not create new todos until Stage 1 is complete.
 
 ### Stage 1. Load the Existing Task File
 
-- Work only on the live `<working directory>/todo.md` file.
-- If `<working directory>/todo.md` does not exist, create it using the Markdown Template below.
+- Work only on the live `todo.md` file.
+- If `todo.md` does not exist, create it using the Markdown Template below.
 - Read existing active `- [ ]` todos as input to the current run.
 - Omit previously completed `- [x]` todos from the replacement output unless current-run source evidence independently confirms and includes them.
 - Preserve active `- [ ]` todos in the live file unless they are merged with a newly generated todo.
-- Do not create timestamped, backup, or history copies of `<working directory>/todo.md`.
+- Do not create timestamped, backup, or history copies of `todo.md`.
 
 ### Stage 2. Todo Generation Rules
 
@@ -35,7 +35,7 @@ Follow these stages in order. Do not create new todos until Stage 1 is complete.
 - Preserve priority by carrying the source label into `sourceContext`, especially for `Important`, `Conflicts`, `Prep Needed`, `Action Required`, and `Waiting` items.
 - Convert the source item into a short imperative `title`, then use `summary` for context or outcome and `recommendedAction` for the next step or completion note.
 - Copy the required `url` from the originating triage item. For a manual todo, use the non-empty absolute source URL supplied with or associated with the todo.
-- Replace the live `<working directory>/todo.md` in place with the updated active and completed current-run todos.
+- Replace the live `todo.md` in place with the updated active and completed current-run todos.
 
 ## Output Schema
 
@@ -53,7 +53,7 @@ For each included todo, return:
 
 ## Markdown Template
 
-Use the following template to generate `<working directory>/todo.md`:
+Use the following template to generate `todo.md`:
 
 ```markdown
 # Your Actions
