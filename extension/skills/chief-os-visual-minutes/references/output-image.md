@@ -4,13 +4,13 @@ Compose one prompt per item through `chief-os-image-prompt`, assemble them into 
 
 ## 1. Prepare the Content
 
-Take only the two collections built in `meeting-capture.md`, key moments in timeline order and follow-up actions in source order. Each item keeps the fields already prepared on it.
+Take the two collections built in `meeting-capture.md`, key moments in timeline order and follow-up actions in source order, each item keeping the fields already prepared on it.
 
 Prepare one further line:
 
 - **Meeting line** — the meeting subject followed by its local date. Rendered once, above everything else.
 
-Beyond the meeting line, the two band labels, and the items themselves, the image carries nothing. No greeting, name, attendee list, overview, or item count appears anywhere in it.
+The image carries nothing beyond the meeting line, the two section labels, and the items themselves.
 
 ## 2. Compose One Prompt per Item
 
@@ -18,15 +18,15 @@ Make one `chief-os-image-prompt` call per item: every key moment first in timeli
 
 Give every call this shared style:
 
-- `Everyday Doodle` on a warm-ivory background, identical across vignettes.
+- `Everyday Doodle` on warm ivory, identical across vignettes.
 - One self-contained, highly detailed vignette per call, not a full composition.
-- Heading, marker, and display label in the sans. The summary note in a small handwritten script, in the same warm-black ink as the linework and clearly legible.
-- All lines sit in clear ivory space beside or below the art, with a margin around every line. Text never crosses the art, and art never crosses the text.
-- Avoid borders, underlines, frames, and separators; abstract corporate or stock imagery; and any item text beyond the marker, display label, and summary note.
+- Heading in a warm-black handwritten script; marker, display label, and summary note in a warm-black sans at regular weight, all at the same size.
+- Every line sits in clear ivory beside or below the art, with a margin around it. Text and art never cross.
+- Render no text beyond the marker, display label, and summary note, and use no abstract corporate or stock imagery.
 
-Give each band one further instruction, which is what makes the two read apart at a glance:
+Then one instruction per section, which is what makes the two bands read apart at a glance:
 
-- **Key moment** — a vignette sized for one cell of an even grid, taller than it is wide, its everyday object caught mid-event so the moment reads as something that already happened. Its marker sits directly beneath the art.
+- **Key moment** — a vignette sized for one cell of an even grid, taller than it is wide, its everyday object caught mid-event so the moment reads as something that already happened. Directly below the art, in clear ivory, sit the marker, then the heading, then the display label, then the summary note.
 - **Follow-up action** — a compact, roughly square vignette, its everyday object poised, packed, queued, or about to move so the action reads as still owed. No marker.
 
 Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
@@ -39,53 +39,53 @@ The final prompt is the block below with three substitutions:
 - `{KEY_MOMENT_PROMPTS}` is every key moment prompt returned in stage 2, in timeline order, separated by blank lines.
 - `{FOLLOW_UP_PROMPTS}` is every follow-up action prompt returned in stage 2, in source order, separated by blank lines.
 
-Substitute verbatim. Never summarise, condense, merge, reword, or drop a prompt, and never back-reference one with "same as above" or an ellipsis. The only permitted edit is de-duplication: where two vignettes independently picked the same everyday object or character, vary one and leave every other detail intact. Where a band is empty, drop that band's label and its heading line with it. Nothing outside the block reaches the image.
+Substitute verbatim. Never summarise, condense, merge, reword, or drop a prompt, and never back-reference one with "same as above" or an ellipsis. The only permitted edit is de-duplication: where two vignettes independently picked the same everyday object or character, vary one and leave every other detail intact. Where a section is empty, drop its label with it. Nothing outside the block reaches the image.
 
 ```
+**Page**
+
+16:9 horizontal, Everyday Doodle style on warm ivory. One continuous page running top to bottom in this order: the meeting line, the `Meeting recap` label, the key moment illustrations, the `Follow-up action` label, the follow-up action illustrations.
+
+Everything on the page is separated by clear ivory alone. No rule, frame, border, separator, timeline rail, connecting line, tick, or dot appears anywhere.
+
 **Typography**
 
-- Meeting line: a transitional or old-style serif such as Baskerville, Caslon, or Garamond, set small and quiet.
-- Band labels, headings, markers, and display labels: a humanist or grotesque sans such as Inter, Helvetica Neue, or Univers. Band labels are the largest sans on the page, headings sit slightly heavier than their display labels, and markers are the smallest sans.
-- Summary notes: a small handwritten script in warm-black ink, matching the hand-drawn linework and set smaller than the display label.
+- Two typefaces only. Every heading, meaning the meeting line, the two section labels, and each vignette's heading, is one warm and legible handwritten script, the same hand throughout. Every marker, display label, and summary note is one humanist or grotesque sans such as Inter, Helvetica Neue, or Univers at regular weight.
+- Two type sizes only. The meeting line, `Meeting recap`, and `Follow-up action` share one identical size. All vignette text shares one smaller size, so a vignette heading is never larger than the label or note beneath it.
+- The meeting line is the only coloured text, set in a warm accent colour taken from the same palette used on the characters' clothing. Every other word on the page is warm-black ink.
 
-**Overall image look**
+**Section labels**
 
-- 16:9 horizontal, Everyday Doodle style, warm ivory, no borders, frames, or separators.
-- Two full-width horizontal bands stacked on one continuous page, `Key Moments` on top and `Follow-Ups` beneath it.
-- Generous, even ivory gutters: at least one display-label line of clear ivory between neighbouring vignettes, plus a clear band below the meeting line.
-- Nothing overlaps. No vignette, object, or character crosses a gutter, and no text sits over art or over other text.
+`Meeting recap` and `Follow-up action` are written on the page exactly as spelled here. Each sits alone on its own full-width row, aligned to the same left edge of the column grid, with a band of clear ivory directly above it and an equal band directly below, both taller than the label itself, so the label floats between the block above and the illustrations beneath. Both bands are vertical space and stay empty.
 
-**Band 1, Key Moments**
+**Key moment illustrations**
 
 - An even number of moments, at least six, split into two rows of equal length with one vignette per moment. Every cell is the same width and the columns line up exactly between the two rows.
 - Timeline order reads left to right along the upper row, then left to right along the lower row.
-- One continuous hand-drawn warm-black ink thread carries the whole timeline: it runs horizontally across the upper row, curves down at the right edge, and returns to the left to run across the lower row. It is drawn in the same uneven pen line and hatch texture as the art, so it reads as the timeline itself and not as a border, rule, or divider.
-- In each row the art sits above the thread, each moment's marker sits on the thread, and its heading, display label, and summary note sit in clear ivory below the thread.
+- In each cell the art sits above its text. Directly below the art, in clear ivory, sit the marker, then the heading, then the display label, then the summary note.
+- Each moment stands visually alone in its own ivory space.
 
-**Between the bands**
+**Follow-up action illustrations**
 
-- A full-width empty ivory gap at least three display-label lines tall separates the two bands, holding no rule, line, frame, ornament, or art.
-- The ink thread ends at the last key moment and never enters the gap or the second band.
+A single row of compact vignettes, one per action, left to right in source order, evenly spaced and sharing the column grid above, with no markers.
 
-**Band 2, Follow-Ups**
+**Space**
 
-- A single row of compact vignettes, one per action, left to right in source order, evenly spaced and sharing the column grid above, with no thread and no markers.
+Generous, even ivory gutters: at least one display-label line of clear ivory between neighbouring vignettes. Nothing overlaps. No vignette, object, or character crosses a gutter, and no text sits over art or over other text.
 
-**Text on the page**
+**Text**
 
-- The meeting line is the only text above the first band label.
-- The band labels `Key Moments` and `Follow-Ups` are the only text outside the vignettes.
-- No greeting, name, attendee list, overview, item count, placeholder name, or instruction text appears.
+The meeting line is the only text above the `Meeting recap` label, and the two section labels are the only text outside the vignettes. No greeting, name, attendee list, overview, item count, placeholder name, or instruction text appears.
 
 **Composition**
 
 Meeting: {MEETING_LINE}
 
-Key Moments:
+Meeting recap:
 
 {KEY_MOMENT_PROMPTS}
 
-Follow-Ups:
+Follow-up action:
 
 {FOLLOW_UP_PROMPTS}
 ```
@@ -96,9 +96,12 @@ Generate from the combined prompt and save as `visual-minutes.png`, replacing an
 
 - The `chief-os-image-prompt` call count equals the total number of items, and the image holds one vignette per item.
 - The file exists, is non-empty, and is a readable 16:9 PNG in the `Everyday Doodle` style on warm ivory.
-- The two bands are stacked top to bottom under their labels, separated by a full-width empty ivory gap, with no vignette from one band sitting inside the other.
-- Key moments are an even count of at least six, split into two rows of equal length with the columns aligned, reading left to right along the upper row then the lower row, all carried on one continuous ink thread with every marker sitting on it. Follow-ups sit in a single row below with no thread and no markers.
-- The meeting line resolves its placeholder and is the only text above the first band label.
-- Each vignette shows its heading, a 4-to-6-word display label, and a one-line handwritten summary note. Nothing else from the item is rendered.
+- The page runs top to bottom: meeting line, `Meeting recap`, key moment illustrations, `Follow-up action`, follow-up action illustrations. No vignette from one section sits inside the other.
+- Key moments are an even count of at least six, split into two rows of equal length with the columns aligned, reading left to right along the upper row then the lower row, each with its marker and text directly below its art. Follow-ups sit in a single row beneath, with no markers.
+- Each section label has a band of clear ivory directly above it and an equal band directly below, both taller than the label itself.
+- No rule, frame, rail, tick, dot, or connecting line appears anywhere. Any of these is a failed check.
+- The meeting line resolves its placeholder and is the only text above the `Meeting recap` label. The two section labels are the only other text outside the vignettes.
+- Each vignette renders its heading, its 4-to-6-word display label, and its one-line summary note, plus a marker on key moments. Nothing else from the item is rendered.
+- One handwritten hand carries every heading and one sans carries every marker, display label, and summary note, with no third typeface. The meeting line, `Meeting recap`, and `Follow-up action` are one identical size, and all vignette text one smaller size. Any visible size difference between the three page headings is a failed check. The meeting line is the only coloured text.
 - No everyday object and no character repeats across vignettes.
 - No text overlaps art or other text, every summary note stays legible, vignettes are evenly spaced, and no instruction text or placeholder name appears in the image.

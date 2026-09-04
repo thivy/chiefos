@@ -20,11 +20,11 @@ One vignette per task.
 
 Make one `chief-os-image-prompt` call per task, in source order. Pass the task's exact `title` as the heading, its display label and summary note as the only text to render, and its context as non-rendering material. Give every call this shared style:
 
-- `Everyday Doodle` on a warm-ivory background, identical across vignettes.
+- `Everyday Doodle` on warm ivory, identical across vignettes.
 - One self-contained, highly detailed vignette per call, not a full composition.
-- Set the heading, display label, and summary note in the same warm-black sans-serif typeface and regular style. Distinguish them only by size: heading largest, display label medium, and summary note small.
-- The heading, display label, and summary note sit in clear ivory space beside or below the art, with a margin around every line. Text never crosses the art, and art never crosses the text.
-- Avoid borders, underlines, frames, and separators; abstract corporate or stock imagery; and any task text beyond the display label and summary note.
+- Heading in a warm-black handwritten script; display label and summary note in a warm-black sans at regular weight, all at the same size.
+- Every line sits in clear ivory beside or below the art, with a margin around it. Text and art never cross.
+- Render no text beyond the display label and summary note, and use no abstract corporate or stock imagery.
 
 Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
 
@@ -38,17 +38,25 @@ The final prompt is the block below with two substitutions:
 Substitute verbatim. Never summarise, condense, merge, reword, or drop a prompt, and never back-reference one with "same as above" or an ellipsis. The only permitted edit is de-duplication: where two vignettes independently picked the same everyday object or character, vary one and leave every other detail intact. Nothing outside the block reaches the image.
 
 ```
+**Page**
+
+9:16 vertical, Everyday Doodle style on warm ivory. One continuous masonry fluid grid, with the date line above every vignette.
+
+Everything on the page is separated by clear ivory alone. No rule, frame, border, or separator appears anywhere.
+
 **Typography**
 
-- Use one humanist or grotesque sans such as Inter, Helvetica Neue, or Univers for every rendered line, including the date, headings, display labels, and summary notes.
-- Keep the same regular weight and style throughout, in warm-black ink. Create hierarchy only through size: headings largest, display labels medium, summary notes small, and the date line smallest and quiet.
+- Two typefaces only. Every heading, meaning the date line and each vignette's heading, is one warm and legible handwritten script, the same hand throughout. Every display label and summary note is one humanist or grotesque sans such as Inter, Helvetica Neue, or Univers at regular weight.
+- Two type sizes only. The date line stands alone at the larger size. All vignette text shares one smaller size, so a vignette heading is never larger than the label or note beneath it.
+- The date line is the only coloured text, set in a warm accent colour taken from the same palette used on the characters' clothing. Every other word on the page is warm-black ink.
 
-**Overall image look**
+**Space**
 
-- 9:16 vertical, Everyday Doodle style, warm ivory, masonry fluid grid with no borders, frames, or separators.
-- Generous, even ivory gutters: at least one display-label line between neighbouring vignettes, plus a clear band below the date line.
-- The date line is the only text above the vignettes. No title, greeting, name, briefing overview, or item count appears.
-- Nothing overlaps. No vignette, object, or character crosses a gutter, and no text sits over art or over other text.
+Generous, even ivory gutters: at least one display-label line of clear ivory between neighbouring vignettes. A full-width band of clear ivory, taller than the date line itself, sits between the date line and the first row of vignettes and stays empty. Nothing overlaps. No vignette, object, or character crosses a gutter, and no text sits over art or over other text.
+
+**Text**
+
+The date line is the only text above the vignettes. No title, greeting, name, briefing overview, item count, placeholder name, or instruction text appears.
 
 **Composition**
 
@@ -64,6 +72,9 @@ Generate from the combined prompt and save as `artifact-image.png`, replacing an
 - The `chief-os-image-prompt` call count equals the number of tasks, and the image holds one vignette per task in source order.
 - The file exists, is non-empty, and is a readable 9:16 PNG in the `Everyday Doodle` style on warm ivory.
 - The date line resolves its placeholder and is the only text above the vignettes. No title, greeting, name, briefing overview, or item count appears.
-- Each vignette shows its heading, a 4-to-6-word display label, and a one-line smaller summary note in the shared sans. Nothing else from the task is rendered.
+- A band of clear ivory, taller than the date line itself, sits between the date line and the first row of vignettes.
+- No rule, frame, border, or separator appears anywhere. Any of these is a failed check.
+- Each vignette renders its heading, its 4-to-6-word display label, and its one-line summary note. Nothing else from the task is rendered.
+- One handwritten hand carries every heading and one sans carries every display label and summary note, with no third typeface. The date line stands alone at the larger size, and all vignette text shares one smaller size. The date line is the only coloured text.
 - No everyday object and no character repeats across vignettes.
 - No text overlaps art or other text, every summary note stays legible, vignettes are evenly spaced, and no instruction text or placeholder name appears in the image.

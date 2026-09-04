@@ -45,7 +45,7 @@ Stop and say so when the meeting has not happened yet, or when it has no recap, 
 
 Continue in `references/meeting-capture.md` and build the key moments, then the follow-up actions, with every field it requires on each item.
 
-Apply its counts and trim rule so the page stays legible. Either collection may be empty when the evidence holds nothing; say so rather than padding it.
+Apply its counts and merge rules so the page stays legible. Either collection may be empty when the evidence holds nothing; say so rather than padding it.
 
 ### 3. Report the Breakdown
 
