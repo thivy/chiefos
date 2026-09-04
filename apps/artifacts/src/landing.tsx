@@ -117,6 +117,21 @@ function Landing() {
               </div>
             </CardContent>
           </Card>
+
+          <Card className="bg-card-lilac sm:col-span-2 lg:col-span-3">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataLabel>Meetings you can take in at a glance</SourceMetadataLabel>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                Turn a meeting into one illustrated page instead of a wall of notes. The key moments
+                are drawn along the meeting timeline, with the follow-up actions in their own band
+                beneath, each carrying the owner and date exactly as they were recorded.
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
