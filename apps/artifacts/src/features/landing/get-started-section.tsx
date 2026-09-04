@@ -126,6 +126,17 @@ function GetStartedSection() {
                   <Task
                     label={
                       <>
+                        <strong>Summarise a meeting.</strong> Enter{" "}
+                        <code>/chief-os-visual-minutes</code> to turn one meeting into an
+                        illustrated page of key moments and follow-ups.
+                      </>
+                    }
+                  />
+                </li>
+                <li>
+                  <Task
+                    label={
+                      <>
                         <strong>Complete finished tasks.</strong> Enter{" "}
                         <code>/chief-os-todo-complete</code> to choose which active tasks to mark
                         complete.

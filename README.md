@@ -103,6 +103,23 @@ appear in anything you read.
 
 ---
 
+## Visual minutes
+
+`chief-os-visual-minutes` turns one meeting into a single illustrated page rather than a
+wall of notes. Point it at a meeting you attended and it reads that meeting's own recap,
+transcript, chat, and calendar entry, then produces one wide image holding two things:
+
+- **Key moments**, six or eight of them, running left to right along a hand-drawn timeline
+  in the order they happened, each marked with the point in the meeting it came from.
+- **Follow-up actions**, in a separate band beneath, each carrying the owner and the due
+  date exactly as they were recorded.
+
+The two bands are held apart by empty space rather than a line, so the meeting reads at a
+glance. Nothing is invented: a decision that was raised but never settled stays an open
+question, and an action with no recorded owner says so.
+
+---
+
 ## What it will never do
 
 These are hard rules, not preferences. They hold on every run.
@@ -128,7 +145,7 @@ These are hard rules, not preferences. They hold on every run.
 Your information stays inside your own Microsoft 365 environment. Nothing is copied out,
 sold, used for advertising or profiling, or used to train models.
 
-Four files are kept in your own working folder, `/output`, and you can read, edit, or
+Five files are kept in your own working folder, `/output`, and you can read, edit, or
 delete any of them at any time:
 
 | File                 | What it holds                                                                                                         |
@@ -137,6 +154,7 @@ delete any of them at any time:
 | `todo.md`            | Your running task list                                                                                                |
 | `memory.md`          | Durable context that improves the triage over time, such as who your key contacts are and how you like to communicate |
 | `artifact-image.png` | The illustrated version of the current task list                                                                      |
+| `visual-minutes.png` | The illustrated minutes of the last meeting you asked to summarise                                                    |
 
 Each file is replaced in place on every run, so they never sprawl into dozens of dated
 copies.

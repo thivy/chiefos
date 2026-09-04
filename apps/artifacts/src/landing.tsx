@@ -219,6 +219,24 @@ function Landing() {
               </div>
             </CardContent>
           </Card>
+
+          <Card className="bg-card-lilac sm:col-span-2">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataLabel>chief-os-visual-minutes</SourceMetadataLabel>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <Text as="h2" variant="display-sm">
+                Visual minutes
+              </Text>
+              <div>
+                Turns one meeting into a single illustrated page: the key moments along its
+                timeline, and the follow-up actions that came out of it. Built only from that
+                meeting&apos;s own recap, transcript, and chat.
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
