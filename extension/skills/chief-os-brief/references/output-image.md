@@ -22,8 +22,8 @@ Make one `chief-os-image-prompt` call per task, in source order. Pass the task's
 
 - `Everyday Doodle` on a warm-ivory background, identical across vignettes.
 - One self-contained, highly detailed vignette per call, not a full composition.
-- Heading and display label in the sans. The summary note in a small handwritten script, in the same warm-black ink as the linework and clearly legible.
-- All three sit in clear ivory space beside or below the art, with a margin around every line. Text never crosses the art, and art never crosses the text.
+- Set the heading, display label, and summary note in the same warm-black sans-serif typeface and regular style. Distinguish them only by size: heading largest, display label medium, and summary note small.
+- The heading, display label, and summary note sit in clear ivory space beside or below the art, with a margin around every line. Text never crosses the art, and art never crosses the text.
 - Avoid borders, underlines, frames, and separators; abstract corporate or stock imagery; and any task text beyond the display label and summary note.
 
 Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
@@ -40,9 +40,8 @@ Substitute verbatim. Never summarise, condense, merge, reword, or drop a prompt,
 ```
 **Typography**
 
-- Date line: a transitional or old-style serif such as Baskerville, Caslon, or Garamond, set small and quiet.
-- Headings and display labels: a humanist or grotesque sans such as Inter, Helvetica Neue, or Univers, with headings slightly heavier than their labels.
-- Summary notes: a small handwritten script in warm-black ink, matching the hand-drawn linework and set smaller than the display label.
+- Use one humanist or grotesque sans such as Inter, Helvetica Neue, or Univers for every rendered line, including the date, headings, display labels, and summary notes.
+- Keep the same regular weight and style throughout, in warm-black ink. Create hierarchy only through size: headings largest, display labels medium, summary notes small, and the date line smallest and quiet.
 
 **Overall image look**
 
@@ -65,6 +64,6 @@ Generate from the combined prompt and save as `artifact-image.png`, replacing an
 - The `chief-os-image-prompt` call count equals the number of tasks, and the image holds one vignette per task in source order.
 - The file exists, is non-empty, and is a readable 9:16 PNG in the `Everyday Doodle` style on warm ivory.
 - The date line resolves its placeholder and is the only text above the vignettes. No title, greeting, name, briefing overview, or item count appears.
-- Each vignette shows its heading, a 4-to-6-word display label, and a one-line handwritten summary note. Nothing else from the task is rendered.
+- Each vignette shows its heading, a 4-to-6-word display label, and a one-line smaller summary note in the shared sans. Nothing else from the task is rendered.
 - No everyday object and no character repeats across vignettes.
-- No text overlaps art or other text, every handwritten note stays legible, vignettes are evenly spaced, and no instruction text or placeholder name appears in the image.
+- No text overlaps art or other text, every summary note stays legible, vignettes are evenly spaced, and no instruction text or placeholder name appears in the image.
