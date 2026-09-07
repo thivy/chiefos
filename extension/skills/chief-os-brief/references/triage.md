@@ -1,12 +1,10 @@
 # Triage
 
-One model for triaging email, calendar, Teams chat, and completed Teams meetings. Sections 1 to 5 are shared by all four sources. Section 6 holds the per-source profile: what to exclude, which categories to assign, and what to emit.
+Use the shared model below for email, calendar, Teams chat, and completed meetings, with source-specific profiles in section 6.
 
 Follow `conventions.md` for voice and formatting.
 
 ## 1. Workflow
-
-Run these steps for each source.
 
 1. **Pre-screen.** Silently exclude the source's noise, listed in its profile. Keep any item with a specific time-sensitive request or a clear ask from a known contact.
 2. **Establish context.** Gather the signals in section 2. Missing evidence contributes no points.
@@ -14,7 +12,7 @@ Run these steps for each source.
 4. **Categorise.** Assign one category from the source profile. The band controls ordering and response timing; the category controls workflow state.
 5. **Output.** Return one object per included item using the schema in section 5, sorted by descending `attentionScore` across all categories.
 
-Score one current unresolved state per item, not each message or invitation separately. Summarise a thread rather than listing its messages. Recalculate from the latest state: once the user has answered and another person owns the next move, drop the Action ladder to 0 and route the item to the waiting category unless a follow-up is now required.
+Score the current thread state, not individual messages. Once the user has answered and another person owns the next move, set Action to 0 and use Waiting unless a follow-up is now required.
 
 ## 2. Context Signals
 
@@ -28,7 +26,7 @@ Establish for every source:
 
 ## 3. Scoring Ladders
 
-Every source uses these five ladders at these weights. Choose the single strongest supported tier in each ladder; do not add tiers together. Do not count urgency language from quoted history, signatures, or boilerplate. Do not double-count one fact across two ladders unless the evidence independently establishes both.
+Choose the strongest supported tier per ladder, never their sum. Ignore urgency in quoted history, signatures, or boilerplate. Count a fact in two ladders only when evidence independently establishes both.
 
 ### Impact (0-30)
 
@@ -113,17 +111,12 @@ Apply at most one multiplier, and only when the item or its trusted context subs
 
 ## 5. Output Schema
 
-Return one object per included item:
+Use the source-specific `MessageItem` interfaces and validation rules in [output-briefing.md](output-briefing.md#1-schema); do not add scorecard fields.
 
-- `source`: `email`, `calendar`, `chat`, or `meeting`
-- `sourceLabel`: one of the source's categories
-- `timestamp`: local date and time; calendar uses the event start, meeting uses the event end
-- `authorName`: sender or organiser display name, or `null`
-- `authorRole`: sender or organiser email address or role, or `null`
-- `subject`: title, subject line, or a short neutral label
-- `summary`: 1-2 neutral sentences on the item's purpose and current state, including any deadline or explicit ask that changes the recommended action
-- `url`: **required.** A non-empty absolute deep link that opens the item, retrieved with the source data. Omit the item rather than emitting a missing or invented link.
-- `recommendedAction`: concise next step, or `null` when no user action is needed
+- Take `sourceLabel` from the profile; use local time for `timestamp` with the profile's event semantics.
+- `authorName` is the sender or organiser; `authorRole` is their email address or role. Use a title, subject line, or short neutral label for `subject`.
+- `summary`: 1-2 neutral sentences covering purpose, current state, and any deadline or ask affecting the action.
+- Retrieve `url` with the source data. `recommendedAction` is the concise next step, or `null` when none is owed.
 
 ## 6. Source Profiles
 

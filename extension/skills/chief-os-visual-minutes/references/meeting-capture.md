@@ -6,11 +6,11 @@ Settle which meeting is being summarised, gather its evidence, then build the tw
 
 Take the first that applies: the meeting the user attached or named; the meeting they described well enough to match exactly one event; otherwise list the meetings that finished in the preceding 48 hours and ask one question asking which to summarise. Never guess, and never summarise several at once.
 
-Stop and say so when the meeting is still in the future, was cancelled, or still matches more than one event after asking. For a recurring series, summarise the occurrence the user pointed at, or the most recent completed one when the reference covers the series, and say which you used.
+Stop when the meeting has not ended, was cancelled, or remains ambiguous after asking. For a recurring series, use the specified occurrence or the most recent completed one when the user names only the series; report which you used.
 
 ## 2. Collect the Context
 
-Read everything available for that occurrence, in this order, preferring the more direct source where two disagree:
+Read the available sources for that occurrence:
 
 - Recap, AI notes, or published summary
 - Transcript
@@ -19,7 +19,7 @@ Read everything available for that occurrence, in this order, preferring the mor
 - Files shared in or attached to the meeting
 - Post-meeting messages and email that reference it
 
-Note which sources existed and which did not; step 3 of the skill reports the gaps.
+Direct evidence takes precedence over generated summaries unless a later explicit correction supersedes it. Do not treat recency alone as a correction. Report unresolved conflicts and source gaps in chat; do not assert a disputed decision or owner as settled.
 
 Beyond the skill's invariants: use `the group` when a source records agreement without naming a speaker, keep names, numbers, dates, systems, and commitments exact, record a decision raised but not settled as open rather than as a decision or an action, and skip anything personal, sensitive, off the record, or that the user asked to keep out.
 
@@ -28,27 +28,27 @@ Beyond the skill's invariants: use `the group` when a source records agreement w
 A key moment is a point where the meeting changed direction: a decision made, an agreement reached, a risk or objection raised, a demo or reveal, a number or status reported, a scope or date change, or a handover.
 
 - Timeline order, earliest first.
-- An even count of 6 or 8. Reach 6 by admitting smaller but real moments, such as a status reported or a topic parked, never by splitting one moment in two, restating a point, or inventing one.
-- Above 8, fold the least consequential moment into the neighbouring moment it belongs to until the count is 8, and report every merge.
-- Below 6 on real evidence, use the next even count down and say so in chat rather than padding.
-- Merge repeats of a point into the moment where it was settled. Exclude greetings, roll call, scheduling admin, and any exchange with no consequence.
+- Aim for 6 to 8 moments, but retain the evidence-supported count, including zero or odd counts. Never split, pad, or drop a moment to fit a target.
+- Consolidate only related moments without losing their facts; merge repeated points where they were settled and report merges. Exclude greetings, roll call, scheduling admin, and exchanges with no consequence.
 
 Each moment carries:
 
 | Field         | Content                                                                                                      | Rendered |
 | ------------- | ------------------------------------------------------------------------------------------------------------ | -------- |
-| Marker        | The elapsed timestamp as `h:mm`, or `Part 1`, `Part 2`, and so on when the source has no timestamps          | Yes      |
+| Marker        | Elapsed `m:ss` or `h:mm:ss` at source-supported precision; otherwise `Part 1`, `Part 2`, and so on           | Yes      |
 | Heading       | 2 to 4 words naming the moment                                                                               | Yes      |
 | Display label | 4 to 6 words stating what changed, in the meeting's own wording                                              | Yes      |
 | Summary note  | One line of at most 12 words, keeping any name, number, or date exact                                        | Yes      |
 | Context       | The full detail of the moment and who drove it; guides the choice of object, character, and interaction only | No       |
+
+Convert clock time to elapsed time only with a verified meeting start. Preserve minute-only precision as `Minute N`; never invent seconds.
 
 ## 4. Build the Follow-Up Actions
 
 A follow-up action is work a named person or the group agreed to do after the meeting.
 
 - Ordered by the point in the meeting where each was agreed, earliest first.
-- 2 to 4, never more, preferring an even count so the row aligns with the columns above. Never invent or drop an action to reach a count, and never derive one from a topic that was only discussed.
+- Aim for 2 to 4 actions, but retain every distinct agreed action, including zero, one, or more than four. A discussed topic alone is not an action.
 - Merge duplicates, keeping the owner and due date as recorded, and report every merge.
 
 Each action carries:
@@ -60,4 +60,4 @@ Each action carries:
 | Summary note  | One line of at most 12 words carrying the owner and due date as recorded, or `Owner not recorded` or `No date recorded` | Yes      |
 | Context       | The full detail of the action, who agreed to it, and what it unblocks                                                   | No       |
 
-Merging is the only way to fit either collection to the page. Never merge unrelated items, and never shorten a rendered field below its minimum.
+Never merge unrelated items or shorten rendered fields below their minimum. The image reference owns layout and overflow handling, not which evidence survives.

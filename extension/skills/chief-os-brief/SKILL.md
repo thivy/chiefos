@@ -7,18 +7,29 @@ description: "Use when generating a daily assistant briefing or triaging Microso
 
 Produce the daily assistant briefing, refresh Microsoft 365 priorities, and update the action list. Each numbered step names the reference to read before running it.
 
-Read `references/conventions.md` for house voice and formatting, and apply it to every user-facing word.
-
 ## Modes
 
-- **Morning Brief:** start-of-day briefing that scans priorities and creates the current action list.
-- **Afternoon Recap:** afternoon or end-of-day refresh that summarises what changed, resolves completed work, and carries unresolved actions forward with tomorrow prep.
+- **Morning Brief:** lead with today's priorities, preparation, and time-sensitive follow-up.
+- **Afternoon Recap:** lead with changes since morning, decisions made or still open, overdue responses, and tomorrow preparation.
 
 Run exactly one mode unless the user asks for both. Use the mode the user names, whatever the time. Otherwise use Morning Brief before local noon and Afternoon Recap from noon onward.
 
+## Run Scope
+
+Select the row matching the request before running any steps. Honour explicit exclusions; asking for tasks or artifacts does not authorise drafting or sending email.
+
+| Request                             | Steps                                 |
+| ----------------------------------- | ------------------------------------- |
+| Full briefing                       | 0 through 8                           |
+| One-source triage                   | 0, 1 for that source; report directly |
+| To-do update                        | 0, 1, 3, 7                            |
+| Briefing artifacts without delivery | 0, 1, 2, 3, 5, 6, 7                   |
+
+For partial runs, draft only when explicitly requested, after step 3. Send only when explicitly requested after steps 0, 1, 2, 3, 5, 6, and 7 succeed; step 4 is required only when selected. Scope triage to named sources, preserving existing tasks from other sources.
+
 ## Working Files
 
-Four files in the output folder, created when missing and replaced in place every run. Never create timestamped, backup, or history copies.
+Use these live files in the output folder. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
 
 - `briefing.html`: the generated briefing.
 - `todo.md`: the live task file.
@@ -31,30 +42,30 @@ These hold on every run, whether or not a reference has been read.
 
 - **Evidence only.** Never invent a person, recipient, link, fact, commitment, date, deadline, decision, owner, attachment, or signature. Omit the item instead.
 - **Verifiable sources only.** Use only what is present in the item, its linked context, the calendar, the address book, or `memory.md`. Never infer importance, relationships, or deadlines from a title, domain, tone, or metadata alone. When evidence conflicts, state the conflict and recommend verification; when it is ambiguous, take the lower defensible reading.
-- **Confirm before reporting.** Verify a step's postconditions before reporting it complete. Never report success, delivery, or completion you have not confirmed.
-- **Nothing internal leaks.** Never expose triage scores, priority bands, or classification logic in user-facing output, and never store secrets or sensitive personal data in a working file.
+- **Report actual outcomes.** Base completion and delivery reports on tool results, never assumptions.
+- **Nothing internal leaks.** Keep scoring detail out of artifacts; show a separate scorecard only on explicit request. Never store secrets or sensitive personal data in a working file.
 - Never send email during the run except the single self-addressed summary at step 8. Step 4 only creates or updates unsent Outlook drafts.
 - Compose every image prompt through the `chief-os-image-prompt` skill, once per task. Never author, paraphrase, batch, or reuse a prompt yourself.
 - Build `briefing.html` from `references/output-html-design.md` and the summary email from `references/email-html-design.md`. Use no other framework, visual language, or design system.
 
 ## Workflow
 
-Run these steps in order.
+Run the selected steps in order. Stop on tool or file errors rather than continuing to delivery.
 
 ### 0. Prepare Working Files
 
-- Read `references/conventions.md`.
+- Read `references/conventions.md` and apply it to all user-facing output.
 - Read `references/output-memory.md`. Create `memory.md` from its template when missing or empty, then treat it as read-only until step 7.
-- Read `references/output-todo.md`. Create `todo.md` from its template when missing or empty, then load its active tasks as input to this run.
-- Confirm both files exist and are non-empty before triage. Repair a failing file from its reference and revalidate.
+- Read `references/output-todo.md`. Create `todo.md` from its template when missing or empty, then load both active tasks and completion history.
 - **Afternoon Recap:** also read the existing `briefing.html` when present as the morning baseline. Do not fail the recap when none exists.
 
 ### 1. Triage Current Signals
 
-Read `references/triage.md`, then triage each source in turn: email, calendar events for today and tomorrow, Teams chats and channel threads, and Teams meetings completed in the preceding 48 hours. Do not derive to-dos yet.
+Read `references/triage.md`, then triage the selected sources in order: email, calendar, Teams chats and channel threads, and completed Teams meetings. Use each profile's time window. Do not derive to-dos yet.
 
-- **Morning Brief:** surface what needs the user's attention today, including preparation and time-sensitive follow-up.
-- **Afternoon Recap:** surface what changed since the morning run, what is still owed, and what tomorrow needs. Omit completed or informational items unless they explain a resolved decision, a blocker, a new commitment, or tomorrow's preparation, and do not repeat stale morning items that are no longer actionable.
+Before scoring, reconcile obligation state with loaded completion history using the matching rule in `references/output-todo.md`. Unchanged messages must not describe a completed obligation as still owed in summaries, source cards, or recommended actions. This does not hide new, distinct obligations from the same source.
+
+**Afternoon Recap:** omit completed or informational items unless they explain a resolved decision, a blocker, a new commitment, or tomorrow's preparation. Do not repeat stale morning items that are no longer actionable.
 
 ### 2. Build the Summary
 
@@ -62,13 +73,9 @@ Write the top-level `summary` from the triaged items: 2 to 4 sentences, under 10
 
 Write for an executive audience: concise, strategic, decision-oriented. Do not open with "Here is" or "This briefing". Cover, when relevant, decisions needed today, recent meeting commitments, calendar conflicts and preparation, stakeholder commitments, deadlines, risks, blockers, and waiting items. Mention missing data only when its absence changes the executive view.
 
-Morning Brief leads on today's priorities. Afternoon Recap leads on decisions made, decisions still open, overdue responses, and tomorrow preparation.
-
 ### 3. Update the To-Do Output
 
-Read `references/output-todo.md`, then derive this run's tasks from the triaged content and replace `todo.md` in place. Preserve active existing todos unless merged with a new one, and add the To-Do section to the briefing only here.
-
-**Afternoon Recap:** mark a task completed only when source evidence confirms the user resolved it. Carry unresolved tasks forward and add tomorrow-preparation tasks the evidence requires.
+Reconcile `todo.md` using `references/output-todo.md`, which owns completion, merging, and the briefing's task selection. Carry unresolved tasks forward; in Afternoon Recap, include evidenced tomorrow-preparation actions.
 
 ### 4. Draft Email Actions
 
@@ -76,35 +83,24 @@ Read `references/email-draft.md`, then use the final active todos as the source 
 
 ### 5. Assemble the Briefing Output
 
-- Read `references/output-briefing.md`, then build the schema-valid briefing JSON and keep it in memory.
+- Read `references/output-briefing.md`, then build the briefing JSON using its schema and keep it in memory.
 - Set `greeting` for the mode, `date` to the current local date, and `person_name` from the signed-in user's Microsoft 365 profile.
-- Include the `emails`, `calendar`, `chats`, `recaps`, and `todo` collections, using an empty array where a collection has none.
 - Read `references/output-html-design.md`, then render the JSON into `briefing.html` as a complete standalone document.
-- A rendering, validation, or output-file failure is a failed run.
 
 ### 6. Apply the Artifact Image
 
 Read `references/output-image.md`, then follow it to compose one prompt per task, generate the combined image, and save `artifact-image.png`. Report the number of `chief-os-image-prompt` calls made.
 
-### 7. Validate Completion
+### 7. Update Memory
 
-- Confirm step 4 ran after the final todo update and that every generated draft is still unsent.
-- Confirm step 6 ran after the final JSON, with one `chief-os-image-prompt` call per task.
-- Update `memory.md` per `references/output-memory.md`, and only when this run found new durable context.
-- Confirm `briefing.html`, `todo.md`, and `memory.md` exist, are non-empty, and were written this run.
-- Repair any failing check from its reference and revalidate.
+Update `memory.md` per its reference only for new durable context. Otherwise leave it unchanged.
 
 ### 8. Send the Email Summary
 
-Send the summary only after every step 7 check passes.
+Send only after the selected earlier steps succeed.
 
 1. Resolve the signed-in user's primary Outlook mailbox from Microsoft 365 profile data.
-2. Read `references/email-html-design.md` in full and build the body from it alone. Include Overview, To Do, Email, Calendar, Teams Chat, and Meeting Recaps in that order, preserving item wording and source order.
-3. Run its `Verify Before Output` checklist against the generated HTML and repair any failure. Report the outcome with the send result.
-4. Attach the validated `artifact-image.png` as a regular file attachment named `artifact-image.png` with content type `image/png`. Do not inline it or substitute a path, URL, or data URL. Stop with `Failed` if the attachment cannot be verified.
-5. Send one email from the signed-in user to that same mailbox, subject `<Morning Brief|Afternoon Recap> | <local date>`.
-6. Report the exact `Sent` or `Failed` result. Do not retry an unknown result, which could duplicate the send.
-
-## Partial Runs
-
-When the user asks for one source only, such as "triage my email", "what is on my calendar", "catch up on Teams", or "recap my Teams meetings", run step 0, then step 1 for that source, and report the results directly. Skip steps 2 to 8 unless they also ask for the full briefing, the to-do update, or the artifacts.
+2. Read `references/email-html-design.md` in full and build the body from the final JSON using its layout and section order.
+3. Attach this run's `artifact-image.png` as a regular file attachment named `artifact-image.png` with content type `image/png`. Do not inline it or substitute a path, URL, or data URL. Stop with `Failed` if the attachment cannot be verified.
+4. Send one email from the signed-in user to that same mailbox, subject `<Morning Brief|Afternoon Recap> | <local date>`.
+5. Report the exact `Sent` or `Failed` result. Do not retry an unknown result, which could duplicate the send.

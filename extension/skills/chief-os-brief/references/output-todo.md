@@ -1,6 +1,6 @@
 # To-Do
 
-Generate the current run's `todo.md` from the email, chat, calendar, and meeting recap triage results.
+Reconcile the live `todo.md` with the email, chat, calendar, and meeting recap triage results.
 
 ## Workflow
 
@@ -8,21 +8,21 @@ Generate the current run's `todo.md` from the email, chat, calendar, and meeting
 
 Work only on the live `todo.md`, creating it from the template below when it does not exist.
 
-- Read existing active `- [ ]` todos as input to this run and preserve them unless they are merged with a newly generated todo.
-- Omit previously completed `- [x]` todos from the replacement output unless this run's source evidence independently confirms them.
+- Read both active `- [ ]` and completed `- [x]` tasks. Preserve active tasks unless resolved or merged, and retain completed tasks as completion history.
+- Match by source or thread and the specific obligation, not title or URL alone. A recorded completion, including an explicit user completion, stays completed despite unchanged source messages. New evidence of a distinct obligation creates a new active task; it does not reopen the old one.
 
 ### Stage 2. Generate the Todos
 
 Only after Stage 1 is complete:
 
-- Create one `Active` todo for each outstanding response, decision, approval, delivery, preparation item, conflict resolution, or follow-up owned by the user, including any `recommendedAction` that describes a concrete next step.
+- Create one `Active` todo for each unmatched, outstanding user-owned response, decision, approval, delivery, preparation item, conflict resolution, or follow-up.
 - Skip informational, noise, and FYI-only items unless they carry a specific user-owned next step.
 - Merge source items that describe the same obligation into one todo, keeping the strongest source label, earliest deadline, clearest owner, and best link. Emit no duplicates.
-- Mark a todo `Completed` only when source evidence confirms the user responded, delivered, decided, rescheduled, or otherwise resolved it. Age alone, or a meeting time having passed, is not evidence.
+- Newly mark a task `Completed` only on explicit user confirmation or source evidence of resolution. Age or a meeting time having passed is not evidence.
 - Carry the source label into `sourceContext`, especially `Important`, `Conflicts`, `Prep Needed`, `Action Required`, and `Waiting`.
 - Write a short imperative `title`, put context or outcome in `summary`, and the next step or completion note in `recommendedAction`.
 - Copy `url` from the originating triage item. A manual todo uses the absolute source URL supplied with it.
-- Replace `todo.md` in place with this run's active and completed todos.
+- Replace `todo.md` in place with the reconciled active tasks and completion history. For the briefing's `todo.items`, include active tasks and completions confirmed by this run's source evidence, not the entire completion history.
 
 ## Output Schema
 

@@ -27,8 +27,8 @@ Use a recurring agent schedule capability, not a calendar event, reminder, or sh
 - **Conversation mode:** `Same conversation`, so context carries forward between runs. Use `New conversation` only when the user explicitly asks for it.
 - **Prompt:** `Apply the chief-os-brief skill and complete its workflow for the current local time.`
 
-If the capability is unavailable, or cannot put two daily run times on one schedule, or cannot reuse the same conversation, state that no schedule was created and return the selected configuration for the user to apply manually.
+Before writing, confirm the capability supports both times on one schedule and the selected conversation mode. Otherwise leave any existing schedule unchanged and return the configuration for manual setup; do not claim a create or update succeeded.
 
 ### 3. Confirm the Result
 
-Report whether the schedule was created or updated, both run times with the time zone, and the conversation mode. Do not report success unless one schedule now holds both run times in `Same conversation` mode.
+Verify exactly one schedule holds both run times, the selected time zone, and the selected conversation mode. Only then report it created or updated, including those settings.

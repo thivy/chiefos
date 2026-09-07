@@ -1,12 +1,10 @@
 # Output HTML Design
 
-The design source for `briefing.html`, per `output-briefing.md`. It is the Daily Briefing visual language, so every rule below assumes a browser and the full design system.
-
-Write the result as one standalone document with a single `<style>` block. Do not depend on Tailwind, a build step, a framework runtime, or any remote asset.
+Browser design for `briefing.html`. Follow the [shared rendering rules](output-briefing.md#2-render) and write one standalone document with a single `<style>` block.
 
 ## Design Tokens
 
-Declare these on `:root`. The `oklch` value is the source of truth; the hex is the fallback for older engines.
+Declare these on `:root` and use them for every colour; keep hex literals inside that block. The `oklch` value is the source of truth; the hex is the fallback for older engines.
 
 | Token      | Custom property | `oklch`                      | Hex fallback | Use                                 |
 | ---------- | --------------- | ---------------------------- | ------------ | ----------------------------------- |
@@ -32,15 +30,15 @@ Derive every tint from Ink with an alpha, never a separate grey:
 | Title text  | `color-mix(in oklch, var(--foreground) 70%, transparent)` | Card titles         |
 | Done text   | `color-mix(in oklch, var(--foreground) 40%, transparent)` | Completed task icon |
 
-Radius comes from one root value: `--radius: 0.625rem`. Cards and links use `calc(var(--radius) * 0.6)`, which is `0.375rem`. Nothing else sets a radius except the fully round avatar, corner dots, and task icons.
+Set `--radius: 0.625rem`; cards and links use `calc(var(--radius) * 0.6)` (`0.375rem`). Only avatars, corner dots, and task icons are fully round.
 
 Sage, Lemon, Lilac, and Sand are peers, not status colours. Rotate them strictly by item index across the combined message list, in that order. Sky and Blush exist as tokens but stay out of the rotation.
 
 ## Typography
 
-Set `font-family: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif` once on `body` and let it inherit. Inter is the intended face; the stack degrades cleanly when it is not installed. Do not load a remote font stylesheet.
+Set `font-family: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif` on `body` and inherit it. Use installed fonts only.
 
-Page base is `line-height: 1.5rem`. The scale below is the resolved output of the artifact's fluid type, so use these values directly:
+Page base is `line-height: 1.5rem`. Use this resolved type scale directly:
 
 | Role         | Size                            | Line height | Weight | Tracking   | Colour     |
 | ------------ | ------------------------------- | ----------- | ------ | ---------- | ---------- |
@@ -52,21 +50,22 @@ Page base is `line-height: 1.5rem`. The scale below is the resolved output of th
 | `caption`    | `0.875rem`                      | `1.2`       | `550`  | `0`        | Muted text |
 | `card-title` | `0.875rem`                      | `1.2`       | `600`  | `0`        | Title text |
 
-`display-xs`, `content`, `caption`, and `card-title` are fixed sizes. In the artifact they are written as clamps that collapse to a single value, so do not reintroduce a fluid range for them. Only the three `display` sizes above `xs` actually scale.
+Only `display-lg`, `display-md`, and `display-sm` have fluid font sizes; all other roles are fixed.
 
 Apply `text-wrap: balance` to every `display` role and to card content, and `text-wrap: pretty` to task labels.
 
-Semantic elements, matching the artifact: `display-lg`, `display-md`, and `display-sm` render as `h1`; `display-xs` as `span`; `content` and `card-title` as `div`; `caption` as `p`. Use one real `h1` per document and demote the rest to styled `div` elements so the outline stays honest.
+Use one real `h1`; other display headings are styled `div` elements. Use `span` for `display-xs`, `div` for content and card titles, and `p` for captions.
 
 ## Layout
 
 - Page wrapper: `margin-inline: auto`, `max-width: 64rem`, `padding-inline: 1rem`, dropping to `0` at `64rem` and above.
 - Greeting block: `padding-block: 1.5rem`, plain heading, no card.
 - Headline block: `padding-block: 2rem`, `display-lg`, reading `<person_name>, here's a clear, focused snapshot for <date>.`
-- Summary row: CSS grid, `gap: 1rem`, one column by default, two columns from `40rem`, eight columns from `64rem`. Overview card spans five columns, Tasks card spans three.
+- Summary row: CSS grid, `gap: 1rem`, one column by default, two columns from `40rem`, eight columns from `64rem`. At eight columns, Overview spans five and Tasks spans three; otherwise each spans one.
 - Message cards: CSS multi-column with `column-width: 24rem` and `column-gap: 1rem`. Give every card `margin-bottom: 1rem` and `break-inside: avoid`.
+- Empty collections: render `No items surfaced in this run.` as muted text, without a card; keep the section.
 
-Card spacing uses two fluid values, both taken from the artifact:
+Fluid card spacing:
 
 - Padding: `clamp(1rem, 3vw, 1.5rem)` inline, `clamp(1.5rem, 4vw, 2.25rem)` block.
 - Gap between card sections: `clamp(1rem, 3vw, 1.5rem)`.
@@ -77,7 +76,7 @@ Every card is `position: relative`, a flex column, with the card border, `border
 
 Order inside a card is fixed:
 
-1. **Corner marks.** A `pointer-events: none` overlay at `opacity: 0.4` covering the card. It holds four 2x2 dot grids inset `0.5rem` from each corner. Each dot is `0.125rem`, fully round, filled with Ink, with `0.125rem` between dots. In each grid, hide the dot nearest that corner so the three visible dots form an L pointing away from it. Hide the index `3` dot at top left, `2` at top right, `1` at bottom left, and `0` at bottom right, counting row-major from the top left.
+1. **Corner marks.** A card-covering overlay with `pointer-events: none` and `opacity: 0.4`. Four 2x2 dot grids sit `0.5rem` from the corners. Dots are round Ink, `0.125rem` wide with `0.125rem` gaps. Using row-major indices, hide `3` at top left, `2` at top right, `1` at bottom left, and `0` at bottom right, leaving three dots per corner.
 2. **Header.** Source metadata on one row: an icon at `opacity: 0.6`, then a `caption` label, then a `caption` timestamp pushed to the far end. Gap is `0.375rem`, and the metadata row grows to fill the header.
 3. **Content.** A flex column with `gap: 0.5rem`. `card-title` carries the subject, followed by the summary as body copy.
 4. **Footer.** The avatar, a `2.25rem` round circle filled with the avatar token, then the author name as `display-xs` above the author role as `caption`. Omit the footer when neither name nor role is known.
@@ -122,17 +121,4 @@ Draw every icon as inline SVG in the Lucide style: `viewBox="0 0 24 24"`, `fill=
 - No remote stylesheets, remote fonts, tracking pixels, iframes, forms, or video.
 - No dark surfaces, gradients, or fixed card heights. Cards grow to fit their content.
 - No inline image data. The artifact image is delivered only as the mail attachment described in step 8 of `SKILL.md`.
-- Escape `&`, `<`, and `>` in every value taken from the briefing, and `"` in every attribute value, before it reaches the markup.
-
-## Verify Before Output
-
-Check the generated file against every item and repair it before reporting success.
-
-- The document is standalone: one `<style>` block, no remote asset, no script.
-- Every colour resolves from a `:root` custom property. No literal hex appears outside that `:root` block.
-- Message cards cycle Sage, Lemon, Lilac, Sand strictly by index, with no colour used to signal status.
-- Only the three `display` roles above `xs` use `clamp()`. No collapsed or inverted clamp survives.
-- Every card carries its corner overlay, with exactly three visible dots per corner.
-- Every item with a verified URL is wrapped in an anchor carrying `rel="noopener noreferrer"`, and every focus ring is `:focus-visible` only.
-- Empty collections render the empty state rather than an empty card or a dropped section.
-- No unresolved placeholder text remains.
+- No unresolved placeholder text.

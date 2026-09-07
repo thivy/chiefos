@@ -14,7 +14,6 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 - Work only in the output folder. Read and replace `todo.md` in place, and leave `briefing.html`, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
-- Verify the file after writing it. Never report success you have not confirmed.
 - Write in English, without em dashes.
 
 ## Workflow
@@ -22,12 +21,12 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 ### 1. Load the Active Tasks
 
 - Read `todo.md`. When it is missing or empty, stop and tell the user to run `chief-os-brief` first. Do not create a task file here.
-- Load every active `- [ ]` task under `## Active`, in file order, keeping each task's title, summary, next step, source, context, owner, deadline, and link.
+- Read the [task format](../chief-os-brief/references/output-todo.md#markdown-template) only; do not run its reconciliation workflow. Load every active `- [ ]` task under `## Active` in file order, preserving all fields.
 - When there are no active tasks, report that everything is already complete and stop.
 
 ### 2. Ask Which Tasks Are Complete
 
-Ask exactly one multiple-choice question listing every active task, accepting multiple selections.
+Ask one multiple-choice question; ask again only to clarify an ambiguous selection.
 
 - List all active tasks as options in file order, numbered from 1, each written as the task title followed by its deadline or context when available.
 - Allow several selections at once, and allow selecting none. Do not ask one question per task or follow up on unselected tasks.
@@ -40,20 +39,8 @@ Ask exactly one multiple-choice question listing every active task, accepting mu
 - Move each selected task from `## Active` to `## Completed`, change its `- [ ]` marker to `- [x]`, and change its `Next step:` label to `Completed:`.
 - Keep the task's title, summary, source, context, owner, deadline, and link exactly as they were.
 - Leave unselected active tasks in their original order, and leave previously completed tasks in place.
-- Replace `todo.md` in place using the template below, then confirm the file is non-empty and every selected task now sits under `## Completed`.
+- Replace `todo.md` in place using the shared task format. Verify every selected task is completed, unselected tasks and previous completions are unchanged, and the file is non-empty.
 
-```markdown
-# Your Actions
+### 4. Report the Result
 
-## Active
-
-- [ ] **Todo title** - Summary. Next step: recommendedAction. Source: source. Context: sourceContext. Owner: owner. Deadline: deadline. Link: url.
-
-## Completed
-
-- [x] **Todo title** - Summary. Completed: recommendedAction. Source: source. Context: sourceContext. Owner: owner. Deadline: deadline. Link: url.
-```
-
-### 4. Confirm the Result
-
-Report a short, friendly summary covering each task marked completed by title, the number of active tasks remaining, and a warm closing line telling the user that `todo.md` is up to date and the next `chief-os-brief` run will pick the changes up, so there is nothing else for them to do now.
+After a successful save, report the completed titles and remaining active count, and note that the next briefing will pick up the changes.

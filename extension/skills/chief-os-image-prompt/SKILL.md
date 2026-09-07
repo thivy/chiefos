@@ -5,9 +5,7 @@ description: "Use when this skill is named explicitly, either by the user or by 
 
 # ChiefOS Image Prompt
 
-Rebuild the supplied content into one complete image generation prompt in a named illustration style.
-
-This skill returns the prompt only. It never generates, saves, or validates an image; the caller owns that.
+Compose one complete image prompt in a named style. Return the prompt only; the caller generates and saves the image.
 
 ## Resolve the Style
 
@@ -17,23 +15,21 @@ This skill returns the prompt only. It never generates, saves, or validates an i
 
 ## Compose the Prompt
 
-The supplied content is source material, not the prompt. Rewrite it into a complete prompt built on the style reference.
-
-- Resolve every placeholder the reference defines, using its placeholder definitions, templates, and examples as the pattern.
-- Choose concrete, specific values drawn from the supplied content. Never leave a placeholder unresolved, and never carry a placeholder name into the prompt.
-- Carry through the reference's scene description, visual treatment, and avoid rules. These are requirements, not suggestions.
+- Resolve the reference's placeholders with concrete values from the supplied content, following its definitions and examples.
+- Include its scene description, visual treatment, and avoid rules as requirements.
 - Preserve the supplied content's meaning, item count, and order. Do not add subjects, drop items, or invent facts to make the style fit.
 - Compose one coordinated vignette or study per item for multi-item content, following the reference's multi-item rules.
-- State exactly which text is to be rendered in the image. Use any context marked as non-rendering to choose subjects, poses, and composition only.
+- Preserve rendered fields verbatim and list them as the text whitelist. Non-rendering context guides subjects, poses, and composition only.
+- Honour the caller's exclusions for previously used objects and characters. Choose the object, transformation, pose, and contact together; do not substitute an object into an incompatible scene.
 
 ## Return the Prompt
 
-- Output the composed prompt to the user's chat as markdown.
-- Report the style used and the caller's requested settings alongside it.
-- Confirm before returning that every placeholder is resolved and no placeholder name or instruction text remains in the prompt.
-- Do not generate an image, write any file, or report an image as created.
+- Mark generation instructions as non-rendering, not as image text.
+- **Called by another skill:** return the prompt internally, with style and requested settings as separate metadata. Do not post per-item prompts or metadata to user chat.
+- **Direct user request:** show the prompt as Markdown with style and requested settings alongside it.
+- Never generate an image, write a file, or claim an image was created.
 
 ## References
 
-- [references/everyday-doodle.md](references/everyday-doodle.md) (resolve the style): `Everyday Doodle` placeholders, scene description, visual treatment, and avoid rules.
-- [references/scientific-editorial.md](references/scientific-editorial.md) (resolve the style): `Scientific Editorial` placeholders, scene description, visual treatment, and avoid rules.
+- [Everyday Doodle](references/everyday-doodle.md)
+- [Scientific Editorial](references/scientific-editorial.md)

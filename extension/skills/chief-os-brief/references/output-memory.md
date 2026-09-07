@@ -6,7 +6,7 @@ Create and maintain the live `memory.md` file used by daily brief runs.
 
 - Maintain only the live `memory.md` file.
 - Keep memory brief, factual, stable, and useful for future triage.
-- Do not store one-off tasks, transient meeting notes, or facts that are only useful for the current run.
+- Exclude guesses, one-off or completed tasks, transient meeting notes, temporary blockers, one-time deadlines, and facts useful only for the current run.
 - Prefer updating an existing entry over adding a duplicate.
 - Remove or replace entries that are contradicted by newer confirmed user input.
 
@@ -17,19 +17,13 @@ Create and maintain the live `memory.md` file used by daily brief runs.
 
 ## Maintenance Rules
 
-Update memory when new stable context is found, including:
+Durable context includes:
 
 - Communication preferences that should guide future briefings or messages.
 - Priority relationships, such as manager, direct team, executive sponsor, customer, legal, finance, or delivery lead.
 - Customer domains and aliases that help classify email or Teams messages.
 - Recurring projects, programmes, workstreams, or escalation paths.
 - Standing meeting preferences, recurring preparation needs, or durable scheduling constraints.
-
-Do not update memory for:
-
-- A single email, meeting, or chat unless it reveals durable context.
-- Completed tasks, temporary blockers, or one-time deadlines.
-- Guesses about a person, company, role, or priority.
 
 ## Markdown Template
 

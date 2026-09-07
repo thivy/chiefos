@@ -1,6 +1,6 @@
 # Briefing Output
 
-The schema for the in-memory briefing value and how to render `briefing.html` from it. This file is the single source for the shape; other references name fields but never redefine them.
+The single source for the in-memory briefing schema and shared rendering rules. Other references use these fields without redefining their types.
 
 ## 1. Schema
 
@@ -76,9 +76,8 @@ interface DailyBriefing {
 
 ## 2. Render
 
-Validate the value against section 1, then render it into `briefing.html` as one standalone document following [output-html-design.md](output-html-design.md).
+Both browser and email renderers preserve item wording and source order, omit null fields, and show their specified empty states.
 
-- Render `greeting`, `person_name`, `date`, and `summary`, then Overview, Tasks, Email, Calendar, Teams Chat, and Meeting Recaps in that order.
-- Preserve item wording and source order, omit absent fields, and render the empty state for an empty collection.
-- Escape `&`, `<`, and `>` in every briefing value, and `"` in every attribute value, so briefing text cannot introduce markup.
-- Run the `Verify Before Output` checklist in `output-html-design.md` against the written file and repair any failure. A failed render, escape, or validation check is a failed run.
+Escape `&`, `<`, and `>` in briefing text and also `"` in attribute values before insertion into either renderer. Content must never introduce markup.
+
+For `briefing.html`, use [output-html-design.md](output-html-design.md): greeting, person name and date, then Overview containing `summary`, Tasks, Email, Calendar, Teams Chat, and Meeting Recaps. Write one standalone document.
