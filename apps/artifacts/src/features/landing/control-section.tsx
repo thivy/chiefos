@@ -1,6 +1,11 @@
 import { Card, CardContent, CardHeader } from "../../components/card";
 import { ContentContainer } from "../../components/container";
-import { SourceMetadata, SourceMetadataLabel } from "../../components/source-metadata";
+import { EyeIcon, LinkIcon, MailCheckIcon, ShieldCheckIcon } from "../../components/icons";
+import {
+  SourceMetadata,
+  SourceMetadataIcon,
+  SourceMetadataLabel,
+} from "../../components/source-metadata";
 import { Text } from "../../components/text";
 
 function ControlSection() {
@@ -11,7 +16,7 @@ function ControlSection() {
           <Text as="h1" id="control-heading" variant="display-lg">
             You stay in control
           </Text>
-          <Text as="p" variant="content" className="text-balance">
+          <Text as="p" variant="lead">
             ChiefOS shows you what it knows, where every recommendation came from, and asks before
             anything carries your name.
           </Text>
@@ -20,6 +25,9 @@ function ControlSection() {
           <Card className="bg-white/60">
             <CardHeader>
               <SourceMetadata>
+                <SourceMetadataIcon>
+                  <ShieldCheckIcon />
+                </SourceMetadataIcon>
                 <SourceMetadataLabel>Your information stays where it belongs</SourceMetadataLabel>
               </SourceMetadata>
             </CardHeader>
@@ -35,6 +43,9 @@ function ControlSection() {
           <Card className="bg-white/60">
             <CardHeader>
               <SourceMetadata>
+                <SourceMetadataIcon>
+                  <MailCheckIcon />
+                </SourceMetadataIcon>
                 <SourceMetadataLabel>Nothing goes out without you</SourceMetadataLabel>
               </SourceMetadata>
             </CardHeader>
@@ -49,6 +60,9 @@ function ControlSection() {
           <Card className="bg-white/60">
             <CardHeader>
               <SourceMetadata>
+                <SourceMetadataIcon>
+                  <EyeIcon />
+                </SourceMetadataIcon>
                 <SourceMetadataLabel>No black box</SourceMetadataLabel>
               </SourceMetadata>
             </CardHeader>
@@ -63,6 +77,9 @@ function ControlSection() {
           <Card className="bg-white/60">
             <CardHeader>
               <SourceMetadata>
+                <SourceMetadataIcon>
+                  <LinkIcon />
+                </SourceMetadataIcon>
                 <SourceMetadataLabel>Every recommendation is traceable</SourceMetadataLabel>
               </SourceMetadata>
             </CardHeader>

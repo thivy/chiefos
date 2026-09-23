@@ -15,6 +15,9 @@ const TEXT_VARIANT_CLASS = {
     "text-[clamp(var(--text-sm),2.5vw,var(--text-sm))] leading-[1.2] font-[550] tracking-normal text-balance",
   ),
   content: cn("text-[clamp(var(--text-base),1.5vw,var(--text-sm))] font-normal"),
+  lead: cn(
+    "max-w-2xl text-[clamp(var(--text-base),1.6vw,var(--text-lg))] leading-[1.6] font-normal text-balance text-foreground/75",
+  ),
   caption: cn(
     "text-[clamp(var(--text-sm),2.5vw,var(--text-sm))] leading-[1.2] font-[550] tracking-normal text-balance text-foreground/60",
   ),
@@ -31,6 +34,7 @@ const DEFAULT_ELEMENT: Record<TextVariant, ElementType> = {
   "display-sm": "h1",
   "display-xs": "span",
   content: "div",
+  lead: "p",
   caption: "p",
   "card-title": "div",
 };

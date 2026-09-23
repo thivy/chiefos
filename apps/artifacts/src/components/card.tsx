@@ -12,7 +12,7 @@ function Card({ className, children, ...props }: ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "relative flex break-inside-avoid flex-col rounded-sm border border-foreground/5 px-[clamp(--spacing(4),3vw,--spacing(6))] py-[clamp(--spacing(6),4vw,--spacing(9))] shadow-md",
+        "relative flex break-inside-avoid flex-col rounded-sm border border-foreground/5 px-[clamp(--spacing(4),3vw,--spacing(6))] py-[clamp(--spacing(6),4vw,--spacing(9))] shadow-md shadow-foreground/10",
         CARD_SECTION_GAP_CLASS,
         className,
       )}

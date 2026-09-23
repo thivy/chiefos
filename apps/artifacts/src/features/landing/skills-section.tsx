@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "../../components/card";
 import { ContentContainer } from "../../components/container";
-import { SourceMetadata, SourceMetadataLabel } from "../../components/source-metadata";
+import { SourceMetadata, SourceMetadataCode } from "../../components/source-metadata";
 import { Text } from "../../components/text";
 
 function SkillsSection() {
@@ -11,16 +11,16 @@ function SkillsSection() {
           <Text as="h1" id="skills-heading" variant="display-lg">
             Skills, one working rhythm
           </Text>
-          <Text as="p" variant="content" className="text-balance">
+          <Text as="p" variant="lead">
             Each skill owns one clear part of the experience, from gathering the day&apos;s signals
             to keeping the routine running and closing the loop on finished work.
           </Text>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:auto-rows-fr sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Card className="bg-card-sage">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataLabel>chief-os-schedule</SourceMetadataLabel>
+                <SourceMetadataCode>/chief-os-schedule</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>
@@ -34,7 +34,7 @@ function SkillsSection() {
           <Card className="bg-card-lemon">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataLabel>chief-os-brief</SourceMetadataLabel>
+                <SourceMetadataCode>/chief-os-brief</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>
@@ -49,7 +49,7 @@ function SkillsSection() {
           <Card className="bg-card-sky">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataLabel>chief-os-image-prompt</SourceMetadataLabel>
+                <SourceMetadataCode>/chief-os-image-prompt</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>
@@ -64,7 +64,7 @@ function SkillsSection() {
           <Card className="bg-card-blush">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataLabel>chief-os-todo-complete</SourceMetadataLabel>
+                <SourceMetadataCode>/chief-os-todo-complete</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>
@@ -79,7 +79,7 @@ function SkillsSection() {
           <Card className="bg-card-lilac sm:col-span-2">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataLabel>chief-os-visual-minutes</SourceMetadataLabel>
+                <SourceMetadataCode>/chief-os-visual-minutes</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>

@@ -35,6 +35,19 @@ function SourceMetadataLabel({ className, ...props }: ComponentProps<"p">) {
   );
 }
 
+function SourceMetadataCode({ className, ...props }: ComponentProps<"code">) {
+  return (
+    <code
+      data-slot="source-metadata-code"
+      className={cn(
+        "font-mono text-[0.8125rem] leading-[1.2] font-medium text-foreground/60",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 function SourceMetadataTimestamp({ className, ...props }: ComponentProps<"p">) {
   return (
     <Text
@@ -47,4 +60,10 @@ function SourceMetadataTimestamp({ className, ...props }: ComponentProps<"p">) {
   );
 }
 
-export { SourceMetadata, SourceMetadataIcon, SourceMetadataLabel, SourceMetadataTimestamp };
+export {
+  SourceMetadata,
+  SourceMetadataCode,
+  SourceMetadataIcon,
+  SourceMetadataLabel,
+  SourceMetadataTimestamp,
+};

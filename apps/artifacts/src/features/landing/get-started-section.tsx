@@ -1,7 +1,7 @@
 import { Button } from "../../components/button";
 import { Card, CardContent, CardHeader } from "../../components/card";
 import { ContentContainer } from "../../components/container";
-import { ListTodoIcon } from "../../components/icons";
+import { PackageIcon, SquareTerminalIcon } from "../../components/icons";
 import {
   SourceMetadata,
   SourceMetadataIcon,
@@ -15,17 +15,17 @@ function GetStartedSection() {
     <ContentContainer>
       <section
         id="get-started"
-        className="flex scroll-mt-8 flex-col gap-8 lg:flex-row"
+        className="flex scroll-mt-8 flex-col gap-8 lg:flex-row lg:items-start"
         aria-labelledby="install-heading"
       >
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-4 lg:sticky lg:top-8">
           <Text as="h1" id="install-heading" variant="display-lg">
             Get started with ChiefOS
           </Text>
-          <Text as="p" variant="content" className="text-balance">
+          <Text as="p" variant="lead">
             Download the plugin package, then upload it from Cowork&apos;s Customize page.
           </Text>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pt-2">
             <Button
               as="a"
               href="https://github.com/thivy/chiefos/releases/latest/download/chief-os-latest.zip"
@@ -45,11 +45,11 @@ function GetStartedSection() {
         </div>
 
         <div className="flex-1">
-          <Card className="bg-white/60">
+          <Card className="bg-white/60 [&_code]:rounded-xs [&_code]:bg-foreground/6 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.8125rem] [&_code]:whitespace-nowrap">
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataIcon>
-                  <ListTodoIcon />
+                  <PackageIcon />
                 </SourceMetadataIcon>
                 <SourceMetadataLabel>Upload steps</SourceMetadataLabel>
               </SourceMetadata>
@@ -94,7 +94,7 @@ function GetStartedSection() {
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataIcon>
-                  <ListTodoIcon />
+                  <SquareTerminalIcon />
                 </SourceMetadataIcon>
                 <SourceMetadataLabel>Start using ChiefOS</SourceMetadataLabel>
               </SourceMetadata>
