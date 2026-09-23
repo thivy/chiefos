@@ -23,7 +23,7 @@ These hold on every run, whether or not a reference has been read.
 - **Order is meaning.** Key moments run in timeline order and follow-up actions in the order they were agreed. Never reorder either for visual effect.
 - Compose every image prompt through the `chief-os-image-prompt` skill, once per item. Never author, paraphrase, batch, or reuse a prompt yourself.
 - Produce one image. Never split the two bands into separate files.
-- Keep language concise, neutral, and action-oriented, without em dashes. Use the local time zone for dates and source timing for elapsed markers.
+- Write every rendered and reported line in plain executive language per the [shared conventions](../chief-os-brief/references/conventions.md): outcome first, no jargon or em dashes. Use the local time zone for dates and source timing for elapsed markers.
 
 ## Workflow
 

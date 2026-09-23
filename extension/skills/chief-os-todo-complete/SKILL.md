@@ -14,7 +14,7 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 - Work only in the output folder. Read and replace `todo.md` in place, and leave `briefing.html`, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
-- Write in English, without em dashes.
+- Write in English, following the [shared conventions](../chief-os-brief/references/conventions.md).
 
 ## Workflow
 

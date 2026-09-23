@@ -71,7 +71,7 @@ Before scoring, reconcile obligation state with loaded completion history using 
 
 Write the top-level `summary` from the triaged items: 2 to 4 sentences, under 100 words, no bullet points.
 
-Write for an executive audience: concise, strategic, decision-oriented. Do not open with "Here is" or "This briefing". Cover, when relevant, decisions needed today, recent meeting commitments, calendar conflicts and preparation, stakeholder commitments, deadlines, risks, blockers, and waiting items. Mention missing data only when its absence changes the executive view.
+Write for an executive audience: concise, strategic, decision-oriented. Open with the one decision, risk, or deadline that matters most today, then the next most important. Cover, when relevant, decisions needed today, recent meeting commitments, calendar conflicts and preparation, stakeholder commitments, deadlines, risks, blockers, and waiting items, naming the people and times involved. Do not open with "Here is" or "This briefing", and do not recite volumes by source such as "5 emails and 3 chats". When nothing needs attention, say so in one sentence. Mention missing data only when its absence changes the executive view.
 
 ### 3. Update the To-Do Output
 

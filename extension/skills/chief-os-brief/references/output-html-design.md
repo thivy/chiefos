@@ -63,7 +63,7 @@ Use one real `h1`; other display headings are styled `div` elements. Use `span` 
 - Headline block: `padding-block: 2rem`, `display-lg`, reading `<person_name>, here's a clear, focused snapshot for <date>.`
 - Summary row: CSS grid, `gap: 1rem`, one column by default, two columns from `40rem`, eight columns from `64rem`. At eight columns, Overview spans five and Tasks spans three; otherwise each spans one.
 - Message cards: CSS multi-column with `column-width: 24rem` and `column-gap: 1rem`. Give every card `margin-bottom: 1rem` and `break-inside: avoid`.
-- Empty collections: render `No items surfaced in this run.` as muted text, without a card; keep the section.
+- Empty collections: render `Nothing to flag.` as muted text, without a card; keep the section.
 
 Fluid card spacing:
 

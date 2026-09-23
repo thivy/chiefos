@@ -60,7 +60,7 @@ Preserve the mail client's default text size and the reader's size preference.
 4. Render Email, Calendar, Teams Chat, and Meeting Recaps as separate headings followed by content-height cards.
 5. Rotate Sage, Sand, Lemon, and Lilac across all message cards in source order.
 6. Place metadata first, followed by subject, summary, author details, then the recommended action below a hairline rule.
-7. When a section is empty, render `No items surfaced in this run.` as muted body copy without a card.
+7. When a section is empty, render `Nothing to flag.` as muted body copy without a card.
 
 ## Links and Accessibility
 

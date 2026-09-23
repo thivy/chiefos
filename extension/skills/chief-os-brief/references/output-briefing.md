@@ -70,7 +70,7 @@ interface DailyBriefing {
 
 - Emit exactly these properties. Every one is required; use `null` only where the type allows it.
 - `url` must be a non-empty absolute deep link on every message item and every to-do item. Omit an item rather than emitting a partial or invented one.
-- `date` is the human-readable briefing date.
+- `date` is the local briefing date in full, e.g. `Wednesday, 23 September 2026`, ordered for the user's locale. `timestamp` and `deadline` follow the date and time rules in [conventions.md](conventions.md).
 - Any collection may be an empty array.
 - Keep the value in memory for the run. Do not save a standalone JSON file or embed it in the HTML.
 

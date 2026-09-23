@@ -33,3 +33,4 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 
 - [Everyday Doodle](references/everyday-doodle.md)
 - [Scientific Editorial](references/scientific-editorial.md)
+- [Voxel Storyworld](references/voxel-storyworld.md)

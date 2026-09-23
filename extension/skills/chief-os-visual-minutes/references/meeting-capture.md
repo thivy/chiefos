@@ -37,7 +37,7 @@ Each moment carries:
 | ------------- | ------------------------------------------------------------------------------------------------------------ | -------- |
 | Marker        | Elapsed `m:ss` or `h:mm:ss` at source-supported precision; otherwise `Part 1`, `Part 2`, and so on           | Yes      |
 | Heading       | 2 to 4 words naming the moment                                                                               | Yes      |
-| Display label | 4 to 6 words stating what changed, in the meeting's own wording                                              | Yes      |
+| Display label | 4 to 6 plain words stating what changed, keeping the meeting's names, numbers, and terms exact               | Yes      |
 | Summary note  | One line of at most 12 words, keeping any name, number, or date exact                                        | Yes      |
 | Context       | The full detail of the moment and who drove it; guides the choice of object, character, and interaction only | No       |
 
@@ -57,7 +57,7 @@ Each action carries:
 | ------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- |
 | Heading       | 2 to 4 words naming the action                                                                                          | Yes      |
 | Display label | 4 to 6 words stating the next action, written as an instruction                                                         | Yes      |
-| Summary note  | One line of at most 12 words carrying the owner and due date as recorded, or `Owner not recorded` or `No date recorded` | Yes      |
+| Summary note  | One line of at most 12 words carrying the owner and due date as recorded, or `Owner to confirm` or `Date to confirm`    | Yes      |
 | Context       | The full detail of the action, who agreed to it, and what it unblocks                                                   | No       |
 
 Never merge unrelated items or shorten rendered fields below their minimum. The image reference owns layout and overflow handling, not which evidence survives.

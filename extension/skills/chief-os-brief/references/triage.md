@@ -114,9 +114,10 @@ Apply at most one multiplier, and only when the item or its trusted context subs
 Use the source-specific `MessageItem` interfaces and validation rules in [output-briefing.md](output-briefing.md#1-schema); do not add scorecard fields.
 
 - Take `sourceLabel` from the profile; use local time for `timestamp` with the profile's event semantics.
-- `authorName` is the sender or organiser; `authorRole` is their email address or role. Use a title, subject line, or short neutral label for `subject`.
-- `summary`: 1-2 neutral sentences covering purpose, current state, and any deadline or ask affecting the action.
-- Retrieve `url` with the source data. `recommendedAction` is the concise next step, or `null` when none is owed.
+- `authorName` is the sender or organiser; `authorRole` is their role, team, or organisation when known, otherwise their email address.
+- `subject`: keep a recognisable subject line with `RE:`, `FW:`, and tags such as `[EXTERNAL]` removed. Replace only an empty or uninformative one, such as `Quick question`, with a short neutral label naming the business topic.
+- `summary`: 1-2 sentences, under 40 words. Lead with what is needed or what changed, then why it matters and any deadline. Do not repeat the subject.
+- Retrieve `url` with the source data. `recommendedAction` is one imperative sentence under 20 words, following the action rules in `conventions.md`, or `null` when none is owed.
 
 ## 6. Source Profiles
 

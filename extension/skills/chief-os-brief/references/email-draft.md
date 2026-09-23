@@ -46,7 +46,7 @@ Material changes include a changed request, recipient, decision, deadline, attac
 - Reply within the original conversation, retaining its subject; use new mail with a concise subject only for non-replies.
 - Address verified recipients only. Retain relevant existing recipients and use reply-all only when every participant is necessary.
 - Start with **AI-GENERATED DRAFT - REVIEW BEFORE SENDING**, bold on its own line, then a blank line.
-- Address the verified ask in concise professional paragraphs separated by blank lines. Use lists only when they clarify multiple actions, questions, decisions, or deliverables. Follow `conventions.md` and relevant memory preferences; include greeting and closing when appropriate.
+- Answer the verified ask or state the decision in the first sentence, then add only the context the recipient needs, usually in three short paragraphs or fewer separated by blank lines. End with the agreed next step, owner, and date when one exists. Use lists only when they clarify multiple actions, questions, decisions, or deliverables. Follow `conventions.md` and relevant memory preferences; include greeting and closing when appropriate.
 - Append the user's configured signature. If not inserted automatically, use only a verified signature from their current draft or recent sent message. If unavailable, omit it and report that review requires the user's signature.
 - Mention attachments only when confirmed by evidence and actually included; never claim an unavailable attachment is attached.
 - Update the matched draft in place, preserving useful user-authored content consistent with current evidence. Save to Outlook Drafts, never send.
