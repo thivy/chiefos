@@ -27,7 +27,7 @@ These hold on every run, whether or not a reference has been read.
 
 ## Workflow
 
-Run these steps in order.
+Run these steps in order without pausing for confirmation. Stop or ask only where a step or its reference says to; the step 3 report does not wait for approval.
 
 ### 1. Resolve and Read the Meeting
 

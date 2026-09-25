@@ -50,7 +50,7 @@ These hold on every run, whether or not a reference has been read.
 
 ## Workflow
 
-Run the selected steps in order. Stop on tool or file errors rather than continuing to delivery.
+Run the selected steps in order without pausing for confirmation. Scheduled runs are unattended, so never stop at a status note or an offer to continue; take the next step. Stop on tool or file errors rather than continuing to delivery.
 
 ### 0. Prepare Working Files
 
@@ -85,6 +85,7 @@ Read `references/email-draft.md`, then use the final active todos as the source 
 
 - Read `references/output-briefing.md`, then build the briefing JSON using its schema and keep it in memory.
 - Set `greeting` for the mode, `date` to the current local date, and `person_name` from the signed-in user's Microsoft 365 profile.
+- Before rendering, check that names, dates, times, deadlines, and task status agree wherever they repeat across the summary, cards, and tasks. Correct any mismatch from the evidence.
 - Read `references/output-html-design.md`, then render the JSON into `briefing.html` as a complete standalone document.
 
 ### 6. Apply the Artifact Image
@@ -104,3 +105,11 @@ Send only after the selected earlier steps succeed.
 3. Attach this run's `artifact-image.png` as a regular file attachment named `artifact-image.png` with content type `image/png`. Do not inline it or substitute a path, URL, or data URL. Stop with `Failed` if the attachment cannot be verified.
 4. Send one email from the signed-in user to that same mailbox, subject `<Morning Brief|Afternoon Recap> | <local date>`.
 5. Report the exact `Sent` or `Failed` result. Do not retry an unknown result, which could duplicate the send.
+
+## Run Report
+
+End every run with one short chat report under these headings, in this order, writing `None` under any that is empty:
+
+1. **Needs you:** anything the run could not finish without the user, such as a failed step, ambiguous draft matches, or a missing signature.
+2. **Unconfirmed:** anything left out or unverified for lack of evidence, and where it was checked.
+3. **Done:** each selected step's outcome.

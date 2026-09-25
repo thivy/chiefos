@@ -27,6 +27,7 @@ House voice and formatting. Applies to all user-facing output: briefings, summar
 
 - Use the current local date and time for every calculation, greeting, and timestamp.
 - Within one day of today, write `Yesterday`, `Today`, or `Tomorrow` with a time. Otherwise use a short weekday and date, e.g. `Thu 24 Sep`, ordered for the user's locale; add the year only when it differs from the current year.
+- Calculate every weekday from its date; never assume it.
 - Write times as `3:00 PM` in local time. Never show ISO timestamps, UTC offsets, or time zone identifiers.
 - Never leave a relative date such as `in 2 days` or `next week` without the actual date.
 

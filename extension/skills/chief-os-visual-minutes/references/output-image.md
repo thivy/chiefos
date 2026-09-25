@@ -18,7 +18,7 @@ Give every call this shared style:
 - One self-contained, highly detailed vignette per call, not a full composition.
 - Heading in a warm-black handwritten script; marker, display label, and summary note in a warm-black sans at regular weight, all at the same size.
 - Every line sits in clear ivory beside or below the art, with a margin around it. Text and art never cross.
-- Render only the whitelisted fields. Use no abstract corporate or stock imagery.
+- Render only the whitelisted fields. Use no stock or corporate clichés such as handshakes, currency symbols, trophies, bullseyes, or rockets.
 
 Then one instruction per section, which is what makes the two bands read apart at a glance:
 

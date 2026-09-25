@@ -59,7 +59,7 @@ Omit optional details that are not provided. Never display placeholder names or 
 - Disconnected, floating, implausibly scaled elements, or interactions without visible contact
 - Cartoon-styled photographed objects, volumetric characters, or airbrushed drawn elements
 - Heavy rendering, dense backgrounds, or excessive color
-- Symmetrical poster layouts and generic infographic composition
+- Symmetrical poster layouts or infographic devices such as icons, charts, flow arrows, and callout boxes
 - Unrequested decorative captions, logos, watermarks, product labels, or illegible text
 - Duplicated objects, malformed hands, or distorted anatomy
 

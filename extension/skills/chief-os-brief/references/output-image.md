@@ -25,7 +25,7 @@ Make one `chief-os-image-prompt` call per task in source order. Pass all fields 
 - One self-contained, highly detailed vignette per call, not a full composition.
 - Heading in a warm-black handwritten script; display label and summary note in a warm-black sans at regular weight, all at the same size.
 - Every line sits in clear ivory beside or below the art, with a margin around it. Text and art never cross.
-- Render only the whitelisted fields. Use no abstract corporate or stock imagery.
+- Render only the whitelisted fields. Use no stock or corporate clichés such as handshakes, currency symbols, trophies, bullseyes, or rockets.
 
 Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
 

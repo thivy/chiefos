@@ -9,7 +9,7 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 
 ## Resolve the Style
 
-- Use the requested style, or `Everyday Doodle` when none is specified.
+- Use the requested style, or `Everyday Doodle` when none is specified. When no reference matches the requested style, list the available styles and stop; never improvise one.
 - Read the matching reference in full before composing.
 - Apply one style only. Do not blend styles or borrow motifs from another reference.
 

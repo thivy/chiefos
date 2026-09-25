@@ -11,7 +11,7 @@ Create exactly one recurring daily assistant schedule in the user's local time z
 
 ### 1. Choose the Run Times
 
-Ask one question covering both times. Offer the default pair first, then the alternatives:
+When the request already names both times, use them without asking. Otherwise ask one question covering both times. Offer the default pair first, then the alternatives:
 
 - **7:00 AM and 4:00 PM (default)**
 - Morning alternatives: 8:00 AM or 9:00 AM
