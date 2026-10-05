@@ -95,7 +95,7 @@ function App() {
           {briefingData.person_name}, this is your briefing for {briefingData.date}.
         </Text>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-8">
+      <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-8">
         <Card className="col-span-1 mb-4 shadow-none lg:col-span-5">
           <CardHeader>
             <SourceMetadata>

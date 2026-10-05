@@ -64,7 +64,7 @@ Use one real `h1`; other display headings are styled `div` elements. Use `span` 
 - Page wrapper: `margin-inline: auto`, `max-width: 64rem`, `padding-inline: 1rem`, dropping to `0` at `64rem` and above.
 - Greeting block: `padding-block: 1.5rem`, plain heading, no card.
 - Headline block: `padding-block: 2rem`, `display-lg`, reading `<person_name>, this is your briefing for <date>.`
-- Summary row: CSS grid, `gap: 1rem`, one column by default, two columns from `40rem`, eight columns from `64rem`. At eight columns, Overview spans five and Tasks spans three; otherwise each spans one.
+- Summary row: CSS grid, `align-items: start`, `gap: 1rem`, one column by default, two columns from `40rem`, eight columns from `64rem`. At eight columns, Overview spans five and Tasks spans three; otherwise each spans one. Each card sizes to its own content; never stretch Overview to match a long Tasks list, or Tasks to match a long Overview.
 - Message cards: CSS multi-column with `column-width: 24rem` and `column-gap: 1rem`. Give every card `margin-bottom: 1rem` and `break-inside: avoid`.
 - Empty collections: render `There are no items.` as muted text, without a card; keep the section.
 
@@ -76,6 +76,8 @@ Fluid card spacing:
 ## Card Anatomy
 
 Every card is `position: relative`, a flex column, with the card border, `border-radius: 0.375rem`, and a soft shadow. The Overview card drops the shadow; the Tasks card sits on White at 60% opacity; message cards take their rotated pastel.
+
+Overview and Tasks contain only corner marks, a header, and content. Keep their sections in normal top-to-bottom flow with `justify-content: flex-start`: the header starts at the card's top padding and the content follows with only the fluid section gap. The Overview content is the briefing `summary`. Do not use growing headers, spacer rows, auto block margins, vertical centering, or `space-between`, `space-around`, or `space-evenly` to position these sections. Corner marks are absolutely positioned and must not occupy layout space.
 
 Order inside a card is fixed:
 
@@ -130,4 +132,5 @@ Draw every icon as inline SVG in the Lucide style: `viewBox="0 0 24 24"`, `fill=
 
 1. Follow `/app`'s validation workflow and run the app. Confirm that it shows this run's JSON, not an earlier run's, and that every section shows its cards or its empty state.
 2. With `/app`'s preview or browser checks, view the app at `360px`, `40rem`, and `64rem` wide. Confirm that the layout follows this file, nothing clips or scrolls sideways, links open their source in a new tab, and keyboard focus is visible. Fix each failure and check again.
-3. Deliver the app through `/app`'s delivery workflow. If `/app` cannot save the app, say why and give its supported artifact or link.
+3. Temporarily check a two-sentence Overview beside at least 30 wrapping tasks, then a long Overview beside an empty Tasks list, at the same widths. Confirm each header starts at its card's top padding, the summary starts one section gap below its header, and neither card stretches to the other's height. At two-column widths, the headers must line up at the top; at one-column widths, Tasks must follow Overview without a stretched blank area. Restore this run's JSON before delivery.
+4. Deliver the app through `/app`'s delivery workflow. If `/app` cannot save the app, say why and give its supported artifact or link.
