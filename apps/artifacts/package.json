@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:singlefile": "tsc -b && vite build --mode singlefile",
     "lint": "oxlint",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
@@ -33,7 +32,6 @@
     "oxlint": "^1.71.0",
     "typescript": "^7.0.2",
     "vite": "^8.1.1",
-    "vite-plugin-singlefile": "^2.3.3",
     "vite-plugin-svgr": "^5.2.0"
   }
 }

@@ -40,7 +40,7 @@ Insert only returned prompt text, verbatim: no summaries, edits, omissions, or b
 ```
 **Page**
 
-16:9 horizontal, Everyday Doodle on warm ivory. Top to bottom: meeting line, `Meeting recap` and its moments, then `Follow-up action` and its actions. Omit a band's label and space when it has no items.
+16:9 horizontal, Everyday Doodle on warm ivory. Top to bottom: meeting line, `Meeting recap` and its moments, then `Next steps` and its actions. Omit a band's label and space when it has no items.
 
 Separate page regions with clear ivory only: no frames, borders, separators, timeline rails, connecting lines, ticks, or dots as layout decorations. Illustration details, including dot eyes and object markings, remain allowed.
 
@@ -52,7 +52,7 @@ Separate page regions with clear ivory only: no frames, borders, separators, tim
 
 **Section labels**
 
-Spell labels exactly `Meeting recap` and `Follow-up action`. Each present label sits alone on a full-width row, aligned to the grid's left edge. Leave equal, empty ivory bands above and below, each taller than the label.
+Spell labels exactly `Meeting recap` and `Next steps`. Each present label sits alone on a full-width row, aligned to the grid's left edge. Leave equal, empty ivory bands above and below, each taller than the label.
 
 **Key moment illustrations**
 
@@ -61,7 +61,7 @@ Spell labels exactly `Meeting recap` and `Follow-up action`. Each present label 
 - In each cell the art sits above its text. Directly below the art, in clear ivory, sit the marker, then the heading, then the display label, then the summary note.
 - Each moment stands visually alone in its own ivory space.
 
-**Follow-up action illustrations**
+**Next step illustrations**
 
 One compact vignette per action in source order, without markers. Use one row for up to four actions; wrap additional actions into rows of at most four. Align band edges and, when counts permit, columns with the moments above. Leave unused cells empty.
 
@@ -81,7 +81,7 @@ Meeting recap:
 
 {KEY_MOMENT_PROMPTS}
 
-Follow-up action:
+Next steps:
 
 {FOLLOW_UP_PROMPTS}
 ```

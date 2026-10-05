@@ -46,7 +46,7 @@ Use these sections when relevant:
 
 ## Recurring Context
 
-- Durable project, meeting, programme, or escalation context.
+- Durable project, meeting, or escalation context.
 ```
 
 Keep unused sections only when they are part of the starter template or likely to be filled later.
