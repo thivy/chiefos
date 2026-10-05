@@ -75,7 +75,7 @@ function CardRecommendedAction({ className, children, ...props }: ComponentProps
           <SourceMetadataIcon>
             <LightBulb />
           </SourceMetadataIcon>
-          <SourceMetadataLabel>Action</SourceMetadataLabel>
+          <SourceMetadataLabel>Next step</SourceMetadataLabel>
         </SourceMetadata>
         <Text as="div" variant="content" className="text-sm">
           {children}

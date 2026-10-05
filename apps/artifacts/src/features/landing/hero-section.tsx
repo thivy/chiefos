@@ -182,7 +182,7 @@ function HeroSection() {
             </CardContent>
             <CardFooter>
               <SourceMetadata>
-                <SourceMetadataCode>briefing.html</SourceMetadataCode>
+                <SourceMetadataCode>chiefos app</SourceMetadataCode>
               </SourceMetadata>
             </CardFooter>
           </Card>

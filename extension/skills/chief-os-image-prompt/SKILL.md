@@ -28,6 +28,7 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 - **Called by another skill:** return the prompt internally, with style and requested settings as separate metadata. Do not post per-item prompts or metadata to user chat.
 - **Direct user request:** show the prompt as Markdown with style and requested settings alongside it.
 - Never generate an image, write a file, or claim an image was created.
+- Write any chat text outside the prompt per the [shared conventions](../chief-os-brief/references/conventions.md).
 
 ## References
 

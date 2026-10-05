@@ -1,6 +1,6 @@
 export type NullableText = string | null;
 
-export type ActionCategory = "Important" | "Actionable" | "Waiting";
+export type ActionCategory = "Important" | "To Do" | "Waiting";
 
 export type MessageItemBase<Source extends string, Label extends string> = {
   source: Source;

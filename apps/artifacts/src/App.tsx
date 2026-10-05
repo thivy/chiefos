@@ -92,7 +92,7 @@ function App() {
       </div>
       <div className="flex flex-col gap-4 py-8">
         <Text as="h1" variant="display-lg">
-          {briefingData.person_name}, here’s a clear, focused snapshot for {briefingData.date}.
+          {briefingData.person_name}, this is your briefing for {briefingData.date}.
         </Text>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-8">
@@ -102,7 +102,7 @@ function App() {
               <SourceMetadataIcon>
                 <PenCilSparklesIcon />
               </SourceMetadataIcon>
-              <SourceMetadataLabel>Brief overview</SourceMetadataLabel>
+              <SourceMetadataLabel>Overview</SourceMetadataLabel>
               <SourceMetadataTimestamp />
             </SourceMetadata>
           </CardHeader>

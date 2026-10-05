@@ -5,7 +5,7 @@ description: "Use when creating, setting up, changing, or resetting one recurrin
 
 # ChiefOS Schedule
 
-Create exactly one recurring daily assistant schedule in the user's local time zone, with one morning run and one afternoon run.
+Create exactly one recurring daily assistant schedule in the user's local time zone, with one morning run and one afternoon run. Write every question and report per the [shared conventions](../chief-os-brief/references/conventions.md).
 
 ## Workflow
 

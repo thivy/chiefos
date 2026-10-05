@@ -56,11 +56,11 @@ Preserve the mail client's default text size and the reader's size preference.
 
 1. Render a quiet `Daily Assistant` label, then the greeting and local date.
 2. Render Overview on white with a `1px` hairline border and no shadow.
-3. Render To Do on white as compact rows separated by hairlines. Use `[ ]` for active and `[x]` for completed tasks in the plain-text alternative.
+3. Render Tasks on white as compact rows separated by hairlines. Use `[ ]` for active and `[x]` for completed tasks in the plain-text alternative.
 4. Render Email, Calendar, Teams Chat, and Meeting Recaps as separate headings followed by content-height cards.
 5. Rotate Sage, Sand, Lemon, and Lilac across all message cards in source order.
-6. Place metadata first, followed by subject, summary, author details, then the recommended action below a hairline rule.
-7. When a section is empty, render `Nothing to flag.` as muted body copy without a card.
+6. Place metadata first, followed by subject, summary, author details, then the `Next step` label and the recommended action below a hairline rule.
+7. When a section is empty, render `There are no items.` as muted body copy without a card.
 
 ## Links and Accessibility
 

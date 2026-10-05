@@ -53,11 +53,11 @@ A follow-up action is work a named person or the group agreed to do after the me
 
 Each action carries:
 
-| Field         | Content                                                                                                                 | Rendered |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- |
-| Heading       | 2 to 4 words naming the action                                                                                          | Yes      |
-| Display label | 4 to 6 words stating the next action, written as an instruction                                                         | Yes      |
-| Summary note  | One line of at most 12 words carrying the owner and due date as recorded, or `Owner to confirm` or `Date to confirm`    | Yes      |
-| Context       | The full detail of the action, who agreed to it, and what it unblocks                                                   | No       |
+| Field         | Content                                                                                                                | Rendered |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- | -------- |
+| Heading       | 2 to 4 words naming the action                                                                                         | Yes      |
+| Display label | 4 to 6 words stating the next action, written as an instruction                                                        | Yes      |
+| Summary note  | One line of at most 12 words carrying the owner and due date as recorded, or `No recorded owner` or `No recorded date` | Yes      |
+| Context       | The full detail of the action, who agreed to it, and what it unblocks                                                  | No       |
 
 Never merge unrelated items or shorten rendered fields below their minimum. The image reference owns layout and overflow handling, not which evidence survives.

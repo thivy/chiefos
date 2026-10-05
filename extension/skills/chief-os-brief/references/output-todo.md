@@ -19,8 +19,8 @@ Only after Stage 1 is complete:
 - Skip informational, noise, and FYI-only items unless they carry a specific user-owned next step.
 - Merge source items that describe the same obligation into one todo, keeping the strongest source label, earliest deadline, clearest owner, and best link. Emit no duplicates.
 - Newly mark a task `Completed` only on explicit user confirmation or source evidence of resolution. Age or a meeting time having passed is not evidence.
-- Carry the source label into `sourceContext`, especially `Important`, `Conflicts`, `Prep Needed`, `Action Required`, and `Waiting`.
-- Write `title` as an imperative of at most 8 words naming the decision or deliverable, e.g. `Approve Contoso Q4 renewal pricing`. Put why it matters in a one-sentence `summary`, and the next step or completion note in `recommendedAction`.
+- Carry the source label into `sourceContext`, especially `Important`, `Conflicts`, `Preparation`, `To Do`, and `Waiting`.
+- Write `title` as an imperative of at most 8 words naming the decision or deliverable, e.g. `Send the Contoso renewal price to Sam`. Put why it matters in a one-sentence `summary`, and the next step or completion note in `recommendedAction`.
 - Copy `url` from the originating triage item. A manual todo uses the absolute source URL supplied with it.
 - Replace `todo.md` in place with the reconciled active tasks and completion history. For the briefing's `todo.items`, include active tasks and completions confirmed by this run's source evidence, not the entire completion history.
 
@@ -33,7 +33,7 @@ Only after Stage 1 is complete:
 Use the following template to generate `todo.md`:
 
 ```markdown
-# Your Actions
+# Your Tasks
 
 ## Active
 

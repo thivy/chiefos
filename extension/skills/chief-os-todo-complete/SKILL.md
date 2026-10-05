@@ -11,7 +11,7 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 
 ## Invariants
 
-- Work only in the output folder. Read and replace `todo.md` in place, and leave `briefing.html`, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
+- Work only in the output folder. Read and replace `todo.md` in place, and leave the `chiefos` app, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
 - Write in English, following the [shared conventions](../chief-os-brief/references/conventions.md).
@@ -43,4 +43,4 @@ Ask one multiple-choice question; ask again only to clarify an ambiguous selecti
 
 ### 4. Report the Result
 
-After a successful save, report the completed titles and remaining active count, and note that the next briefing will pick up the changes.
+After a successful save, report the completed titles and remaining active count, and say that the next briefing will show the changes.

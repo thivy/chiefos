@@ -23,7 +23,7 @@ Twice a day, five things arrive together.
 
 | Output               | What it is                                                                        |
 | -------------------- | --------------------------------------------------------------------------------- |
-| **The briefing**     | A one-page summary of your day, ranked by what needs you most                     |
+| **The briefing app** | An app named `chiefos` that shows your day, ranked by what needs you most         |
 | **Your task list**   | A running list of actions, carried forward until they are genuinely done          |
 | **Draft replies**    | Outlook drafts prepared for the emails that need a response, saved but never sent |
 | **A briefing image** | An illustrated poster of your day, one hand-drawn vignette and note per task      |
@@ -75,7 +75,7 @@ flowchart TD
     B --> C["Write the summary<br/>and rank what matters"]
     C --> D["Update your task list,<br/>carrying forward what is unfinished"]
     D --> E["Prepare Outlook drafts<br/>for the replies you owe"]
-    E --> F["Build the briefing page"]
+    E --> F["Build the chiefos app"]
     F --> G["Illustrate each task<br/>as the briefing image"]
     G --> H["Check everything<br/>actually got produced"]
     H --> I["Send the summary<br/>to your inbox"]
@@ -145,25 +145,26 @@ These are hard rules, not preferences. They hold on every run.
 Your information stays inside your own Microsoft 365 environment. Nothing is copied out,
 sold, used for advertising or profiling, or used to train models.
 
-Five files are kept in your own working folder, `/output`, and you can read, edit, or
+Four files are kept in your own working folder, `/output`, and you can read, edit, or
 delete any of them at any time:
 
 | File                 | What it holds                                                                                                         |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `briefing.html`      | The current briefing                                                                                                  |
 | `todo.md`            | Your running task list                                                                                                |
 | `memory.md`          | Durable context that improves the triage over time, such as who your key contacts are and how you like to communicate |
 | `artifact-image.png` | The illustrated version of the current task list                                                                      |
 | `visual-minutes.png` | The illustrated minutes of the last meeting you asked to summarise                                                    |
 
 Each file is replaced in place on every run, so they never sprawl into dozens of dated
-copies.
+copies. The briefing itself is the `chiefos` app, which `/app` keeps in its own workspace
+and updates in place on every run.
 
 ---
 
 ## Getting started
 
-1. **Install the extension** in Microsoft 365 Copilot.
+1. **Install the extension** in Microsoft 365 Copilot, and make sure the built-in `/app`
+   skill is enabled. It builds your briefing app.
 2. **Say "set up my daily runs".** One question sets both times: 7am and 4pm by default,
    or pick a morning from 7am, 8am, or 9am and an afternoon from 3pm, 4pm, or 5pm. Your
    local time zone is used.
@@ -204,7 +205,7 @@ read at the step that needs them and these have to hold whether or not one was o
 | ------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | `conventions` | `conventions`                                                                           | Tone and wording across everything you see                     |
 | `triage`      | `triage`                                                                                | How all four sources are read, scored, ranked, and categorised |
-| `output-`     | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory` | The files written to your working folder, and how they look    |
+| `output-`     | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory` | The briefing app and output files, and how they look           |
 | `email-`      | `email-draft`, `email-html-design`                                                      | Preparing drafts, and the look of the one email that gets sent |
 
 The order they are consulted during a run:
@@ -216,7 +217,7 @@ The order they are consulted during a run:
 | 2    | none                                                       | Writes the executive summary                              |
 | 3    | `output-todo`                                              | Updates your task list                                    |
 | 4    | `email-draft`                                              | Prepares Outlook drafts                                   |
-| 5    | `output-briefing`, `output-html-design`                    | Builds the briefing page                                  |
+| 5    | `output-briefing`, `output-html-design`                    | Builds the `chiefos` app with `/app`                      |
 | 6    | `output-image`, then `chief-os-image-prompt` once per task | Creates the briefing image                                |
 | 7    | `output-memory`                                            | Verifies everything, and saves anything worth remembering |
 | 8    | `email-html-design`                                        | Sends the summary to you                                  |
@@ -224,7 +225,7 @@ The order they are consulted during a run:
 `conventions` is the single home for house style, which is why the tone stays consistent
 whether you are reading the briefing, a draft reply, or the summary email, and why no
 other file restates it. `output-html-design` and `email-html-design` are deliberately
-separate: the briefing page is read in a browser and uses the full design system, while
+separate: the `chiefos` app is read in a browser and uses the full design system, while
 the summary email is built from a stricter, email-safe subset that survives Outlook.
 
 ---
@@ -270,7 +271,7 @@ Skills are registered in the `agentSkills` array of
   `SKILL.md`; a wording or formatting rule goes in `conventions.md`. Either way it is
   written once, so a rule stated twice is a bug.
 
-The briefing page is rendered from
+The `chiefos` app is built with `/app` from
 [output-html-design.md](extension/skills/chief-os-brief/references/output-html-design.md)
 and the summary email from
 [email-html-design.md](extension/skills/chief-os-brief/references/email-html-design.md).
@@ -279,5 +280,5 @@ the data they render is defined as TypeScript interfaces in
 [output-briefing.md](extension/skills/chief-os-brief/references/output-briefing.md).
 
 House style for everything the user sees is set in
-[conventions.md](extension/skills/chief-os-brief/references/conventions.md): no em dashes,
-concise and action-oriented.
+[conventions.md](extension/skills/chief-os-brief/references/conventions.md): ASD-STE100
+Simplified Technical English (Issue 9), no em dashes, concise and action-oriented.

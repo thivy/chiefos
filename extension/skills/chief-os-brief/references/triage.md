@@ -125,18 +125,18 @@ Use the source-specific `MessageItem` interfaces and validation rules in [output
 
 - **Window:** last 10 days including today, plus any older email that is pinned, flagged, or marked important.
 - **Exclude:** calendar notifications and meeting responses; automated system messages, receipts, and status pings; newsletters and subscriptions; bulk marketing.
-- **Categories**, in precedence order: `Important` (needs a response within 5 days _and_ has material impact, a deadline within 72 hours, or a documented escalation, risk, or decision dependency), `Actionable` (needs approval, decision, review, delivery, response, or tracking), `Waiting` (another person owns the next move; use `Actionable` instead when the user should chase now).
+- **Categories**, in precedence order: `Important` (needs a response within 5 days _and_ has material impact, a deadline within 72 hours, or a documented escalation, risk, or decision dependency), `To Do` (needs approval, decision, review, delivery, response, or tracking), `Waiting` (another person owns the next move; use `To Do` instead when the user should chase now).
 - **`timestamp`:** when the email was sent. **`url`:** Outlook link to the email or thread.
 
 ### Calendar
 
 - **Window:** today and tomorrow, local time zone, never mixed.
 - **Exclude:** declined or cancelled events; holidays, birthdays, and informational all-day banners; focus time and placeholder holds unless they overlap a real meeting; tentative invitations with no agenda, required attendance, or preparation ask.
-- **Categories**, in precedence order: `Conflicts`, `Prep Needed`, `Priority Meetings`, `FYI / Optional`.
+- **Categories**, in precedence order: `Conflicts`, `Preparation`, `Priority Meetings`, `Optional`.
   - `Priority Meetings`: today at Medium or above, tomorrow at High or above, plus any event where the user has a non-delegable decision, deliverable, presentation, or attendance obligation.
   - `Conflicts`: overlapping events needing an attendance or rescheduling decision. Always surface these, even at low priority.
-  - `Prep Needed`: incomplete materials, pre-reads, decisions, or follow-ups the user must address first.
-  - `FYI / Optional`: optional attendance, no preparation required.
+  - `Preparation`: incomplete materials, pre-reads, decisions, or follow-ups the user must address first.
+  - `Optional`: optional attendance, no preparation required.
 - **Conflict protocol:** score each overlapping event independently, then name both titles, the exact overlap, and required or optional status for each. Overlap itself adds no points. When one score leads by 15 or more and no hard obligation contradicts it, recommend the higher-impact event and a concrete disposition for the other. Otherwise recommend the specific decision, delegation, or rescheduling action needed rather than choosing silently.
 - **`timestamp`:** event start. **`url`:** Outlook calendar event link. **`recommendedAction`** for a conflict describes the attendance, decline, reschedule, or delegation decision.
 
@@ -144,7 +144,7 @@ Use the source-specific `MessageItem` interfaces and validation rules in [output
 
 - **Window:** last 10 days including today. A message awaiting the user's response stays in scope until they respond, read or unread.
 - **Exclude:** system notifications; bot and connector messages that need no action; reaction-only activity; purely informational `@channel` or `@team` broadcasts.
-- **Categories:** the same `Important`, `Actionable`, `Waiting` precedence as email. A channel message with a specific high-impact ask can outrank a low-impact direct message.
+- **Categories:** the same `Important`, `To Do`, `Waiting` precedence as email. A channel message with a specific high-impact ask can outrank a low-impact direct message.
 - **`timestamp`:** latest relevant message. **`url`:** Teams deep link to the message or thread.
 
 ### Meeting Recap
@@ -153,6 +153,6 @@ Use the source-specific `MessageItem` interfaces and validation rules in [output
 - **Evidence, in order:** Teams recap or AI notes, transcript, shared notes, then substantive meeting chat. Prefer a later artifact that corrects an earlier one. Calendar metadata supplies identity, timing, and links only, and is never evidence that a discussion, decision, or commitment occurred. **Omit the meeting when none of the four artifacts is available.**
 - **Exclude:** cancelled or declined events; meetings the user did not attend unless the evidence explicitly assigns them an action or records a decision affecting them; meetings with no verified decision, commitment, user-owned action, material risk, or waiting state; social events, broadcasts, and training; duplicate artifacts for the same occurrence.
 - **Ownership:** do not assign an action from proximity, expertise, or attendance. The evidence must name the user or record their explicit acceptance. A generated action list is evidence to evaluate, not permission to assign every item.
-- **Categories**, in precedence order: `Action Required` (the user owes a decision, response, approval, deliverable, or follow-up), `Waiting` (another person owns the next move), `Decision / Outcome` (a material verified decision or changed plan with no outstanding follow-up).
+- **Categories**, in precedence order: `To Do` (the user owes a decision, response, approval, deliverable, or follow-up), `Waiting` (another person owns the next move), `Decision` (a material verified decision or changed plan with no outstanding follow-up).
 - **Reconciliation:** keep one object per meeting occurrence. When email or chat confirms or changes an outcome, use the latest state and do not repeat the same action as a separate chat item.
 - **`timestamp`:** meeting end. **`url`:** recap, transcript, notes, meeting chat, or Outlook event link, in that preference order. Do not state that no decision was made when the evidence is incomplete; omit the meeting instead.
