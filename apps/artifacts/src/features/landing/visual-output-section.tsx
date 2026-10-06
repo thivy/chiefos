@@ -13,9 +13,9 @@ function VisualOutputSection() {
               A visual output for instant clarity
             </Text>
             <Text as="p" variant="lead">
-              Turn the same priorities into a visual snapshot that is easy to scan, share, and
-              revisit. It gives you another way to understand the shape of the day without reopening
-              every source.
+              Each run turns your tasks into one illustrated page, with a hand-drawn vignette and a
+              short note for every task. It sits beside your overview in the app and arrives
+              attached to your summary email.
             </Text>
           </div>
           <Card className="bg-surface">

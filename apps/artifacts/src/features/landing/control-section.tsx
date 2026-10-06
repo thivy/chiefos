@@ -1,6 +1,13 @@
 import { Card, CardContent, CardHeader } from "../../components/card";
 import { ContentContainer } from "../../components/container";
-import { EyeIcon, LinkIcon, MailCheckIcon, ShieldCheckIcon } from "../../components/icons";
+import {
+  EyeIcon,
+  LinkIcon,
+  MailCheckIcon,
+  SearchCheckIcon,
+  ShieldCheckIcon,
+  TagIcon,
+} from "../../components/icons";
 import {
   SourceMetadata,
   SourceMetadataIcon,
@@ -21,7 +28,7 @@ function ControlSection() {
             anything carries your name.
           </Text>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:auto-rows-fr sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:auto-rows-fr sm:grid-cols-2 lg:grid-cols-3">
           <Card className="bg-white/60">
             <CardHeader>
               <SourceMetadata>
@@ -34,8 +41,7 @@ function ControlSection() {
             <CardContent>
               <div>
                 Grounded on the WorkIQ context layer, ChiefOS works inside your existing Microsoft
-                365 environment, under the security and privacy controls your organisation already
-                trusts.
+                365 environment. Your task list and memory live in your own OneDrive.
               </div>
             </CardContent>
           </Card>
@@ -51,8 +57,42 @@ function ControlSection() {
             </CardHeader>
             <CardContent>
               <div>
-                Replies are prepared as drafts and wait for your review, so you approve every
-                message that carries your name.
+                Replies wait in your Drafts folder for your review. The only email ChiefOS sends is
+                your own summary, to you.
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/60">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataIcon>
+                  <TagIcon />
+                </SourceMetadataIcon>
+                <SourceMetadataLabel>Every draft is clearly marked</SourceMetadataLabel>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                Each draft opens with a bold AI-generated notice, so it can never be mistaken for
+                something you wrote.
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/60">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataIcon>
+                  <SearchCheckIcon />
+                </SourceMetadataIcon>
+                <SourceMetadataLabel>Evidence only</SourceMetadataLabel>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                ChiefOS never invents a person, date, commitment, link, or signature. When it cannot
+                check something, it leaves it out and tells you.
               </div>
             </CardContent>
           </Card>
@@ -68,8 +108,8 @@ function ControlSection() {
             </CardHeader>
             <CardContent>
               <div>
-                Everything it remembers is visible and editable, so you always know what is shaping
-                its recommendations.
+                Everything it remembers is visible and editable. Passwords, keys, and sensitive
+                personal details are never stored.
               </div>
             </CardContent>
           </Card>

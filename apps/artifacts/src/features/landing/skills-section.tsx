@@ -26,8 +26,8 @@ function SkillsSection() {
             <CardContent>
               <div>
                 Sets one recurring schedule with a morning run and an afternoon run in your local
-                time zone. Both continue in the same conversation, so context carries naturally from
-                the start of the day to the wrap-up.
+                time zone: 7:00 AM and 4:00 PM by default, or 8 or 9 AM and 3 or 5 PM. Both continue
+                in the same conversation, and running it again updates the times in place.
               </div>
             </CardContent>
           </Card>
@@ -40,8 +40,9 @@ function SkillsSection() {
             <CardContent>
               <div>
                 Brings together Outlook, calendar, chat, and meeting recaps into a focused morning
-                brief or afternoon recap. It updates your live task list, prepares draft replies,
-                and carries durable context into the next run.
+                brief or afternoon recap. It updates your task list, prepares draft replies, builds
+                the chiefos app and briefing image, and emails you a summary. You can also ask for
+                one part on its own, such as &ldquo;triage my email&rdquo;.
               </div>
             </CardContent>
           </Card>
@@ -54,9 +55,9 @@ function SkillsSection() {
             </CardHeader>
             <CardContent>
               <div>
-                Translates the priorities in your brief into a precise image prompt with a
-                consistent illustration style. That prompt powers the visual snapshot without
-                changing, dropping, or inventing details from your day.
+                Composes an illustration prompt in a named style: Everyday Doodle, Scientific
+                Editorial, or Voxel Storyworld. It returns the prompt only, which keeps every
+                vignette in your briefing image and visual minutes consistent and true to the facts.
               </div>
             </CardContent>
           </Card>
@@ -69,9 +70,9 @@ function SkillsSection() {
             </CardHeader>
             <CardContent>
               <div>
-                Lets you choose which active tasks are finished and marks only those items complete.
-                Everything else stays intact, and the next brief picks up the updated task state
-                automatically.
+                Lists your active tasks, asks which ones are finished, and ticks off only those in
+                chiefos/todo.md, just like Mark as done in the app. Everything else stays exactly as
+                it was.
               </div>
             </CardContent>
           </Card>
@@ -85,8 +86,8 @@ function SkillsSection() {
             <CardContent>
               <div>
                 Turns one meeting into a single illustrated page: the key moments along its
-                timeline, and the follow-up actions that came out of it. Built only from that
-                meeting&apos;s own recap, transcript, and chat.
+                timeline, and the follow-up actions with their owners and due dates. Built only from
+                that meeting&apos;s own recap, transcript, and chat.
               </div>
             </CardContent>
           </Card>

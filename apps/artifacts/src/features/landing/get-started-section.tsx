@@ -23,7 +23,9 @@ function GetStartedSection() {
             Get started with ChiefOS
           </Text>
           <Text as="p" variant="lead">
-            Download the plugin package, then upload it from Cowork&apos;s Customize page.
+            Download the plugin package, then upload it from Cowork&apos;s Customize page. ChiefOS
+            builds your briefing app with the App skill in Cowork, part of the Frontier program, so
+            make sure that it is turned on.
           </Text>
           <div className="flex flex-wrap gap-2 pt-2">
             <Button
@@ -107,7 +109,7 @@ function GetStartedSection() {
                       <>
                         <strong>Set your schedule.</strong> Open a new Cowork session and enter{" "}
                         <code>/chief-os-schedule</code> to choose your morning and afternoon run
-                        times.
+                        times, 7:00 AM and 4:00 PM by default.
                       </>
                     }
                   />
@@ -116,8 +118,19 @@ function GetStartedSection() {
                   <Task
                     label={
                       <>
-                        <strong>Run a briefing.</strong> Enter <code>/chief-os-brief</code> whenever
-                        you want a morning brief or afternoon recap.
+                        <strong>Run your first brief by hand.</strong> Enter{" "}
+                        <code>/chief-os-brief</code>. The first run creates the chiefos folder in
+                        your OneDrive, so stay to approve it.
+                      </>
+                    }
+                  />
+                </li>
+                <li>
+                  <Task
+                    label={
+                      <>
+                        <strong>Connect the app.</strong> The first time you open the chiefos app,
+                        allow it to connect to your OneDrive so that Mark as done can save.
                       </>
                     }
                   />
@@ -137,9 +150,8 @@ function GetStartedSection() {
                   <Task
                     label={
                       <>
-                        <strong>Complete finished tasks.</strong> Enter{" "}
-                        <code>/chief-os-todo-complete</code> to choose which active tasks to mark
-                        complete.
+                        <strong>Complete finished tasks.</strong> Select Mark as done in the app, or
+                        enter <code>/chief-os-todo-complete</code> to tick off several at once.
                       </>
                     }
                   />

@@ -138,4 +138,13 @@ function CardCornerShape({ corner }: { corner: Corners }) {
   );
 }
 
-export { Card, CardAction, CardContent, CardFooter, CardHeader, CardRecommendedAction, CardTitle };
+export {
+  Card,
+  CardAction,
+  CardContent,
+  CardCorner,
+  CardFooter,
+  CardHeader,
+  CardRecommendedAction,
+  CardTitle,
+};

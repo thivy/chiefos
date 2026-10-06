@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "../../components/card
 import { ContentContainer, SurfaceContainer } from "../../components/container";
 import {
   CalendarIcon,
+  ImageIcon,
   ListTodoIcon,
   MailIcon,
   MessageIcon,
@@ -119,6 +120,23 @@ function HeroSection() {
             </CardContent>
           </Card>
 
+          <Card className="bg-card-sky">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataIcon>
+                  <VideoIcon />
+                </SourceMetadataIcon>
+                <SourceMetadataLabel>Meeting follow-through</SourceMetadataLabel>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                Decisions and commitments from the last two days of meetings come back as clear next
+                steps, taken only from the recap, transcript, notes, or meeting chat.
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="bg-card-sand">
             <CardHeader>
               <SourceMetadata>
@@ -130,14 +148,14 @@ function HeroSection() {
             </CardHeader>
             <CardContent>
               <div>
-                Actions from email, meetings, calendar, and chat become one living task list.
-                Unfinished work carries forward until it is completed, so commitments do not quietly
-                expire.
+                Actions from email, meetings, calendar, and chat become one living task list in your
+                OneDrive. Unfinished work carries forward until you mark it done, so commitments do
+                not quietly expire.
               </div>
             </CardContent>
             <CardFooter>
               <SourceMetadata>
-                <SourceMetadataCode>todo.md</SourceMetadataCode>
+                <SourceMetadataCode>chiefos/todo.md</SourceMetadataCode>
               </SourceMetadata>
             </CardFooter>
           </Card>
@@ -153,19 +171,19 @@ function HeroSection() {
             </CardHeader>
             <CardContent>
               <div>
-                ChiefOS remembers durable context such as key people, active priorities, and
-                communication preferences. The context stays visible and editable, helping future
-                triage reflect how you actually work.
+                ChiefOS remembers durable context such as key people, customer domains, and how you
+                like to communicate. It stays visible and editable in your OneDrive, so future
+                triage reflects how you actually work.
               </div>
             </CardContent>
             <CardFooter>
               <SourceMetadata>
-                <SourceMetadataCode>memory.md</SourceMetadataCode>
+                <SourceMetadataCode>chiefos/memory.md</SourceMetadataCode>
               </SourceMetadata>
             </CardFooter>
           </Card>
 
-          <Card className="bg-card-sky">
+          <Card className="bg-card-lemon sm:col-span-2 lg:col-span-1">
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataIcon>
@@ -176,8 +194,8 @@ function HeroSection() {
             </CardHeader>
             <CardContent>
               <div>
-                Do more than read a summary. Explore sources, review recommended actions, and work
-                through priorities in a focused briefing that brings the day together in one place.
+                Every email, event, chat, and recap gets a card. Cards that hold a task are coloured
+                and carry a Mark as done button that saves straight to your task list.
               </div>
             </CardContent>
             <CardFooter>
@@ -187,11 +205,11 @@ function HeroSection() {
             </CardFooter>
           </Card>
 
-          <Card className="bg-card-lilac sm:col-span-2 lg:col-span-3">
+          <Card className="bg-card-lilac sm:col-span-2">
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataIcon>
-                  <VideoIcon />
+                  <ImageIcon />
                 </SourceMetadataIcon>
                 <SourceMetadataLabel>Meetings you can take in at a glance</SourceMetadataLabel>
               </SourceMetadata>

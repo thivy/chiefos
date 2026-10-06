@@ -25,6 +25,7 @@ html {
   --color-card-sky: var(--card-sky);
   --color-card-blush: var(--card-blush);
   --color-card: var(--card);
+  --color-avatar: var(--avatar);
 
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -62,6 +63,7 @@ html {
   --card-sky: oklch(0.858 0.045 237.412);
   --card-blush: oklch(0.853 0.047 17.284);
   --card: oklch(1 0 0);
+  --avatar: oklch(0.987 0.022 95.277);
 
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
