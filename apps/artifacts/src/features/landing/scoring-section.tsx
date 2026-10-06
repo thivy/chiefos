@@ -1,15 +1,16 @@
 import { cn } from "cnfast";
 import type { ReactNode } from "react";
-mpimport { Card, CardHeader } from "../../components/card";
+import { Card, CardHeader } from "../../components/card";
 import { ContentContainer } from "../../components/container";
 import { CalendarIcon, GaugeIcon, MailIcon, TagIcon, VideoIcon } from "../../components/icons";
 import {
-    SourceMetadata,
-    SourceMetadataIcon,
-    SourceMetadataLabel,
+  SourceMetadata,
+  SourceMetadataIcon,
+  SourceMetadataLabel,
 } from "../../components/source-metadata";
 import { Text } from "../../components/text";
-RS = [
+
+const FACTORS = [
   {
     name: "Impact",
     weight: 30,
@@ -148,5 +149,4 @@ function ScoringSection() {
   );
 }
 
-export { ScoringSection };
 export { ScoringSection };
