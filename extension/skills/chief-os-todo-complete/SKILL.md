@@ -5,13 +5,13 @@ description: "Use when marking to-do items as done or completed in the task list
 
 # ChiefOS To-Do Complete
 
-Mark existing tasks in `todo.md` as completed. That is the whole job.
+Mark existing tasks in `chiefos/todo.md` as completed. That is the whole job.
 
 This skill only changes task status. It never triages, creates tasks, drafts or sends email, or regenerates the briefing or artifact image. Those are refreshed the next time `chief-os-brief` runs.
 
 ## Invariants
 
-- Work only in the output folder. Read and replace `todo.md` in place, and leave the `chiefos` app, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
+- Work only on `chiefos/todo.md` in the user's OneDrive, the live task file that the brief's [working files](../chief-os-brief/SKILL.md#working-files) define. Replace it in place, and leave the `chiefos` app, `artifact-image.png`, and `chiefos/memory.md` untouched. Do not create backup copies.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
 - Write in English, following the [shared conventions](../chief-os-brief/references/conventions.md).
@@ -20,8 +20,8 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 
 ### 1. Load the Active Tasks
 
-- Read `todo.md`. When it is missing or empty, stop and tell the user to run `chief-os-brief` first. Do not create a task file here.
-- Read the [task format](../chief-os-brief/references/output-todo.md#markdown-template) only; do not run its reconciliation workflow. Load every active `- [ ]` task under `## Active` in file order, preserving all fields.
+- Read `chiefos/todo.md`. When it is missing or empty, stop and tell the user to run `chief-os-brief` first. Do not create a task file here.
+- Read the [task format](../chief-os-brief/references/output-todo.md#markdown-template) and [status changes](../chief-os-brief/references/output-todo.md#status-changes) only; do not run its reconciliation workflow. Load every active `- [ ]` task under `## Active` in file order, preserving all fields.
 - When there are no active tasks, report that everything is already complete and stop.
 
 ### 2. Ask Which Tasks Are Complete
@@ -36,11 +36,9 @@ Ask one multiple-choice question; ask again only to clarify an ambiguous selecti
 
 ### 3. Update the Task File
 
-- Move each selected task from `## Active` to `## Completed`, change its `- [ ]` marker to `- [x]`, and change its `Next step:` label to `Completed:`.
-- Keep the task's title, summary, source, context, owner, deadline, and link exactly as they were.
-- Leave unselected active tasks in their original order, and leave previously completed tasks in place.
-- Replace `todo.md` in place using the shared task format. Verify every selected task is completed, unselected tasks and previous completions are unchanged, and the file is non-empty.
+- Read `chiefos/todo.md` again, then apply the **Done** status change to each selected task in that current content.
+- Replace `chiefos/todo.md` in place. Verify every selected task is completed, unselected tasks and previous completions are unchanged, and the file is non-empty.
 
 ### 4. Report the Result
 
-After a successful save, report the completed titles and remaining active count, and say that the next briefing will show the changes.
+After a successful save, report the completed titles and remaining active count, and say that the `chiefos` app and the next briefing will show the changes.

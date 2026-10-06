@@ -29,11 +29,13 @@ For partial runs, draft only when explicitly requested, after step 3. Send only 
 
 ## Working Files
 
-Use these live files in the output folder. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
+Use these working files. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
 
-- `todo.md`: the live task file.
-- `memory.md`: durable local context used by triage.
-- `artifact-image.png`: the illustrated task list.
+- `chiefos/todo.md`: the live task file.
+- `chiefos/memory.md`: durable local context used by triage.
+- `artifact-image.png`: the illustrated task list, in the output folder.
+
+The `chiefos` folder sits at the top level of the user's OneDrive (My files). Every run, every ChiefOS skill, and the `chiefos` app use the same two files in it, whatever the conversation. Read a live file again immediately before you replace it, and apply your changes to that current content, keeping any edit that the user or the `chiefos` app made since your last read.
 
 The briefing itself is the `chiefos` app. The built-in `/app` skill builds it and keeps its working files in its own workspace. Update that one app in place every run, and never create a second app or a copy.
 
@@ -55,10 +57,12 @@ Run the selected steps in order without pausing for confirmation. Scheduled runs
 
 ### 0. Prepare Working Files
 
-- When step 5 is selected, confirm that `/app` is available. If it is not, stop and say that it must be enabled.
+- When step 6 is selected, confirm that `/app` is available. If it is not, stop and say that it must be enabled.
 - Read `references/conventions.md` and apply it to all user-facing output.
-- Read `references/output-memory.md`. Create `memory.md` from its template when missing or empty, then treat it as read-only until step 7.
-- Read `references/output-todo.md`. Create `todo.md` from its template when missing or empty, then load both active tasks and completion history.
+- Confirm that the `chiefos` folder exists, and create it when it is missing.
+- Read `references/output-memory.md` and `references/output-todo.md`. Create `chiefos/memory.md` or `chiefos/todo.md` when it is missing or empty. Start it from a non-empty file of the same name that an earlier version left in the output folder, when one exists, and otherwise from its reference's template. Never change or delete that older file.
+- Read both files back from the `chiefos` folder, and stop when either is still missing or empty. Report each file that this step created and where its content came from.
+- Treat `chiefos/memory.md` as read-only until step 7, and load both active tasks and completion history from `chiefos/todo.md`.
 - **Afternoon Recap:** also read the briefing data in the existing `chiefos` app, when present, as the morning baseline. Do not fail the recap when none exists.
 
 ### 1. Triage Current Signals
@@ -77,26 +81,26 @@ Write for an executive audience: concise, strategic, decision-oriented. Open wit
 
 ### 3. Update the To-Do Output
 
-Reconcile `todo.md` using `references/output-todo.md`, which owns completion, merging, and the briefing's task selection. Carry unresolved tasks forward; in Afternoon Recap, include evidenced tomorrow-preparation actions.
+Reconcile `chiefos/todo.md` using `references/output-todo.md`, which owns completion, merging, and the briefing's task selection. Carry unresolved tasks forward; in Afternoon Recap, include evidenced tomorrow-preparation actions.
 
 ### 4. Draft Email Actions
 
 Read `references/email-draft.md`, then use the final active todos as the source for creating, updating, leaving unchanged, or skipping Outlook drafts. Run this only after `todo.md` is final. No eligible email actions is a valid outcome.
 
-### 5. Build the Briefing App
+### 5. Build the Briefing and Image
 
 - Read `references/output-briefing.md`, then build the briefing JSON using its schema and keep it in memory.
 - Set `greeting` for the mode, `date` to the current local date, and `person_name` from the signed-in user's Microsoft 365 profile.
-- Before rendering, check that names, dates, times, deadlines, and task status agree wherever they repeat across the summary, cards, and tasks. Correct any mismatch from the evidence.
-- Read `references/output-html-design.md`, then build or update the `chiefos` app from the JSON with `/app`, and check and deliver it as that reference describes.
+- Before rendering, check that names, dates, times, deadlines, and task status agree wherever they repeat across the summary, cards, and tasks. Correct any mismatch from the evidence. Also check every `summary` and `recommendedAction` against its length limit in `references/triage.md` or `references/output-todo.md`, and shorten any that is too long.
+- Read `references/output-image.md`, then follow it to compose one prompt per task, generate the combined image, and save `artifact-image.png`. Report the number of `chief-os-image-prompt` calls made. When the image fails, report the failure, continue to step 6 without the image, and do not send the email at step 8.
 
-### 6. Apply the Artifact Image
+### 6. Build the Briefing App
 
-Read `references/output-image.md`, then follow it to compose one prompt per task, generate the combined image, and save `artifact-image.png`. Report the number of `chief-os-image-prompt` calls made.
+Read `references/output-html-design.md`, then build or update the `chiefos` app from the JSON and this run's `artifact-image.png` with `/app`, and check and deliver it as that reference describes.
 
 ### 7. Update Memory
 
-Update `memory.md` per its reference only for new durable context. Otherwise leave it unchanged.
+Update `chiefos/memory.md` per its reference only for new durable context. Otherwise leave it unchanged.
 
 ### 8. Send the Email Summary
 
@@ -114,4 +118,4 @@ End every run with one short chat report under these headings, in this order, wr
 
 1. **For you to do:** anything the run could not finish without the user, such as a failed step, ambiguous draft matches, or a missing signature.
 2. **Not included:** anything left out or unverified for lack of evidence, and where it was checked.
-3. **Done:** each selected step's outcome, with the `chiefos` app's link or artifact when step 5 ran.
+3. **Done:** each selected step's outcome, with the `chiefos` app's link or artifact when step 6 ran.

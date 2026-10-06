@@ -75,8 +75,8 @@ flowchart TD
     B --> C["Write the summary<br/>and rank what matters"]
     C --> D["Update your task list,<br/>carrying forward what is unfinished"]
     D --> E["Prepare Outlook drafts<br/>for the replies you owe"]
-    E --> F["Build the chiefos app"]
-    F --> G["Illustrate each task<br/>as the briefing image"]
+    E --> F["Illustrate each task<br/>as the briefing image"]
+    F --> G["Build the chiefos app<br/>with the image"]
     G --> H["Check everything<br/>actually got produced"]
     H --> I["Send the summary<br/>to your inbox"]
 ```
@@ -145,19 +145,33 @@ These are hard rules, not preferences. They hold on every run.
 Your information stays inside your own Microsoft 365 environment. Nothing is copied out,
 sold, used for advertising or profiling, or used to train models.
 
-Four files are kept in your own working folder, `/output`, and you can read, edit, or
-delete any of them at any time:
+Four files are kept for you, and you can read, edit, or delete any of them at any time.
+Your task list and memory live in a `chiefos` folder at the top level of your OneDrive, so
+every run, every skill, and the `chiefos` app share them, whatever the conversation. The
+two images are saved to Cowork's output folder.
 
 | File                 | What it holds                                                                                                         |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `todo.md`            | Your running task list                                                                                                |
-| `memory.md`          | Durable context that improves the triage over time, such as who your key contacts are and how you like to communicate |
+| `chiefos/todo.md`    | Your running task list                                                                                                |
+| `chiefos/memory.md`  | Durable context that improves the triage over time, such as who your key contacts are and how you like to communicate |
 | `artifact-image.png` | The illustrated version of the current task list                                                                      |
 | `visual-minutes.png` | The illustrated minutes of the last meeting you asked to summarise                                                    |
 
 Each file is replaced in place on every run, so they never sprawl into dozens of dated
-copies. The briefing itself is the `chiefos` app, which `/app` keeps in its own workspace
-and updates in place on every run.
+copies. Every run checks that `chiefos/todo.md` and `chiefos/memory.md` exist and creates
+whichever is missing. If an earlier version left a task list or memory in the output
+folder, the first run starts from those, so nothing is lost.
+
+The briefing itself is the `chiefos` app, which `/app` keeps in its own workspace and
+updates in place on every run. Beside the overview, a card shows this run's briefing
+image: select it to see the image full screen, then drag or swipe to move around it.
+Each email, event, chat, and recap gets one card. A card that holds a task is coloured
+and has a **Mark as done** button, which changes to **Done** once you select it. Select
+**Done** to mark the task not done again. A card for your information only is white.
+Tasks with no message in the current briefing appear under Other Tasks. Select a card's
+subject to open its source. The app saves each change straight to `chiefos/todo.md`. A
+task you mark not done stays open until you mark it done again, even if a later run sees
+it as resolved.
 
 ---
 
@@ -168,8 +182,11 @@ and updates in place on every run.
 2. **Say "set up my daily runs".** One question sets both times: 7am and 4pm by default,
    or pick a morning from 7am, 8am, or 9am and an afternoon from 3pm, 4pm, or 5pm. Your
    local time zone is used.
-3. **That is it.** The briefing arrives at both times from the next day. To run one
-   immediately, just ask for your morning brief.
+3. **Run your first brief by hand.** Ask for your morning brief. It creates the `chiefos`
+   folder in your OneDrive, and Cowork may ask you to allow that, so be there to answer.
+   From the next day, the briefing arrives at both times on its own.
+4. **Connect the app.** The first time you open the `chiefos` app, it may ask to connect to
+   your OneDrive. Allow it, so that marking a task done saves to your task list.
 
 Both runs continue in the same conversation, so the afternoon recap already knows what the
 morning brief said.
@@ -217,8 +234,8 @@ The order they are consulted during a run:
 | 2    | none                                                       | Writes the executive summary                              |
 | 3    | `output-todo`                                              | Updates your task list                                    |
 | 4    | `email-draft`                                              | Prepares Outlook drafts                                   |
-| 5    | `output-briefing`, `output-html-design`                    | Builds the `chiefos` app with `/app`                      |
-| 6    | `output-image`, then `chief-os-image-prompt` once per task | Creates the briefing image                                |
+| 5    | `output-briefing`, `output-image`, `chief-os-image-prompt` | Builds the briefing data and the image                    |
+| 6    | `output-html-design`                                       | Builds the `chiefos` app with `/app`, image included      |
 | 7    | `output-memory`                                            | Verifies everything, and saves anything worth remembering |
 | 8    | `email-html-design`                                        | Sends the summary to you                                  |
 
