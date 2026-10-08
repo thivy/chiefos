@@ -145,22 +145,23 @@ These are hard rules, not preferences. They hold on every run.
 Your information stays inside your own Microsoft 365 environment. Nothing is copied out,
 sold, used for advertising or profiling, or used to train models.
 
-Four files are kept for you, and you can read, edit, or delete any of them at any time.
-Your task list and memory live in a `chiefos` folder at the top level of your OneDrive, so
-every run, every skill, and the `chiefos` app share them, whatever the conversation. The
-two images are saved to Cowork's output folder.
+Four files are kept for you in Cowork's output folder, which Cowork keeps in the `Cowork`
+folder in your OneDrive. You can read, edit, or delete any of them at any time. Each
+conversation has its own output folder, so your task list and memory belong to the
+conversation that holds your daily runs. Ask to tick off tasks in that conversation too.
 
 | File                 | What it holds                                                                                                         |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `chiefos/todo.md`    | Your running task list                                                                                                |
-| `chiefos/memory.md`  | Durable context that improves the triage over time, such as who your key contacts are and how you like to communicate |
+| `todo.md`            | Your running task list                                                                                                |
+| `memory.md`          | Durable context that improves the triage over time, such as who your key contacts are and how you like to communicate |
 | `artifact-image.png` | The illustrated version of the current task list                                                                      |
 | `visual-minutes.png` | The illustrated minutes of the last meeting you asked to summarise                                                    |
 
 Each file is replaced in place on every run, so they never sprawl into dozens of dated
-copies. Every run checks that `chiefos/todo.md` and `chiefos/memory.md` exist and creates
-whichever is missing. If an earlier version left a task list or memory in the output
-folder, the first run starts from those, so nothing is lost.
+copies. Every run checks that `todo.md` and `memory.md` exist and creates whichever is
+missing. If an earlier version kept a newer task list or memory in a `chiefos` folder in
+your OneDrive, the run starts from those, so nothing is lost. The run never changes that
+folder, so delete it when you no longer need it.
 
 The briefing itself is the `chiefos` app, which `/app` keeps in its own workspace and
 updates in place on every run. Beside the overview, a card shows this run's briefing
@@ -169,9 +170,9 @@ Each email, event, chat, and recap gets one card. A card that holds a task is co
 and has a **Mark as done** button, which changes to **Done** once you select it. Select
 **Done** to mark the task not done again. A card for your information only is white.
 Tasks with no message in the current briefing appear under Other Tasks. Select a card's
-subject to open its source. The app saves each change straight to `chiefos/todo.md`. A
-task you mark not done stays open until you mark it done again, even if a later run sees
-it as resolved.
+subject to open its source. The app saves each change straight to `todo.md` in the output
+folder of your daily runs. A task you mark not done stays open until you mark it done
+again, even if a later run sees it as resolved.
 
 ---
 
@@ -181,10 +182,14 @@ it as resolved.
    skill is enabled. It builds your briefing app.
 2. **Say "set up my daily runs".** One question sets both times: 7am and 4pm by default,
    or pick a morning from 7am, 8am, or 9am and an afternoon from 3pm, 4pm, or 5pm. Your
-   local time zone is used.
-3. **Run your first brief by hand.** Ask for your morning brief. It creates the `chiefos`
-   folder in your OneDrive, and Cowork may ask you to allow that, so be there to answer.
-   From the next day, the briefing arrives at both times on its own.
+   local time zone is used. It then does each action that a run needs approval for once,
+   while you are there: it sends you one email and creates two drafts to you. Choose to
+   always allow each one, so that later runs in this conversation never wait for you.
+   Then delete the email and the two drafts named `ChiefOS permission check`. To do this
+   again, say "ask for ChiefOS permissions".
+3. **Run your first brief by hand.** In the same conversation, ask for your morning brief.
+   It creates your task list and memory in that conversation's output folder. From the
+   next day, the briefing arrives at both times on its own.
 4. **Connect the app.** The first time you open the `chiefos` app, it may ask to connect to
    your OneDrive. Allow it, so that marking a task done saves to your task list.
 

@@ -29,13 +29,13 @@ For partial runs, draft only when explicitly requested, after step 3. Send only 
 
 ## Working Files
 
-Use these working files. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
+Use these working files in the output folder. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
 
-- `chiefos/todo.md`: the live task file.
-- `chiefos/memory.md`: durable local context used by triage.
-- `artifact-image.png`: the illustrated task list, in the output folder.
+- `todo.md`: the live task file.
+- `memory.md`: durable local context used by triage.
+- `artifact-image.png`: the illustrated task list.
 
-The `chiefos` folder sits at the top level of the user's OneDrive (My files). Every run, every ChiefOS skill, and the `chiefos` app use the same two files in it, whatever the conversation. Read a live file again immediately before you replace it, and apply your changes to that current content, keeping any edit that the user or the `chiefos` app made since your last read.
+The output folder belongs to the conversation, and the scheduled runs continue the same conversation, so every run uses the same files. Cowork keeps the output folder in the user's OneDrive `Cowork` folder, and the `chiefos` app saves task status changes to `todo.md` there. Read a live file again immediately before you replace it, and apply your changes to that current content, keeping any edit that the user or the `chiefos` app made since your last read.
 
 The briefing itself is the `chiefos` app. The built-in `/app` skill builds it and keeps its working files in its own workspace. Update that one app in place every run, and never create a second app or a copy.
 
@@ -59,10 +59,10 @@ Run the selected steps in order without pausing for confirmation. Scheduled runs
 
 - When step 6 is selected, confirm that `/app` is available. If it is not, stop and say that it must be enabled.
 - Read `references/conventions.md` and apply it to all user-facing output.
-- Confirm that the `chiefos` folder exists, and create it when it is missing.
-- Read `references/output-memory.md` and `references/output-todo.md`. Create `chiefos/memory.md` or `chiefos/todo.md` when it is missing or empty. Start it from a non-empty file of the same name that an earlier version left in the output folder, when one exists, and otherwise from its reference's template. Never change or delete that older file.
-- Read both files back from the `chiefos` folder, and stop when either is still missing or empty. Report each file that this step created and where its content came from.
-- Treat `chiefos/memory.md` as read-only until step 7, and load both active tasks and completion history from `chiefos/todo.md`.
+- When this is the first ChiefOS run in the conversation and a capability can name the conversation, set its title to `🌻 ChiefOS`, exactly as written. Never change the title on a later run, even when the user changed it. When no capability can name the conversation, continue without a report.
+- Read `references/output-memory.md` and `references/output-todo.md`. An earlier version kept both files in a `chiefos` folder at the top level of the user's OneDrive. Copy each file from there into the output folder when the `chiefos` file is not empty and the output folder's file is missing, empty, or older. Otherwise create a missing or empty file from its reference's template. Never change or delete the files in the `chiefos` folder.
+- Read both files back from the output folder, and stop when either is still missing or empty. Report each file that this step created or copied and where its content came from.
+- Treat `memory.md` as read-only until step 7, and load both active tasks and completion history from `todo.md`.
 - **Afternoon Recap:** also read the briefing data in the existing `chiefos` app, when present, as the morning baseline. Do not fail the recap when none exists.
 
 ### 1. Triage Current Signals
@@ -81,7 +81,7 @@ Write for an executive audience: concise, strategic, decision-oriented. Open wit
 
 ### 3. Update the To-Do Output
 
-Reconcile `chiefos/todo.md` using `references/output-todo.md`, which owns completion, merging, and the briefing's task selection. Carry unresolved tasks forward; in Afternoon Recap, include evidenced tomorrow-preparation actions.
+Reconcile `todo.md` using `references/output-todo.md`, which owns completion, merging, and the briefing's task selection. Carry unresolved tasks forward; in Afternoon Recap, include evidenced tomorrow-preparation actions.
 
 ### 4. Draft Email Actions
 
@@ -100,7 +100,7 @@ Read `references/output-html-design.md`, then build or update the `chiefos` app 
 
 ### 7. Update Memory
 
-Update `chiefos/memory.md` per its reference only for new durable context. Otherwise leave it unchanged.
+Update `memory.md` per its reference only for new durable context. Otherwise leave it unchanged.
 
 ### 8. Send the Email Summary
 
