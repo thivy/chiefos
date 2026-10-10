@@ -29,13 +29,13 @@ For partial runs, draft only when explicitly requested, after step 3. Send only 
 
 ## Working Files
 
-Use these working files in the output folder. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
+Use these working files. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
 
-- `todo.md`: the live task file.
-- `memory.md`: durable local context used by triage.
-- `artifact-image.png`: the illustrated task list.
+- `todo.md`: the live task file, in the ChiefOS folder.
+- `memory.md`: durable local context used by triage, in the ChiefOS folder.
+- `artifact-image.png`: the illustrated task list, in the output folder.
 
-The output folder belongs to the conversation, and the scheduled runs continue the same conversation, so every run uses the same files. Cowork keeps the output folder in the user's OneDrive `Cowork` folder, and the `chiefos` app saves task status changes to `todo.md` there. Read a live file again immediately before you replace it, and apply your changes to that current content, keeping any edit that the user or the `chiefos` app made since your last read.
+The ChiefOS folder is the `chiefos` folder at the top level of the user's OneDrive (My files). Every run, every ChiefOS skill, and the `chiefos` app use the same two files in it, whatever the conversation. Read a live file again immediately before you replace it, and apply your changes to that current content, keeping any edit that the user or the `chiefos` app made since your last read.
 
 The briefing itself is the `chiefos` app. The built-in `/app` skill builds it and keeps its working files in its own workspace. Update that one app in place every run, and never create a second app or a copy.
 
@@ -60,8 +60,9 @@ Run the selected steps in order without pausing for confirmation. Scheduled runs
 - When step 6 is selected, confirm that `/app` is available. If it is not, stop and say that it must be enabled.
 - Read `references/conventions.md` and apply it to all user-facing output.
 - When this is the first ChiefOS run in the conversation and a capability can name the conversation, set its title to `🌻 ChiefOS`, exactly as written. Never change the title on a later run, even when the user changed it. When no capability can name the conversation, continue without a report.
-- Read `references/output-memory.md` and `references/output-todo.md`. An earlier version kept both files in a `chiefos` folder at the top level of the user's OneDrive. Copy each file from there into the output folder when the `chiefos` file is not empty and the output folder's file is missing, empty, or older. Otherwise create a missing or empty file from its reference's template. Never change or delete the files in the `chiefos` folder.
-- Read both files back from the output folder, and stop when either is still missing or empty. Report each file that this step created or copied and where its content came from.
+- Confirm that the ChiefOS folder exists, and create it when it is missing.
+- Read `references/output-memory.md` and `references/output-todo.md`. Create `memory.md` or `todo.md` in the ChiefOS folder when it is missing or empty. Start it from the most recently changed non-empty file of the same name in the output folder or in `Documents/Copilot/Created/chiefos` in the user's OneDrive, when one exists, and otherwise from its reference's template. Never change or delete those older files.
+- Read both files back from the ChiefOS folder, and stop when either is still missing or empty. Report each file that this step created and where its content came from.
 - Treat `memory.md` as read-only until step 7, and load both active tasks and completion history from `todo.md`.
 - **Afternoon Recap:** also read the briefing data in the existing `chiefos` app, when present, as the morning baseline. Do not fail the recap when none exists.
 

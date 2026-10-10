@@ -42,10 +42,11 @@ Before the first action, tell the user in one message that Cowork will ask for a
 
 Do each action once, in this order, and wait for each result:
 
-1. **Outlook: Send email with attachments.** Send one email from the signed-in user to their own primary mailbox, subject `ChiefOS permission check`, with `memory.md` from the output folder attached as a regular file attachment. When `memory.md` is missing or empty, first create it as step 0 of `chief-os-brief` describes. Write the body in one sentence: `ChiefOS uses this email to get your approvals. You can delete it.`
-2. **Outlook: Create reply draft.** Create a reply draft to that email, addressed only to the signed-in user.
-3. **Outlook: Update draft.** Add this line to the top of the reply draft: `AI-GENERATED DRAFT. CHIEFOS USES THIS DRAFT TO GET YOUR APPROVALS. YOU CAN DELETE IT.`
-4. **Outlook: Create draft message.** Create one new draft addressed only to the signed-in user, subject `ChiefOS permission check`, with the same line as its body.
+1. **OneDrive: Upload file content.** Make sure that the ChiefOS folder exists, and create it when it is missing. For `todo.md` and `memory.md` in that folder, read the current file and upload the same content back without changes. When a file is missing or empty, create it as step 0 of `chief-os-brief` describes.
+2. **Outlook: Send email with attachments.** Send one email from the signed-in user to their own primary mailbox, subject `ChiefOS permission check`, with `memory.md` from the ChiefOS folder attached as a regular file attachment. Write the body in one sentence: `ChiefOS uses this email to get your approvals. You can delete it.`
+3. **Outlook: Create reply draft.** Create a reply draft to that email, addressed only to the signed-in user.
+4. **Outlook: Update draft.** Add this line to the top of the reply draft: `AI-GENERATED DRAFT. CHIEFOS USES THIS DRAFT TO GET YOUR APPROVALS. YOU CAN DELETE IT.`
+5. **Outlook: Create draft message.** Create one new draft addressed only to the signed-in user, subject `ChiefOS permission check`, with the same line as its body.
 
 Never address any of these items to another person, never send a draft, and never delete an item, because a delete action needs a different approval. Do not retry a failed or unknown result.
 

@@ -7,11 +7,11 @@ description: "Use when marking to-do items as done or completed in the task list
 
 Mark existing tasks in `todo.md` as completed. That is the whole job.
 
-This skill only changes task status. It never triages, creates tasks, drafts or sends email, or regenerates the briefing or artifact image. Those are refreshed the next time `chief-os-brief` runs.
+This skill only changes task status, and creates `todo.md` when it is missing. It never triages, creates tasks, drafts or sends email, or regenerates the briefing or artifact image. Those are refreshed the next time `chief-os-brief` runs.
 
 ## Invariants
 
-- Work only on `todo.md` in the output folder, the live task file that the brief's [working files](../chief-os-brief/SKILL.md#working-files) define. Replace it in place, and leave the `chiefos` app, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
+- Work only on `todo.md` in the ChiefOS folder, the live task file that the brief's [working files](../chief-os-brief/SKILL.md#working-files) define. Replace it in place, and leave the `chiefos` app, `artifact-image.png`, and `memory.md` untouched. Do not create backup copies.
 - Never invent, reword, merge, split, or delete a task. Only its status changes.
 - Never mark a task completed without an explicit user selection.
 - Write in English, following the [shared conventions](../chief-os-brief/references/conventions.md).
@@ -20,9 +20,9 @@ This skill only changes task status. It never triages, creates tasks, drafts or 
 
 ### 1. Load the Active Tasks
 
-- Read `todo.md` from the output folder. When it is missing or empty, stop. Tell the user to ask for this in the conversation that holds their daily runs, or to run `chief-os-brief` first when they have no daily runs. Do not create a task file here.
+- Read `todo.md` from the ChiefOS folder. When the folder or the file is missing, or the file is empty, create it without asking, as step 0 of `chief-os-brief` describes, so that it starts from the newest older copy when one exists and otherwise from the template. Read it back, and stop when it is still missing or empty.
 - Read the [task format](../chief-os-brief/references/output-todo.md#markdown-template) and [status changes](../chief-os-brief/references/output-todo.md#status-changes) only; do not run its reconciliation workflow. Load every active `- [ ]` task under `## Active` in file order, preserving all fields.
-- When there are no active tasks, report that everything is already complete and stop.
+- When there are no active tasks, report that everything is already complete and stop. When this step created the file from the template, report instead that the task list is new and holds no tasks, and that `chief-os-brief` fills it.
 
 ### 2. Ask Which Tasks Are Complete
 
@@ -36,8 +36,8 @@ Ask one multiple-choice question; ask again only to clarify an ambiguous selecti
 
 ### 3. Update the Task File
 
-- Read `todo.md` again, then apply the **Done** status change to each selected task in that current content.
-- Replace `todo.md` in place. Verify every selected task is completed, unselected tasks and previous completions are unchanged, and the file is non-empty.
+- Read `todo.md` from the ChiefOS folder again, then apply the **Done** status change to each selected task in that current content.
+- Replace `todo.md` in the ChiefOS folder in place. Verify every selected task is completed, unselected tasks and previous completions are unchanged, and the file is non-empty.
 
 ### 4. Report the Result
 
