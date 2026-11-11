@@ -150,8 +150,7 @@ function GetStartedSection() {
                   <Task
                     label={
                       <>
-                        <strong>Complete finished tasks.</strong> Select Mark as done in the app, or
-                        enter <code>/chief-os-todo-complete</code> to tick off several at once.
+                        <strong>Complete finished tasks.</strong> Select Mark as done in the app.
                       </>
                     }
                   />

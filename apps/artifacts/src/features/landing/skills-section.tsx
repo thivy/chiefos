@@ -13,7 +13,7 @@ function SkillsSection() {
           </Text>
           <Text as="p" variant="lead">
             Each skill owns one clear part of the experience, from gathering the day&apos;s signals
-            to keeping the routine running and closing the loop on finished work.
+            to keeping the routine running and turning meetings into clear next steps.
           </Text>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -62,22 +62,7 @@ function SkillsSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card-blush">
-            <CardHeader>
-              <SourceMetadata>
-                <SourceMetadataCode>/chief-os-todo-complete</SourceMetadataCode>
-              </SourceMetadata>
-            </CardHeader>
-            <CardContent>
-              <div>
-                Lists your active tasks, asks which ones are finished, and ticks off only those in
-                chiefos/todo.md, just like Mark as done in the app. Everything else stays exactly as
-                it was.
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card-lilac sm:col-span-2">
+          <Card className="bg-card-lilac">
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataCode>/chief-os-visual-minutes</SourceMetadataCode>

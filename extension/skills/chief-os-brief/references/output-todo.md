@@ -27,7 +27,7 @@ Only after Stage 1 is complete:
 
 ## Status Changes
 
-The user changes a task's status with `chief-os-todo-complete` or with the task toggle in the `chiefos` app. Each change edits one task line and keeps every other line exactly as it was.
+The user changes a task's status with the task toggle in the `chiefos` app. Each change edits one task line and keeps every other line exactly as it was.
 
 - **Done:** move the line to the end of `## Completed`. Change `- [ ]` to `- [x]` and `Next step:` to `Completed:`, and remove a `Reopened.` mark from the end of the line.
 - **Not done:** move the line to the end of `## Active`. Change `- [x]` to `- [ ]` and `Completed:` to `Next step:`, and end the line with the `Reopened.` mark, after a space.
