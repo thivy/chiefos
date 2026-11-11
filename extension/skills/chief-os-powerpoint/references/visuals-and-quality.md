@@ -42,7 +42,7 @@ Use the crisp sizes where possible: 16, 20, 24, 32, 40, 48, or 64 pt.
 - Start with the analytical question: comparison, trend, composition, distribution, relationship, or flow.
 - Use bars for category comparison, lines for time trends, and scatter plots for relationships.
 - Use pie or doughnut charts only for a simple part-to-whole relationship with no more than five categories.
-- Use a single highlight colour and neutralise the remaining series where the title points to one insight.
+- Use a single highlight colour and neutralise the remaining series where the title points to one insight. Highlight in Ink and neutralise in Sand.
 - Place labels directly on data when legible.
 - Avoid 3D charts, bevels, reflections, excessive shadows, decorative gauges, and gradient fills.
 - Use consistent decimal precision.

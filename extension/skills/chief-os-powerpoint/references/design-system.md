@@ -43,22 +43,25 @@ A supplied brand theme may remap the colour tokens while preserving semantic rol
 
 ### Default colour roles
 
-| Role           | Default   | Use                                   |
-| -------------- | --------- | ------------------------------------- |
-| `background`   | `#FFFFFF` | Standard slide background             |
-| `foreground`   | `#242424` | Primary text and icon colour          |
-| `muted`        | `#616161` | Secondary text and metadata           |
-| `subtle`       | `#F5F5F5` | Quiet panels and table bands          |
-| `border`       | `#D1D1D1` | Rules, dividers, and light outlines   |
-| `brand`        | `#0F6CBD` | Primary emphasis and selected data    |
-| `brand-soft`   | `#EAF3FC` | Light branded surface                 |
-| `positive`     | `#107C10` | Positive or complete status           |
-| `warning`      | `#F2C811` | Caution or unresolved status          |
-| `critical`     | `#C50F1F` | Critical risk or negative status      |
-| `dark-surface` | `#242424` | Approved dark or image-overlay slides |
-| `on-dark`      | `#FFFFFF` | Text and icons on dark surfaces       |
+| Role           | Palette name | Default   | Use                                             |
+| -------------- | ------------ | --------- | ----------------------------------------------- |
+| `background`   | Warm Paper   | `#FFF6F0` | Standard slide background                       |
+| `foreground`   | Ink          | `#311F10` | Primary text and icon colour                    |
+| `muted`        | Muted Text   | `#76685E` | Secondary text and metadata                     |
+| `subtle`       | White        | `#FFFFFF` | Quiet panels and table bands                    |
+| `border`       | Hairline     | `#F5EBE3` | Rules, dividers, and light outlines             |
+| `brand`        | Ink          | `#311F10` | Primary emphasis and selected data              |
+| `brand-soft`   | Sage         | `#CAD6B2` | Light branded surface                           |
+| `positive`     | Sage         | `#CAD6B2` | Positive or complete status                     |
+| `warning`      | Lemon        | `#FAE19D` | Caution or unresolved status                    |
+| `critical`     | Sand         | `#E7CAAD` | Critical risk or negative status                |
+| `accent`       | Lilac        | `#CAC0D9` | Second supporting accent and categorical series |
+| `dark-surface` | Ink          | `#311F10` | Approved dark or image-overlay slides           |
+| `on-dark`      | Warm Paper   | `#FFF6F0` | Text and icons on dark surfaces                 |
 
-Use no more than one primary brand colour and two supporting accent colours on a normal slide. Semantic colours must retain the same meaning throughout the deck. Never rely on colour alone to communicate status or category.
+Sage, Sand, Lemon, and Lilac are surface colours. Never use one as text colour. Text and icons on them are Ink. A shape or data mark in one of them must carry an Ink outline or an Ink direct label, because these colours have low contrast against Warm Paper and White. Use Hairline for rules only, never to hold meaning.
+
+Use no more than one primary brand colour and two supporting accent colours on a normal slide. Semantic colours must retain the same meaning throughout the deck. Never rely on colour alone to communicate status or category. Status colours are pale, so each status also carries a label and an icon.
 
 ## Typography
 
@@ -107,18 +110,18 @@ Do not mix Segoe and Georgia inside the same sentence. Do not use Georgia for de
 
 ### Type scale
 
-| Role              |     Size | Line spacing | Preferred family         |  Weight | Maximum              |
-| ----------------- | -------: | -----------: | ------------------------ | ------: | -------------------- |
-| `hero-title`      | 40–54 pt |    0.95–1.05 | Segoe Display or Georgia | 400–600 | 3 lines              |
-| `section-title`   | 34–44 pt |     1.0–1.08 | Segoe Display or Georgia | 400–600 | 3 lines              |
-| `slide-title`     | 26–32 pt |    1.05–1.12 | Segoe Display            | 550–650 | 2 lines              |
-| `large-number`    | 48–76 pt |      0.9–1.0 | Segoe Display            | 600–700 | 1 line               |
-| `large-statement` | 28–38 pt |     1.0–1.12 | Segoe Display or Georgia | 400–600 | 4 lines              |
-| `subheading`      | 18–22 pt |      1.1–1.2 | Segoe Text               | 550–650 | 2 lines              |
-| `body`            | 16–20 pt |     1.15–1.3 | Segoe Text               |     400 | 6 lines per block    |
-| `body-compact`    | 14–16 pt |    1.15–1.25 | Segoe Text               |     400 | Controlled exception |
-| `caption`         | 11–13 pt |    1.15–1.25 | Segoe Text/Small         | 400–550 | 2 lines              |
-| `source`          |  8–10 pt |     1.05–1.2 | Segoe Small/Text         |     400 | 2 lines              |
+| Role              |     Size | Line spacing | Preferred family |  Weight | Maximum              |
+| ----------------- | -------: | -----------: | ---------------- | ------: | -------------------- |
+| `hero-title`      | 40–54 pt |    0.95–1.05 | Georgia          | 400–600 | 3 lines              |
+| `section-title`   | 34–44 pt |     1.0–1.08 | Georgia          | 400–600 | 3 lines              |
+| `slide-title`     | 26–32 pt |    1.05–1.12 | Segoe Display    | 550–650 | 2 lines              |
+| `large-number`    | 48–76 pt |      0.9–1.0 | Segoe Display    | 600–700 | 1 line               |
+| `large-statement` | 28–38 pt |     1.0–1.12 | Georgia          | 400–600 | 4 lines              |
+| `subheading`      | 18–22 pt |      1.1–1.2 | Segoe Text       | 550–650 | 2 lines              |
+| `body`            | 16–20 pt |     1.15–1.3 | Segoe Text       |     400 | 6 lines per block    |
+| `body-compact`    | 14–16 pt |    1.15–1.25 | Segoe Text       |     400 | Controlled exception |
+| `caption`         | 11–13 pt |    1.15–1.25 | Segoe Text/Small | 400–550 | 2 lines              |
+| `source`          |  8–10 pt |     1.05–1.2 | Segoe Small/Text |     400 | 2 lines              |
 
 Never reduce normal body text below 14 pt to make content fit. Re-plan or split the slide instead. Use sentence case. Avoid all caps except for labels of four words or fewer, with increased character spacing.
 
