@@ -76,6 +76,22 @@ function SkillsSection() {
               </div>
             </CardContent>
           </Card>
+
+          <Card className="bg-card-blush sm:col-span-2">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataCode>/chief-os-powerpoint</SourceMetadataCode>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                Turns notes, documents, or meeting content into an editable PowerPoint deck. It
+                plans the story, gives every slide one clear message and a fitting layout, adds
+                consistent motion and illustrations, and checks each slide by eye before it saves
+                the file.
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </ContentContainer>

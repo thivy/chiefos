@@ -43,23 +43,24 @@ what changed, so it does not repeat the morning back at you.
 
 ---
 
-## The four skills
+## The five skills
 
-The extension is deliberately small: four skills, each one something you would actually
+The extension is deliberately small: five skills, each one something you would actually
 ask for out loud.
 
-| Skill                       | You would say                                   | What it does                                                                                                                                          |
-| --------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **chief-os-brief**          | "Give me my morning brief"                      | The whole daily routine, from reading your inbox to sending the summary email                                                                         |
-| **chief-os-schedule**       | "Set up my daily runs"                          | Sets the two daily times. Run once, then forget about it                                                                                              |
-| **chief-os-visual-minutes** | "Sketch out this meeting for me"                | Turns one meeting into a single illustrated page: the key moments along its timeline, and the follow-up actions that came out of it                   |
-| **chief-os-image-prompt**   | "Use chief-os-image-prompt for a coastal scene" | Composes an illustration prompt in a named style, Everyday Doodle or Scientific Editorial. It returns the prompt and never generates the image itself |
+| Skill                       | You would say                                   | What it does                                                                                                                                                  |
+| --------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **chief-os-brief**          | "Give me my morning brief"                      | The whole daily routine, from reading your inbox to sending the summary email                                                                                 |
+| **chief-os-schedule**       | "Set up my daily runs"                          | Sets the two daily times. Run once, then forget about it                                                                                                      |
+| **chief-os-visual-minutes** | "Sketch out this meeting for me"                | Turns one meeting into a single illustrated page: the key moments along its timeline, and the follow-up actions that came out of it                           |
+| **chief-os-image-prompt**   | "Use chief-os-image-prompt for a coastal scene" | Composes an illustration prompt in a named style, Everyday Doodle or Scientific Editorial. It returns the prompt and never generates the image itself         |
+| **chief-os-powerpoint**     | "Build a deck from these notes"                 | Plans the story, picks a layout for each slide, adds consistent motion and illustrations, checks every slide by eye, and delivers an editable PowerPoint file |
 
-**chief-os-brief** is the one that does the work. The other three exist because they are
+**chief-os-brief** is the one that does the work. The other four exist because they are
 genuinely separate things you might want: setting your schedule happens once at setup,
 summarising a meeting is
-something you want right after that meeting rather than at 7am tomorrow, and composing an
-image prompt is useful outside a briefing entirely.
+something you want right after that meeting rather than at 7am tomorrow, composing an
+image prompt is useful outside a briefing entirely, and building a deck is a task of its own.
 
 You can also ask for one part on its own, such as "triage my email" or "what is on my
 calendar", without running the full routine.
