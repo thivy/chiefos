@@ -56,8 +56,8 @@ function SkillsSection() {
             <CardContent>
               <div>
                 Composes an illustration prompt in a named style: Everyday Doodle or Scientific
-                Editorial. It returns the prompt only, which keeps every
-                vignette in your briefing image and visual minutes consistent and true to the facts.
+                Editorial. It returns the prompt only, which keeps every vignette in your briefing
+                image and visual minutes consistent and true to the facts.
               </div>
             </CardContent>
           </Card>
