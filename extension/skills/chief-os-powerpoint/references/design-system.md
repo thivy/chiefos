@@ -10,7 +10,7 @@ The binding design contract for every generated deck. Content, narrative, eviden
 - If the audience reads only the slide titles, the narrative must remain understandable.
 - Prefer one dominant visual idea over collections of unrelated objects.
 - Use hierarchy, alignment, scale, contrast, and white space before adding containers.
-- Do not place every object in a card. Cards are permitted only when grouping, containment, comparison, or interaction is meaningful.
+- Do not place every object in a card. Cards are permitted only when grouping, containment, comparison, or interaction is meaningful, and they follow the [card style](#card-style).
 - Do not generate decorative diagrams when a photograph, chart, table, or direct statement communicates the idea more clearly.
 - Do not stretch, distort, or non-proportionally resize images, logos, icons, or charts.
 - Never allow text, shapes, charts, images, or icons to overlap unintentionally or extend beyond the safe area.
@@ -36,8 +36,8 @@ A supplied brand theme may remap the colour tokens while preserving semantic rol
 | `space-3`            |   0.22 in | Normal spacing                                  |
 | `space-4`            |   0.34 in | Group spacing                                   |
 | `space-5`            |   0.50 in | Section spacing                                 |
-| `radius-sm`          |   0.06 in | Small labels and subtle containers              |
-| `radius-md`          |   0.12 in | Standard cards and panels                       |
+| `radius-sm`          |   0.06 in | Cards, small labels, and subtle containers      |
+| `radius-md`          |   0.12 in | Large panels                                    |
 | `line-hairline`      |   0.75 pt | Rules and dividers                              |
 | `line-standard`      |   1.25 pt | Diagram and connector lines                     |
 
@@ -59,7 +59,7 @@ A supplied brand theme may remap the colour tokens while preserving semantic rol
 | `dark-surface` | Ink          | `#311F10` | Approved dark or image-overlay slides           |
 | `on-dark`      | Warm Paper   | `#FFF6F0` | Text and icons on dark surfaces                 |
 
-Sage, Sand, Lemon, and Lilac are surface colours. Never use one as text colour. Text and icons on them are Ink. A shape or data mark in one of them must carry an Ink outline or an Ink direct label, because these colours have low contrast against Warm Paper and White. Use Hairline for rules only, never to hold meaning.
+Sage, Sand, Lemon, and Lilac are surface colours. Never use one as text colour. Text and icons on them are Ink. A shape or data mark in one of them must carry an Ink outline or an Ink direct label, because these colours have low contrast against Warm Paper and White. A card is exempt, because its Ink text and outline label it. Use Hairline for rules only, never to hold meaning.
 
 Use no more than one primary brand colour and two supporting accent colours on a normal slide. Semantic colours must retain the same meaning throughout the deck. Never rely on colour alone to communicate status or category. Status colours are pale, so each status also carries a label and an icon.
 
@@ -192,3 +192,42 @@ When content exceeds these limits, first simplify, group, visualise, move detail
 - Avoid orphan words in titles and large statements where a small width adjustment can balance the line.
 - Keep repeated elements in identical positions across slides when they perform the same function.
 - Do not repeat the same layout on more than three consecutive slides unless repetition has narrative value.
+
+## Card Style
+
+The one container style of the deck, taken from the cards of the `chiefos` app: its [design tokens](../../chief-os-brief/references/output-html-design.md#design-tokens) and [card anatomy](../../chief-os-brief/references/output-html-design.md#card-anatomy). The slide values below adapt that style to the slide canvas. Where this section is silent, follow the app.
+
+Use a card only where the principles allow it: grouping, containment, or comparison of peer items. The layouts that may use one are L09, L11, L15, L16, L22, L23, and L24. Never nest a card in a card, and never put a card on a dark surface.
+
+### Shape and surface
+
+- A rounded rectangle with `radius-sm`, a `line-hairline` Ink outline at 95% transparency, and a soft outer shadow: Ink at 85% transparency, 6 pt blur, 2 pt down. No gradient.
+- **Peer cards** take a pastel. Rotate Sage, Lemon, Lilac, and Sand strictly in that order, in reading order, and start again from Sage on each slide. The four are peers, not status colours.
+- **Status cards** (L23) take the `positive`, `warning`, or `critical` role instead of the rotation, with a label and an icon, as the colour rules require.
+- A **summary card**, which only supports the slide, such as the context beside a chart, is White with no shadow and no corner marks.
+- Peer cards in one row share one height and one top edge.
+- Use no colour outside the palette.
+
+### Anatomy
+
+Padding is `space-3` on every side, and the gap between parts is `space-2`. The order is fixed, and a card uses each part that it has content for:
+
+1. **Corner marks.** Four 2 × 2 grids of round Ink dots, 0.03 in wide with 0.03 in gaps, `space-1` from each corner, at 60% transparency. Hide dot 3 at top left, 2 at top right, 1 at bottom left, and 0 at bottom right, in row-major order, which leaves three dots per corner. Group them as one decorative object behind the text, and mark it decorative.
+2. **Header.** One or two `caption` lines: a short label such as a category, owner, date, or step number, with an optional 16–20 pt icon before it. Keep each line to one line.
+3. **Content.** The title in `subheading`, then the supporting text in `body-compact`, at most four lines. Shorten the text instead of cutting it off.
+4. **Footer.** Only when the card concerns a person: the name in `caption` at weight 550 above the role in `caption`. Add a round picture only when a real one is supplied. Never draw an empty avatar.
+5. **Next step.** Only when an action is owed: a full-width `line-hairline` rule in Ink at 90% transparency, then a lightbulb icon with the `caption` label `Next step`, then the action in `body-compact` at weight 550. In a row of peer cards, align this part to the bottom of each card.
+
+The toggle of the app has no slide equivalent. Do not add one.
+
+### Text colour
+
+All text on a pastel is Ink. Muted Text is for White cards and Warm Paper only, because it is too faint on a pastel.
+
+### Image card
+
+An image in L05 or L07 takes the card shape with no padding, no marks, and no text: the same radius, outline, and shadow, with the picture cropped to fill it.
+
+### Build
+
+Group each card's surface, marks, and text, and name the group, so that one animation moves them together and Morph can match them.

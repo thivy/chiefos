@@ -1,6 +1,6 @@
 # Slide Layout Library
 
-Select a layout by communication purpose. Layout names are semantic instructions, not fixed decorative templates. Column spans refer to the 12-column grid in [design-system.md](design-system.md#master-grid).
+Select a layout by communication purpose. Layout names are semantic instructions, not fixed decorative templates. Column spans refer to the 12-column grid in [design-system.md](design-system.md#master-grid). Only L09, L11, L15, L16, L22, L23, and L24 may use cards that hold text, and every card follows the [card style](design-system.md#card-style). Images in L05 and L07 take the image card of that style.
 
 ## Selection by Purpose
 
@@ -167,7 +167,7 @@ Select a layout by communication purpose. Layout names are semantic instructions
 
 - Use consistent precision and units.
 - Highlight at most one metric as primary.
-- Do not use card containers unless each metric is truly a separate entity.
+- Do not use card containers unless each metric is truly a separate entity, and then use the [card style](design-system.md#card-style).
 
 ## L10. Data insight
 
@@ -264,7 +264,7 @@ Select a layout by communication purpose. Layout names are semantic instructions
 **Rules:**
 
 - Pillars must be peers.
-- Avoid three unrelated cards presented only because there are three items.
+- Avoid three unrelated cards presented only because there are three items. Where each pillar is a card, use the [card style](design-system.md#card-style).
 
 ## L16. Four-part framework
 
