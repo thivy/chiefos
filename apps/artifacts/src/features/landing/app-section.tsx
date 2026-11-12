@@ -26,6 +26,13 @@ const FOCUS_RING_CLASS =
 
 const SIMULATED_SAVE_MS = 900;
 
+// Motion tokens of the chiefos app, so the preview moves like the real app.
+const EASE_OUT_CLASS = "ease-[cubic-bezier(0.23,1,0.32,1)]";
+const PRESS_CLASS = cn(
+  "motion-safe:transition-[background-color,transform] motion-safe:duration-120 motion-safe:active:scale-[0.97]",
+  EASE_OUT_CLASS,
+);
+
 const BRIEFING_IMAGE = {
   src: `${import.meta.env.BASE_URL}img.jpg`,
   width: 1632,
@@ -63,6 +70,11 @@ const APP_FEATURES = [
     title: "Straight to the source",
     description: "Every subject opens the email, event, chat, or recap behind it.",
   },
+  {
+    title: "Calm, consistent motion",
+    description:
+      "Cards fade in once, in order. Nothing moves while you read, and reduced motion is respected.",
+  },
 ];
 
 type PreviewTone = "sage" | "lemon" | "white";
@@ -93,8 +105,9 @@ function TaskToggle({ done, saving, taskTitle, onToggle, className }: TaskToggle
       aria-busy={saving}
       aria-disabled={saving}
       className={cn(
-        "inline-flex min-h-9 w-full items-center justify-center gap-1.5 rounded-sm border border-foreground/10 text-sm leading-[1.2] font-[550] transition-colors [&_svg]:size-4",
+        "inline-flex min-h-9 w-full items-center justify-center gap-1.5 rounded-sm border border-foreground/10 text-sm leading-[1.2] font-[550] [&_svg]:size-4",
         FOCUS_RING_CLASS,
+        PRESS_CLASS,
         done ? "bg-foreground/5" : "bg-transparent hover:bg-foreground/5",
         saving ? "cursor-progress" : "cursor-pointer",
         className,
@@ -165,7 +178,11 @@ function PreviewCard({
   }
 
   // A done card fades every part except its toggle, so the surface sits on its own layer.
-  const fade = cn("transition-opacity duration-200", done && "opacity-40");
+  const fade = cn(
+    "motion-safe:transition-opacity motion-safe:duration-350",
+    EASE_OUT_CLASS,
+    done && "opacity-40",
+  );
 
   return (
     <article className="relative flex flex-col">
@@ -259,6 +276,7 @@ function AppPreview() {
           className={cn(
             "relative aspect-[4/3] cursor-zoom-in overflow-hidden rounded-sm border border-foreground/5 bg-card shadow-md shadow-foreground/10 sm:aspect-auto sm:min-h-48",
             FOCUS_RING_CLASS,
+            PRESS_CLASS,
           )}
         >
           <img

@@ -13,7 +13,8 @@ function SkillsSection() {
           </Text>
           <Text as="p" variant="lead">
             Each skill owns one clear part of the experience, from gathering the day&apos;s signals
-            to keeping the routine running and turning meetings into clear next steps.
+            to keeping the routine running, turning meetings into clear next steps, and building
+            decks.
           </Text>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -88,7 +89,7 @@ function SkillsSection() {
                 Turns notes, documents, or meeting content into an editable PowerPoint deck. It
                 plans the story, gives every slide one clear message and a fitting layout, adds
                 consistent motion and illustrations, and checks each slide by eye before it saves
-                the file.
+                the file. Slides use the ChiefOS palette and card style.
               </div>
             </CardContent>
           </Card>
@@ -104,6 +105,21 @@ function SkillsSection() {
                 Keeps animation in one style across a web page and a PowerPoint deck: the same few
                 effects, the same timings, and the same easing. Every movement has a purpose, and
                 everything still reads with motion turned off.
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card-sand sm:col-span-2">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataCode>/chief-os-design</SourceMetadataCode>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                The shared look and voice behind the other skills: the house wording, the colour
+                palette, and the card style. It keeps the briefing app, the summary email, and your
+                decks consistent, and you never call it yourself.
               </div>
             </CardContent>
           </Card>

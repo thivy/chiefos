@@ -150,6 +150,16 @@ function GetStartedSection() {
                   <Task
                     label={
                       <>
+                        <strong>Build a deck.</strong> Enter <code>/chief-os-powerpoint</code> with
+                        your notes or a document to get an editable PowerPoint presentation.
+                      </>
+                    }
+                  />
+                </li>
+                <li>
+                  <Task
+                    label={
+                      <>
                         <strong>Complete finished tasks.</strong> Select Mark as done in the app.
                       </>
                     }
