@@ -235,7 +235,7 @@ function Landing() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card-blush sm:col-span-2">
+          <Card className="bg-card-blush">
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataLabel>chief-os-powerpoint</SourceMetadataLabel>
@@ -249,6 +249,24 @@ function Landing() {
                 Turns notes, documents, or meeting content into an editable deck. It plans the
                 story, gives every slide one clear message and a fitting layout, adds consistent
                 motion and illustrations, and checks each slide by eye before it saves the file.
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card-sage">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataLabel>chief-os-motion</SourceMetadataLabel>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <Text as="h2" variant="display-sm">
+                Consistent motion
+              </Text>
+              <div>
+                Keeps animation in one style across a web page and a PowerPoint deck: the same few
+                effects, the same timings, and the same easing. Every movement has a purpose, and
+                everything still reads with motion turned off.
               </div>
             </CardContent>
           </Card>

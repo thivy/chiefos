@@ -4,21 +4,16 @@ Outlook-compatible design for the summary email. Read this file in full and the 
 
 ## Design Tokens
 
-Use only these colours.
+Use the colours of the app's [design tokens](output-html-design.md#design-tokens), in their `Hex fallback` column, as inline hex values: Warm Paper for the message background, Ink for text and links, White for the Overview and task surfaces, and Sage, Sand, Lemon, and Lilac for message cards. Never use `oklch`, and never use the reserved Sky and Blush.
 
-| Token      | Value                            | Use                        |
-| ---------- | -------------------------------- | -------------------------- |
-| Warm Paper | `rgb(255, 246, 240)` / `#fff6f0` | Message background         |
-| Ink        | `rgb(49, 31, 16)` / `#311f10`    | Text and link color        |
-| White      | `rgb(255, 255, 255)` / `#ffffff` | Overview and todo surfaces |
-| Sage       | `rgb(202, 214, 178)` / `#cad6b2` | Message card surface       |
-| Sand       | `rgb(231, 202, 173)` / `#e7caad` | Message card surface       |
-| Lemon      | `rgb(250, 225, 157)` / `#fae19d` | Message card surface       |
-| Lilac      | `rgb(202, 192, 217)` / `#cac0d9` | Message card surface       |
-| Hairline   | `rgb(245, 235, 227)` / `#f5ebe3` | Quiet borders and rules    |
-| Muted text | `rgb(118, 104, 94)` / `#76685e`  | Metadata and empty states  |
+Mail clients do not support alpha tints, so the two derived tints become solid values:
 
-Pastels are peers, not status colors. Rotate them by item order across email, calendar, chat, and meeting recap cards.
+| Token      | Value                           | Use                       |
+| ---------- | ------------------------------- | ------------------------- |
+| Hairline   | `rgb(245, 235, 227)` / `#f5ebe3` | Quiet borders and rules   |
+| Muted text | `rgb(118, 104, 94)` / `#76685e`  | Metadata and empty states |
+
+Rotate the pastels across the message cards in the order and by the rule that the app's design tokens set, by item order across email, calendar, chat, and meeting recap cards.
 
 ## Structure
 
@@ -58,9 +53,9 @@ Preserve the mail client's default text size and the reader's size preference.
 2. Render Overview on white with a `1px` hairline border and no shadow.
 3. Render Tasks on white as compact rows separated by hairlines. Use `[ ]` for active and `[x]` for completed tasks in the plain-text alternative.
 4. Render Email, Calendar, Teams Chat, and Meeting Recaps as separate headings followed by content-height cards.
-5. Rotate Sage, Sand, Lemon, and Lilac across all message cards in source order.
+5. Colour the message cards in source order, as the design tokens above set.
 6. Place metadata first, followed by subject, summary, author details, then the `Next step` label and the recommended action below a hairline rule.
-7. When a section is empty, render `There are no items.` as muted body copy without a card.
+7. Show the [empty state](output-briefing.md#2-render) as muted body copy when a section is empty.
 
 ## Links and Accessibility
 

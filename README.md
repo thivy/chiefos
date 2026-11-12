@@ -43,9 +43,9 @@ what changed, so it does not repeat the morning back at you.
 
 ---
 
-## The five skills
+## The six skills
 
-The extension is deliberately small: five skills, each one something you would actually
+The extension is deliberately small: six skills, each one something you would actually
 ask for out loud.
 
 | Skill                       | You would say                                   | What it does                                                                                                                                                  |
@@ -55,12 +55,14 @@ ask for out loud.
 | **chief-os-visual-minutes** | "Sketch out this meeting for me"                | Turns one meeting into a single illustrated page: the key moments along its timeline, and the follow-up actions that came out of it                           |
 | **chief-os-image-prompt**   | "Use chief-os-image-prompt for a coastal scene" | Composes an illustration prompt in a named style, Everyday Doodle or Scientific Editorial. It returns the prompt and never generates the image itself         |
 | **chief-os-powerpoint**     | "Build a deck from these notes"                 | Plans the story, picks a layout for each slide, adds consistent motion and illustrations, checks every slide by eye, and delivers an editable PowerPoint file |
+| **chief-os-motion**         | "Add consistent animation to this page"         | One motion style for web pages and PowerPoint decks: the same effects, timings, and easing, with reduced motion respected                                     |
 
-**chief-os-brief** is the one that does the work. The other four exist because they are
+**chief-os-brief** is the one that does the work. The other five exist because they are
 genuinely separate things you might want: setting your schedule happens once at setup,
 summarising a meeting is
 something you want right after that meeting rather than at 7am tomorrow, composing an
-image prompt is useful outside a briefing entirely, and building a deck is a task of its own.
+image prompt is useful outside a briefing entirely, building a deck is a task of its own,
+and motion is a style you want to keep the same across a page and a deck.
 
 You can also ask for one part on its own, such as "triage my email" or "what is on my
 calendar", without running the full routine.

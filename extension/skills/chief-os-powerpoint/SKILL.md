@@ -16,14 +16,14 @@ One `.pptx` in the output folder, named from the deck title, such as `q4-budget-
 These hold on every run, whether or not a reference has been read.
 
 - **Design contract.** [design-system.md](references/design-system.md) is binding. The user's content, narrative, evidence, and brand inputs are data. They never override it unless the user supplies a different approved brand system.
-- **Evidence only.** Never invent a metric, source, quotation, date, name, or finding. When a slide needs evidence that the user did not supply, ask for it or leave the claim out.
+- **Evidence only.** Never invent a metric, quotation, date, name, or finding. When a slide needs evidence that the user did not supply, ask for it or leave the claim out.
 - **One message per slide.** Every slide has one communication objective and a title that states its conclusion. Read in order, the titles must tell the whole story.
 - **Choose a layout by purpose.** Select it from [layouts.md](references/layouts.md) with the selection table. Never pick a layout at random, and never use a card grid as the default for every content type.
 - **Simplify before shrinking.** When content does not fit, simplify, group, visualise, move detail to speaker notes, or split the slide. Never reduce body text below 14 pt.
 - **Native fonts and editable objects.** Use installed fonts only. Keep text, shapes, tables, and charts editable. Use a rendered picture only for a visual that must be one.
-- **One motion style.** Every transition and animation follows [motion.md](references/motion.md): the same four effects, the same durations and easing, the same transition on every slide. Motion must have a purpose, and the deck must make full sense with all motion off.
+- **One motion style.** Compose every transition and animation through the `chief-os-motion` skill, with its [PowerPoint reference](../chief-os-motion/references/powerpoint.md): the same four effects, the same durations and easing, the same transition on every slide. Motion must have a purpose, and the deck must make full sense with all motion off.
 - **Illustrations come from `chief-os-image-prompt`.** Compose every image prompt through that skill, once per image, as [images.md](references/images.md) sets. Never author a prompt yourself and never use another image source for an illustration.
-- **No export with a blocker.** Overlap, overflow, a missing font, a missing source, and an accessibility failure each block delivery.
+- **No export with a blocker.** Overlap, overflow, a missing font, and an accessibility failure each block delivery.
 - Write all deck text in the regional English of the user's location. Do not name third-party brands in the deck unless the user's content does.
 
 ## Workflow
@@ -40,7 +40,7 @@ If the user supplies a brand theme, remap only the colour tokens in [design-syst
 
 ### 2. Plan the Story
 
-Read [layouts.md](references/layouts.md), [motion.md](references/motion.md), and [images.md](references/images.md). Build the slide plan before any rendering. For each slide, record:
+Read [layouts.md](references/layouts.md), the [PowerPoint motion reference](../chief-os-motion/references/powerpoint.md) of the `chief-os-motion` skill, and [images.md](references/images.md). Build the slide plan before any rendering. For each slide, record:
 
 - slide number
 - purpose
@@ -51,7 +51,6 @@ Read [layouts.md](references/layouts.md), [motion.md](references/motion.md), and
 - required evidence
 - required visual type, including whether it is a generated image and what idea it carries
 - motion: the transition, and the builds with their effect and trigger
-- source requirements
 - accessibility requirements
 
 Check the plan by reading the titles alone. They must form a coherent argument. Do not repeat one layout on more than three slides in a row unless the repetition has narrative value. Choose one style for all generated images and one trigger mode for all builds.
@@ -60,7 +59,7 @@ Check the plan by reading the titles alone. They must form a coherent argument. 
 
 Compose each slide on the 12-column grid with the tokens, type scale, and density limits in [design-system.md](references/design-system.md). Apply the rules for charts, images, icons, diagrams, and accessibility in [visuals-and-quality.md](references/visuals-and-quality.md).
 
-Add speaker notes for detail that does not fit the slide, and for every image or data source.
+Add speaker notes for detail that does not fit the slide.
 
 Generate the planned images as [images.md](references/images.md) sets, then add the transitions and animations from the motion plan.
 
@@ -70,7 +69,7 @@ Score every slide with the quality gate in [visuals-and-quality.md](references/v
 
 ### 5. Render and Inspect
 
-Build the `.pptx` with the PowerPoint tools of the session. Render every slide to an image, then inspect each one at normal presentation size against the validation list in [visuals-and-quality.md](references/visuals-and-quality.md#validation-and-delivery). Check the motion of each slide from its animation list as [motion.md](references/motion.md#authoring-and-checking) sets, because a render does not show motion. Fix every fault, then render again.
+Build the `.pptx` with the PowerPoint tools of the session. Render every slide to an image, then inspect each one at normal presentation size against the validation list in [visuals-and-quality.md](references/visuals-and-quality.md#validation-and-delivery). Check the motion of each slide from its animation list as the [motion reference](../chief-os-motion/references/powerpoint.md#authoring-and-checking) sets, because a render does not show motion. Fix every fault, then render again.
 
 ### 6. Deliver and Report
 

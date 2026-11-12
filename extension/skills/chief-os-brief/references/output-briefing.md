@@ -80,6 +80,8 @@ interface DailyBriefing {
 
 Both the app and the email preserve item wording and source order, omit null fields, and show their specified empty states.
 
+An empty section shows `There are no items.` as muted text, without a card. The section heading stays.
+
 Insert briefing text as text, never as markup. Where a renderer builds HTML strings, as the email does, escape `&`, `<`, and `>`, and also `"` in attribute values.
 
 For the `chiefos` app, use [output-html-design.md](output-html-design.md): greeting, person name and date, then Overview containing `summary` beside the briefing image, then Email, Calendar, Teams Chat, Meeting Recaps, and Other Tasks, on one page.

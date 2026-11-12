@@ -50,11 +50,10 @@ Start fresh each run. Never reuse a prompt or an image from an earlier run.
 
 1. Generate each image from the returned prompt with the image generation tool of the session.
 2. Confirm the result is a non-empty image before you place it. If it fails, try once more with the same prompt. If it fails again, change the slide to a text-led layout from [layouts.md](layouts.md), and report the failure.
-3. Place the image in its region with a proportional `cover` crop. Never stretch it, and keep its main subject in view.
+3. Place the image in its region as the [image rules](visuals-and-quality.md#images-and-visual-assets) set, never stretched.
 4. Keep working image files out of the output folder. The `.pptx` is the only deliverable.
-5. Set alt text that says what the image shows and why it is on the slide. Do not repeat the slide title.
-6. Add `Visual in this file was generated with Microsoft Copilot.` to the speaker notes of the slide.
-7. Give the image no animation of its own. It arrives with the slide transition, or by Fade as [motion.md](motion.md) sets.
+5. Set alt text as [Accessibility](visuals-and-quality.md#accessibility) sets. Say what the image shows and why it is on the slide, and do not repeat the slide title.
+6. Give the image no animation of its own. It arrives with the slide transition, or by Fade as the [motion reference](../../chief-os-motion/references/powerpoint.md) sets.
 
 ## Check
 

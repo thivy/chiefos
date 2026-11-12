@@ -19,15 +19,7 @@ Use one vignette per task. With zero tasks, generate a date-only page and make z
 
 ## 2. Compose One Prompt per Task
 
-Make one `chief-os-image-prompt` call per task in source order. Pass all fields marked Rendered above as the text whitelist, and context as non-rendering material. Pass previously chosen objects and character descriptions as exclusions to keep interactions distinct and coherent. Give every call this style:
-
-- `Everyday Doodle` on warm ivory, identical across vignettes.
-- One self-contained, highly detailed vignette per call, not a full composition.
-- Heading in a warm-black handwritten script; display label and summary note in a warm-black sans at regular weight, all at the same size.
-- Every line sits in clear ivory beside or below the art, with a margin around it. Text and art never cross.
-- Render only the whitelisted fields. Use no stock or corporate clichés such as handshakes, currency symbols, trophies, bullseyes, or rockets.
-
-Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
+Make one `chief-os-image-prompt` call per task in source order, as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#per-item-calls) sets. Pass all fields marked Rendered above as the text whitelist, and context as non-rendering material.
 
 ## 3. Assemble the Final Prompt
 
@@ -36,7 +28,7 @@ The final prompt is the block below with two substitutions:
 - `{LOCAL_DATE}` is the top-level `date`, used verbatim and never reformatted.
 - `{TASK_PROMPTS}` is every prompt returned in stage 2, in source order, separated by blank lines.
 
-Insert only returned prompt text, verbatim: no summaries, edits, omissions, or back-references. Nothing outside the block reaches the image.
+Insert the prompts as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#assemble-the-final-prompt) sets.
 
 ```
 **Page**
@@ -68,4 +60,4 @@ Date: {LOCAL_DATE}
 
 ## 4. Generate
 
-Generate from the combined prompt and replace `artifact-image.png`. Confirm the current generation produced a non-empty PNG at that path before reporting success. On generation or save failure, report the error without presenting an older file as this run's output.
+Generate `artifact-image.png` as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#generate) sets.

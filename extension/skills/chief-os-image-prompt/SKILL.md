@@ -34,3 +34,7 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 
 - [Everyday Doodle](references/everyday-doodle.md)
 - [Scientific Editorial](references/scientific-editorial.md)
+
+## Caller Rules
+
+A caller that assembles many vignettes into one page follows [illustrated-page.md](references/illustrated-page.md). It is not a style.

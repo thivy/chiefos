@@ -10,10 +10,8 @@ Rules for images, icons, charts, diagrams, accessibility, and the checks that ga
 - Crop with `cover` behaviour conceptually, preserving the principal subject and key context.
 - Never place text on an unprotected high-detail region.
 - Apply a solid or translucent scrim when contrast cannot otherwise be guaranteed.
-- Add alt text for every meaningful image. Mark purely decorative imagery as decorative.
-- Add a source in speaker notes or the slide footer when licensing or provenance requires it.
+- Add alt text for every meaningful image, as [Accessibility](#accessibility) sets.
 - Generate every illustration with `chief-os-image-prompt`, as [images.md](images.md) sets.
-- If an image is AI-generated, include `Visual in this file was generated with Microsoft Copilot.` in the presentation's source notes.
 
 ## Icons
 
@@ -49,7 +47,6 @@ Use the crisp sizes where possible: 16, 20, 24, 32, 40, 48, or 64 pt.
 - Always include units and time period.
 - Begin bar-chart axes at zero unless a clearly disclosed analytical reason requires otherwise.
 - Do not show an unlabelled secondary axis.
-- Place the evidence source in the source/footer region or speaker notes.
 
 ## Diagrams, Shapes, and Connectors
 
@@ -67,7 +64,7 @@ Use the crisp sizes where possible: 16, 20, 24, 32, 40, 48, or 64 pt.
 
 - Add alt text to meaningful images, charts, and diagrams.
 - Mark decorative visuals as decorative.
-- Set reading order intentionally: title, primary content, supporting content, source/footer.
+- Set reading order intentionally: title, primary content, supporting content, footer.
 - Use sufficient contrast between text and background.
 - Do not communicate meaning by colour alone.
 - Use descriptive link text.
@@ -89,16 +86,16 @@ Score every slide from 1 to 5 on:
 7. Visual relevance
 8. Consistency
 9. Accessibility
-10. Evidence and source integrity
+10. Evidence integrity
 11. Layout appropriateness
 12. Editability
-13. Motion purpose and consistency, per [motion.md](motion.md)
+13. Motion purpose and consistency, per the [motion reference](../../chief-os-motion/references/powerpoint.md)
 
 Rules:
 
 - Any score below 3 requires redesign.
 - An average below 4 requires another critique pass.
-- Accessibility, overlap, overflow, missing-font, or missing-source failures block export.
+- Accessibility, overlap, overflow, or missing-font failures block export.
 - A slide may be visually polished and still fail if the title does not communicate the conclusion.
 
 ## Validation and Delivery
@@ -111,28 +108,24 @@ Before delivery:
 - Confirm fonts resolve correctly and do not substitute unexpectedly.
 - Confirm Segoe Fluent Icons render as glyphs rather than missing-character boxes.
 - Confirm all images preserve aspect ratio and adequate resolution.
-- Confirm chart labels, units, time periods, and sources are present.
+- Confirm chart labels, units, and time periods are present.
 - Confirm the reading order is logical.
 - Confirm slide titles tell a coherent story when read in sequence.
 - Confirm the deck uses a varied but consistent set of semantic layouts.
 - Confirm all generated presentation elements remain editable where practical.
-- Confirm every transition and animation matches [motion.md](motion.md), and that the deck reads fully with animation off.
+- Confirm every transition and animation matches the [motion reference](../../chief-os-motion/references/powerpoint.md), and that the deck reads fully with animation off.
 - Confirm every generated image came from a `chief-os-image-prompt` call and renders no text.
 - Deliver the final `.pptx`, not only previews or source code.
 
 ## Hard Constraints
 
+Every rule in this skill is binding where it is stated, and nothing here overrides it. These are the ones that block delivery, with the place that sets each:
+
+- Layout, type, and density: [design-system.md](design-system.md). It sets the 14 pt text floor, the four-column and two-level limits, the safe area, native fonts, and proportional images.
+- Layout choice: [layouts.md](layouts.md). A card grid is never the default.
+- Charts, icons, and diagrams: the sections above. They set the ban on 3D and decorative chart effects, and the label rule for icons.
+- Evidence and wording: [SKILL.md](../SKILL.md#invariants). It bans fabricated evidence.
+- Motion: the [motion reference](../../chief-os-motion/references/powerpoint.md). It bans motion outside the shared style, and looping or flashing motion.
+- Illustrations: [images.md](images.md). Every one comes from `chief-os-image-prompt`.
 - No unresolved placeholder text.
-- No accidental overlaps or clipping.
-- No body text below 14 pt.
-- No unsupported remote fonts.
-- No non-proportional image resizing.
-- No 3D charts or decorative chart effects.
-- No more than four primary columns.
-- No more than two bullet levels.
-- No icon-only meaning without a label, alt text, or surrounding context.
-- No repeated card grid as the default response to every content type.
-- No fabricated evidence, sources, quotations, metrics, or dates.
-- No transition or animation outside [motion.md](motion.md), and no looping or flashing motion.
-- No illustration that did not come from `chief-os-image-prompt`.
 - No export while a quality-gate blocker remains.

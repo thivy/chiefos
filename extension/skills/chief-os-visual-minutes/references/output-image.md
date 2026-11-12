@@ -10,22 +10,12 @@ Omit an empty band's label and space. If both collections are empty, stop withou
 
 ## 2. Compose One Prompt per Item
 
-Make one `chief-os-image-prompt` call per item, key moments first, then actions. Pass all fields marked Rendered in the capture tables as the text whitelist, and context as non-rendering material. Pass previously chosen objects and character descriptions as exclusions so the composer creates distinct, coherent interactions.
-
-Give every call this shared style:
-
-- `Everyday Doodle` on warm ivory, identical across vignettes.
-- One self-contained, highly detailed vignette per call, not a full composition.
-- Heading in a warm-black handwritten script; marker, display label, and summary note in a warm-black sans at regular weight, all at the same size.
-- Every line sits in clear ivory beside or below the art, with a margin around it. Text and art never cross.
-- Render only the whitelisted fields. Use no stock or corporate clichés such as handshakes, currency symbols, trophies, bullseyes, or rockets.
+Make one `chief-os-image-prompt` call per item, key moments first, then actions, as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#per-item-calls) sets. Pass all fields marked Rendered in the capture tables as the text whitelist, and context as non-rendering material.
 
 Then one instruction per section, which is what makes the two bands read apart at a glance:
 
 - **Key moment** — a vignette taller than it is wide, its object caught mid-event so it reads as something that happened. Below the art sit the marker, heading, display label, and summary note, in that order.
 - **Follow-up action** — a compact, roughly square vignette, its everyday object poised, packed, queued, or about to move so the action reads as still owed. No marker.
-
-Ratio and page layout belong to the assembled image, so do not pass them here. Start fresh each run: reuse no prompt or image from a previous one.
 
 ## 3. Assemble the Final Prompt
 
@@ -35,7 +25,7 @@ The final prompt is the block below with three substitutions:
 - `{KEY_MOMENT_PROMPTS}` is every key moment prompt returned in stage 2, in timeline order, separated by blank lines.
 - `{FOLLOW_UP_PROMPTS}` is every follow-up action prompt returned in stage 2, in source order, separated by blank lines.
 
-Insert only returned prompt text, verbatim: no summaries, edits, omissions, or back-references. Omit empty sections and their labels. Nothing outside the block reaches the image.
+Insert the prompts as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#assemble-the-final-prompt) sets.
 
 ```
 **Page**
@@ -88,4 +78,4 @@ Next steps:
 
 ## 4. Generate
 
-Generate from the combined prompt and replace `visual-minutes.png`. Confirm the current generation produced a non-empty PNG at that path before reporting success. On generation or save failure, report the error without presenting an older file as this run's output.
+Generate `visual-minutes.png` as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#generate) sets.

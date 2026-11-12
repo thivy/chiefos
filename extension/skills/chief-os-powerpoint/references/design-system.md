@@ -20,26 +20,26 @@ The binding design contract for every generated deck. Content, narrative, eviden
 
 A supplied brand theme may remap the colour tokens while preserving semantic roles and contrast requirements.
 
-| Token                |     Value | Use                                                      |
-| -------------------- | --------: | -------------------------------------------------------- |
-| `slide-width`        | 13.333 in | Widescreen canvas width                                  |
-| `slide-height`       |    7.5 in | Widescreen canvas height                                 |
-| `margin-x`           |   0.67 in | Standard left and right safe margin                      |
-| `margin-top`         |   0.46 in | Standard top safe margin                                 |
-| `margin-bottom`      |   0.42 in | Standard bottom safe margin                              |
-| `title-zone-height`  |   0.82 in | Reserved title region on content slides                  |
-| `footer-zone-height` |   0.24 in | Optional source, confidentiality, and page number region |
-| `column-gap`         |   0.28 in | Gap between grid columns                                 |
-| `row-gap`            |   0.22 in | Gap between vertically related regions                   |
-| `space-1`            |   0.08 in | Micro spacing                                            |
-| `space-2`            |   0.14 in | Tight spacing                                            |
-| `space-3`            |   0.22 in | Normal spacing                                           |
-| `space-4`            |   0.34 in | Group spacing                                            |
-| `space-5`            |   0.50 in | Section spacing                                          |
-| `radius-sm`          |   0.06 in | Small labels and subtle containers                       |
-| `radius-md`          |   0.12 in | Standard cards and panels                                |
-| `line-hairline`      |   0.75 pt | Rules and dividers                                       |
-| `line-standard`      |   1.25 pt | Diagram and connector lines                              |
+| Token                |     Value | Use                                             |
+| -------------------- | --------: | ----------------------------------------------- |
+| `slide-width`        | 13.333 in | Widescreen canvas width                         |
+| `slide-height`       |    7.5 in | Widescreen canvas height                        |
+| `margin-x`           |   0.67 in | Standard left and right safe margin             |
+| `margin-top`         |   0.46 in | Standard top safe margin                        |
+| `margin-bottom`      |   0.42 in | Standard bottom safe margin                     |
+| `title-zone-height`  |   0.82 in | Reserved title region on content slides         |
+| `footer-zone-height` |   0.24 in | Optional confidentiality and page number region |
+| `column-gap`         |   0.28 in | Gap between grid columns                        |
+| `row-gap`            |   0.22 in | Gap between vertically related regions          |
+| `space-1`            |   0.08 in | Micro spacing                                   |
+| `space-2`            |   0.14 in | Tight spacing                                   |
+| `space-3`            |   0.22 in | Normal spacing                                  |
+| `space-4`            |   0.34 in | Group spacing                                   |
+| `space-5`            |   0.50 in | Section spacing                                 |
+| `radius-sm`          |   0.06 in | Small labels and subtle containers              |
+| `radius-md`          |   0.12 in | Standard cards and panels                       |
+| `line-hairline`      |   0.75 pt | Rules and dividers                              |
+| `line-standard`      |   1.25 pt | Diagram and connector lines                     |
 
 ### Default colour roles
 
@@ -121,7 +121,6 @@ Do not mix Segoe and Georgia inside the same sentence. Do not use Georgia for de
 | `body`            | 16–20 pt |     1.15–1.3 | Segoe Text       |     400 | 6 lines per block    |
 | `body-compact`    | 14–16 pt |    1.15–1.25 | Segoe Text       |     400 | Controlled exception |
 | `caption`         | 11–13 pt |    1.15–1.25 | Segoe Text/Small | 400–550 | 2 lines              |
-| `source`          |  8–10 pt |     1.05–1.2 | Segoe Small/Text |     400 | 2 lines              |
 
 Never reduce normal body text below 14 pt to make content fit. Re-plan or split the slide instead. Use sentence case. Avoid all caps except for labels of four words or fewer, with increased character spacing.
 

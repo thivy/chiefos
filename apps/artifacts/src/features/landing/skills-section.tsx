@@ -77,7 +77,7 @@ function SkillsSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card-blush sm:col-span-2">
+          <Card className="bg-card-blush">
             <CardHeader>
               <SourceMetadata>
                 <SourceMetadataCode>/chief-os-powerpoint</SourceMetadataCode>
@@ -89,6 +89,21 @@ function SkillsSection() {
                 plans the story, gives every slide one clear message and a fitting layout, adds
                 consistent motion and illustrations, and checks each slide by eye before it saves
                 the file.
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card-sage">
+            <CardHeader>
+              <SourceMetadata>
+                <SourceMetadataCode>/chief-os-motion</SourceMetadataCode>
+              </SourceMetadata>
+            </CardHeader>
+            <CardContent>
+              <div>
+                Keeps animation in one style across a web page and a PowerPoint deck: the same few
+                effects, the same timings, and the same easing. Every movement has a purpose, and
+                everything still reads with motion turned off.
               </div>
             </CardContent>
           </Card>

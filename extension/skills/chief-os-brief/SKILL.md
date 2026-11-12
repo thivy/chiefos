@@ -50,6 +50,7 @@ These hold on every run, whether or not a reference has been read.
 - Never send email during the run except the single self-addressed summary at step 8. Step 4 only creates or updates unsent Outlook drafts.
 - Compose every image prompt through the `chief-os-image-prompt` skill, once per task. Never author, paraphrase, batch, or reuse a prompt yourself.
 - Build the `chiefos` app with `/app` from `references/output-html-design.md`, and the summary email from `references/email-html-design.md`. Use no other visual language or design system.
+- Drive the motion of the `chiefos` app through the `chief-os-motion` skill with its web reference, as the Motion section of `references/output-html-design.md` sets. Never author, tune, or copy motion values yourself. Give the email no motion.
 
 ## Workflow
 
