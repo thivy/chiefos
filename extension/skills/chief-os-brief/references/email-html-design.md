@@ -8,8 +8,8 @@ Use the colours of the app's [design tokens](output-html-design.md#design-tokens
 
 Mail clients do not support alpha tints, so the two derived tints become solid values:
 
-| Token      | Value                           | Use                       |
-| ---------- | ------------------------------- | ------------------------- |
+| Token      | Value                            | Use                       |
+| ---------- | -------------------------------- | ------------------------- |
 | Hairline   | `rgb(245, 235, 227)` / `#f5ebe3` | Quiet borders and rules   |
 | Muted text | `rgb(118, 104, 94)` / `#76685e`  | Metadata and empty states |
 

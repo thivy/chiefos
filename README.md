@@ -243,7 +243,7 @@ The order they are consulted during a run:
 | 3    | `output-todo`                                              | Updates your task list                                    |
 | 4    | `email-draft`                                              | Prepares Outlook drafts                                   |
 | 5    | `output-briefing`, `output-image`, `chief-os-image-prompt` | Builds the briefing data and the image                    |
-| 6    | `output-html-design`                                       | Builds the `chiefos` app with `/app`, image included      |
+| 6    | `output-html-design`, `chief-os-motion`                    | Builds the `chiefos` app with `/app`, image included      |
 | 7    | `output-memory`                                            | Verifies everything, and saves anything worth remembering |
 | 8    | `email-html-design`                                        | Sends the summary to you                                  |
 
