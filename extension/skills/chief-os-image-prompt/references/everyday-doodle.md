@@ -10,7 +10,7 @@ A [CARTOON_CHARACTER] interacts through visible contact: holding, climbing, pull
 
 ## Visual Treatment
 
-- Photorealistic everyday object; do not redraw or stylize it
+- Photorealistic everyday object; do not redraw or stylise it
 - All drawn elements use thin, uneven, slightly overlapping warm-black pen strokes with visible texture; shade with short hatch marks only, never gradients, soft shadows, or solid flat fills
 - Stick-figure characters follow the construction below, with warm light colours on clothing only
 - Multi-item compositions share one visual rhythm while varying objects, character details, poses, and personalities
@@ -21,7 +21,7 @@ Match photographic and drawn lighting and scale so they share one physical scene
 
 ### [EVERYDAY_OBJECT]
 
-A recognizable object whose shape, opening, handle, texture, scale, or function supports reinterpretation. Describe material, colour, orientation, and placement. Show the entire object, photorealistically.
+A recognisable object whose shape, opening, handle, texture, scale, or function supports reinterpretation. Describe material, colour, orientation, and placement. Show the entire object, photorealistically.
 
 Examples:
 
@@ -30,7 +30,7 @@ Examples:
 
 ### [CLEVER_PART_OF_THE_SCENE]
 
-Reinterpret one recognizable feature as a surprising role, matched to the character's pose, personality, clothing, accessories, and movement. Make the transformation legible without explanation.
+Reinterpret one recognisable feature as a surprising role, matched to the character's pose, personality, clothing, accessories, and movement. Make the transformation legible without explanation.
 
 **Template**
 
@@ -49,7 +49,7 @@ Draw the character to these rules:
 
 - **Construction**: round head, thin neck, minimal torso, and slender wobbly stick limbs like quick pen strokes. No volume, anatomy, muscle, or body mass.
 - **Face**: small dot eyes, kept sparse.
-- **Colour**: monochrome except for clothing in [COLOR_STYLE], using the linework and hatching from Visual Treatment.
+- **Colour**: monochrome except for clothing in [COLOR_STYLE] (a warm light colour such as mustard, terracotta, sage, or dusty blue), using the linework and hatching from Visual Treatment.
 
 Omit optional details that are not provided. Never display placeholder names or explanatory text in the image.
 
@@ -58,7 +58,7 @@ Omit optional details that are not provided. Never display placeholder names or 
 - Objects without a conceptual role, unrelated decorations, or multiple primary photographed objects per vignette
 - Disconnected, floating, implausibly scaled elements, or interactions without visible contact
 - Cartoon-styled photographed objects, volumetric characters, or airbrushed drawn elements
-- Heavy rendering, dense backgrounds, or excessive color
+- Heavy rendering, dense backgrounds, or excessive colour
 - Symmetrical poster layouts or infographic devices such as icons, charts, flow arrows, and callout boxes
 - Unrequested decorative captions, logos, watermarks, product labels, or illegible text
 - Duplicated objects, malformed hands, or distorted anatomy

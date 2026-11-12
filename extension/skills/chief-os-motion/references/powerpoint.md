@@ -30,7 +30,7 @@ Emphasis is one Pulse, played once, on the one element a slide exists to highlig
 
 ## Slide Transitions
 
-- Use **Fade**, at the `transition` token, on every slide. This includes the title slide and section dividers.
+- Use **Fade**, at the `transition` token, on every slide, including the title slide, and at `motion-slow` on section dividers.
 - Use **Morph**, at `motion-slow`, in place of Fade only when two consecutive slides share an object that changes position, size, or emphasis. Give each persisting object the same name on both slides, with the `!!` prefix, in the Selection Pane. Never use Morph just because it is available.
 - Never use another transition: no Push, Cover, Split, Zoom, Cube, Vortex, Dissolve, Ripple, or Flash. Never add a transition sound.
 - Use the same transition in both directions.

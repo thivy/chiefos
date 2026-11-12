@@ -163,17 +163,17 @@ The `chief-os-motion` skill drives all motion in the app. Run it with its [web r
 
 Give the skill these parts, with the build-rule row of the skill that each one takes. The page is rebuilt on every run, so this mapping keeps the result the same each time.
 
-| Part                                                                    | Build rule of the skill                                 |
-| ----------------------------------------------------------------------- | ------------------------------------------------------- |
-| Greeting, headline, section headings                                    | Fixed chrome                                            |
-| Overview card, image card, and the cards in the sections, in page order | Primary content, and peer items for the cards           |
-| Header, content, footer, Next step, and toggle inside a card            | None of their own. They arrive with their card          |
-| Toggle, and the image card as a button                                  | Press feedback, with hover only where the device hovers |
-| A card that becomes done, and back                                      | A reversible state change, never a new entrance         |
-| Image viewer dialog                                                     | Crossfade of the dialog, opening and closing            |
-| Loading line, and the saving icon                                       | Spinner. These are the only loops                       |
-| `The task file is not available.` line                                  | Fade                                                    |
-| Links, Next step text, strike-through, empty section line               | None                                                    |
+| Part                                                                              | Build rule of the skill                                 |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Greeting, headline, section headings                                              | Fixed chrome                                            |
+| Overview card, image card, and the cards in the sections, in page order           | Primary content, and peer items for the cards           |
+| Header, content, footer, Next step, and toggle inside a card                      | None of their own. They arrive with their card          |
+| Toggle                                                                            | Press feedback, with hover only where the device hovers |
+| A card that becomes done, and back                                                | A reversible state change, never a new entrance         |
+| Image viewer dialog                                                               | Crossfade of the dialog, opening and closing            |
+| Loading line, and the saving icon                                                 | Spinner. These are the only loops                       |
+| `The task file is not available.` line                                            | Fade                                                    |
+| Image card interaction, links, Next step text, strike-through, empty section line | None                                                    |
 
 These rules are about this page, and the skill cannot know them:
 
@@ -198,6 +198,6 @@ These rules are about this page, and the skill cannot know them:
 1. Follow `/app`'s validation workflow and run the app. Confirm that it shows this run's JSON and image, not an earlier run's, that every section shows its cards or its empty state, and that the image loads lazily without delaying the rest of the page.
 2. With `/app`'s preview or browser checks, view the app at `360px`, `40rem`, and `64rem` wide. Confirm that the layout follows this file, nothing clips or scrolls sideways, links open their source in a new tab, and keyboard focus is visible. Open the viewer from the image card, and confirm that it fills the screen, pans with a mouse drag, touch, and the arrow keys, and closes with `Escape` or its close button. Fix each failure and check again.
 3. Check the motion with the `chief-os-motion` skill and its web reference checks, and against the rules in [Motion](#motion): the entrance plays once and never again after a toggle press, and nothing moves except the loading line and the saving icon. Fix each failure and check again.
-4. Confirm that the page shows only `Loading…` until the app has read the task file, then that the app reads `todo.md` from the ChiefOS folder and shows each located task's status from it. Never write the live file during a check. Test the toggles against an in-memory copy of the file instead: after **Done** and then **Not done**, the task's line must match its original text, ending with the `Reopened.` mark, every other line must stay unchanged, a failed write must return the task to its previous status, and the pressed toggle must show the spinning icon until the write ends.
+4. Confirm that the page shows only the loading line until the app has read the task file, then that the app reads `todo.md` from the ChiefOS folder and shows each located task's status from it. Never write the live file during a check. Test the toggles against an in-memory copy of the file instead: after **Done** and then **Not done**, the task's line must match its original text, ending with the `Reopened.` mark, every other line must stay unchanged, a failed write must return the task to its previous status, and the pressed toggle must show the spinning icon until the write ends.
 5. Temporarily check at least 30 cards of mixed lengths, with and without a task, then empty sections, at the same widths. Confirm that the summary row follows [Layout](#layout) with and without an image, the sections show one, two, and three columns at those widths, cards in one row share its height with their full-width toggles level at the bottom, header labels and timestamps each stay on one line, summaries stop at six lines, only cards with a task take the pastels, done cards fade while their toggles stay at full opacity, and an empty section shows the empty state. Restore this run's JSON before delivery.
 6. Deliver the app through `/app`'s delivery workflow. If `/app` cannot save the app, say why and give its supported artifact or link. If `/app` cannot connect the OneDrive for Business connector, deliver the app with read-only tasks and say so under **For you to do** in the run report. If `/app` cannot include the image file, deliver the app without it and say so in the same place.

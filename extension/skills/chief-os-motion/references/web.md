@@ -53,6 +53,7 @@ Fall back to plain Fade where the browser lacks the View Transitions API. Never 
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;

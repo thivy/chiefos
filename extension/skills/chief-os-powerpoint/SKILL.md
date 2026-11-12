@@ -40,7 +40,7 @@ If the user supplies a brand theme, remap only the colour tokens in [design-syst
 
 ### 2. Plan the Story
 
-Read [layouts.md](references/layouts.md), the [PowerPoint motion reference](../chief-os-motion/references/powerpoint.md) of the `chief-os-motion` skill, and [images.md](references/images.md). Build the slide plan before any rendering. For each slide, record:
+Read [layouts.md](references/layouts.md) and [images.md](references/images.md), and apply the `chief-os-motion` skill with its [PowerPoint reference](../chief-os-motion/references/powerpoint.md). Build the slide plan before any rendering. For each slide, record:
 
 - slide number
 - purpose

@@ -280,7 +280,7 @@ matching release tag, and attaches the ZIP. No manual tag is required.
 | ------------------------- | --------------------------------------------------------------------- |
 | `extension/`              | The shipped extension: `manifest.json`, icons, and the skills         |
 | `apps/extension-package/` | Build script that packages `extension/` into `chief-os-<version>.zip` |
-| `docs/`                   | The GitHub Pages landing page                                         |
+| `apps/artifacts/`         | The GitHub Pages landing page                                         |
 
 Skills are registered in the `agentSkills` array of
 [extension/manifest.json](extension/manifest.json). Every folder listed there needs a

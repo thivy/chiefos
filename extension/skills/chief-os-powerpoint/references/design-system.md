@@ -136,7 +136,7 @@ For a standard content slide:
 - Standard title begins at x = 0.67 in, y = 0.46 in.
 - Main content begins at y = 1.52 in.
 - Main content ends by y = 7.08 in when no footer is present.
-- With a footer, main content ends by y = 6.88 in.
+- With a footer (`y = 6.84 to 7.08 in`), main content ends by y = 6.62 in.
 
 The title region must not be used by charts, images, diagrams, or body text unless the selected layout explicitly removes the standard title region.
 

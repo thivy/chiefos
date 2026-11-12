@@ -14,8 +14,8 @@ Make one `chief-os-image-prompt` call per item, key moments first, then actions,
 
 Then one instruction per section, which is what makes the two bands read apart at a glance:
 
-- **Key moment** — a vignette taller than it is wide, its object caught mid-event so it reads as something that happened. Below the art sit the marker, heading, display label, and summary note, in that order.
-- **Follow-up action** — a compact, roughly square vignette, its everyday object poised, packed, queued, or about to move so the action reads as still owed. No marker.
+- **Key moment:** a vignette taller than it is wide, its object caught mid-event so it reads as something that happened. Below the art sit the marker, heading, display label, and summary note, in that order.
+- **Follow-up action:** a compact, roughly square vignette, its everyday object poised, packed, queued, or about to move so the action reads as still owed. No marker.
 
 ## 3. Assemble the Final Prompt
 

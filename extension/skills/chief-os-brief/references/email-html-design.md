@@ -4,7 +4,7 @@ Outlook-compatible design for the summary email. Read this file in full and the 
 
 ## Design Tokens
 
-Use the colours of the app's [design tokens](output-html-design.md#design-tokens), in their `Hex fallback` column, as inline hex values: Warm Paper for the message background, Ink for text and links, White for the Overview and task surfaces, and Sage, Sand, Lemon, and Lilac for message cards. Never use `oklch`, and never use the reserved Sky and Blush.
+Use the colours of the app's [design tokens](output-html-design.md#design-tokens), in their `Hex fallback` column, as inline hex values: Warm Paper for the message background, Ink for text and links, White for the Overview, task surfaces, and message cards without a task, and Sage, Lemon, Lilac, and Sand for message cards with a task. Never use `oklch`, and never use the reserved Sky and Blush.
 
 Mail clients do not support alpha tints, so the two derived tints become solid values:
 
@@ -60,9 +60,9 @@ Preserve the mail client's default text size and the reader's size preference.
 ## Links and Accessibility
 
 - Link the subject when a verified absolute `https://` source URL exists. Keep the subject as plain text otherwise.
-- Use `color:#311f10`, `font-weight:600`, and `text-decoration:underline` for links so they remain recognizable without brand colors.
+- Use `color:#311f10`, `font-weight:600`, and `text-decoration:underline` for links so they remain recognisable without brand colours.
 - Include descriptive text such as `Open email: <subject>` in the link's accessible label when the mail API preserves accessibility attributes.
-- Do not rely on color alone for status, source, or completion.
+- Do not rely on colour alone for status, source, or completion.
 - Add `lang="en"` to the document root and include a meaningful `<title>`.
 - Put the hidden preheader before the main content inside the wrapper; never hide meaningful briefing content.
 
