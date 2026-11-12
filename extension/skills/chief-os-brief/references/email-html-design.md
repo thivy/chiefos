@@ -4,16 +4,11 @@ Outlook-compatible design for the summary email. Read this file in full and the 
 
 ## Design Tokens
 
-Use the colours of the app's [design tokens](output-html-design.md#design-tokens), in their `Hex fallback` column, as inline hex values: Warm Paper for the message background, Ink for text and links, White for the Overview, task surfaces, and message cards without a task, and Sage, Lemon, Lilac, and Sand for message cards with a task. Never use `oklch`, and never use the reserved Sky and Blush.
+Apply the `chief-os-design` skill: Palette, and its hex values as inline hex values. Never use `oklch`. Warm Paper is the message background, Ink is for text and links, and White is for the Overview, the task surfaces, and the message cards without a task. Message cards with a task take the pastels.
 
-Mail clients do not support alpha tints, so the two derived tints become solid values:
+Mail clients do not support alpha, so use the solid Hairline for quiet borders and rules, and the solid Muted text for metadata and empty states, as the Tints of that Palette set.
 
-| Token      | Value                            | Use                       |
-| ---------- | -------------------------------- | ------------------------- |
-| Hairline   | `rgb(245, 235, 227)` / `#f5ebe3` | Quiet borders and rules   |
-| Muted text | `rgb(118, 104, 94)` / `#76685e`  | Metadata and empty states |
-
-Rotate the pastels across the message cards in the order and by the rule that the app's design tokens set, by item order across email, calendar, chat, and meeting recap cards.
+Apply the `chief-os-design` skill: Card for the rotation of the pastels, by item order across email, calendar, chat, and meeting recap cards.
 
 ## Structure
 
@@ -39,13 +34,13 @@ Preserve the mail client's default text size and the reader's size preference.
 - Declare no base `font-size` on `body`, wrapper, or body copy cells.
 - Size every deviation relative to that inherited base with `em`, never `px`, `pt`, `rem`, `%`, `vw`, `clamp()`, or `!important`:
 
-| Role            | Style                                                  |
-| --------------- | ------------------------------------------------------ |
-| Body copy       | no `font-size`; `line-height:1.5`                      |
-| Page heading    | `font-size:1.875em; font-weight:600; line-height:1.1`  |
-| Section heading | `font-size:1.125em; font-weight:600; line-height:1.25` |
-| Card title      | `font-size:0.875em; font-weight:600; line-height:1.25` |
-| Metadata        | `font-size:0.75em; line-height:1.35; color:#76685e`    |
+| Role            | Style                                                   |
+| --------------- | ------------------------------------------------------- |
+| Body copy       | no `font-size`; `line-height:1.5`                       |
+| Page heading    | `font-size:1.875em; font-weight:600; line-height:1.1`   |
+| Section heading | `font-size:1.125em; font-weight:600; line-height:1.25`  |
+| Card title      | `font-size:0.875em; font-weight:600; line-height:1.25`  |
+| Metadata        | `font-size:0.75em; line-height:1.35`, Muted text colour |
 
 ## Content Layout
 
@@ -53,14 +48,14 @@ Preserve the mail client's default text size and the reader's size preference.
 2. Render Overview on white with a `1px` hairline border and no shadow.
 3. Render Tasks on white as compact rows separated by hairlines. Use `[ ]` for active and `[x]` for completed tasks in the plain-text alternative.
 4. Render Email, Calendar, Teams Chat, and Meeting Recaps as separate headings followed by content-height cards.
-5. Colour the message cards in source order, as the design tokens above set.
+5. Colour the message cards in source order, as the Card rotation above sets.
 6. Place metadata first, followed by subject, summary, author details, then the `Next step` label and the recommended action below a hairline rule.
 7. Show the [empty state](output-briefing.md#2-render) as muted body copy when a section is empty.
 
 ## Links and Accessibility
 
 - Link the subject when a verified absolute `https://` source URL exists. Keep the subject as plain text otherwise.
-- Use `color:#311f10`, `font-weight:600`, and `text-decoration:underline` for links so they remain recognisable without brand colours.
+- Use the Ink colour, `font-weight:600`, and `text-decoration:underline` for links so they remain recognisable without brand colours.
 - Include descriptive text such as `Open email: <subject>` in the link's accessible label when the mail API preserves accessibility attributes.
 - Do not rely on colour alone for status, source, or completion.
 - Add `lang="en"` to the document root and include a meaningful `<title>`.

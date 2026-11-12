@@ -89,7 +89,7 @@ Score every slide from 1 to 5 on:
 10. Evidence integrity
 11. Layout appropriateness
 12. Editability
-13. Motion purpose and consistency, per the [motion reference](../../chief-os-motion/references/powerpoint.md)
+13. Motion purpose and consistency, per the `chief-os-motion` skill
 
 Rules:
 
@@ -113,7 +113,7 @@ Before delivery:
 - Confirm slide titles tell a coherent story when read in sequence.
 - Confirm the deck uses a varied but consistent set of semantic layouts.
 - Confirm all generated presentation elements remain editable where practical.
-- Confirm every transition and animation matches the [motion reference](../../chief-os-motion/references/powerpoint.md), and that the deck reads fully with animation off.
+- Confirm every transition and animation matches the `chief-os-motion` skill for PowerPoint, and that the deck reads fully with animation off.
 - Confirm every generated image came from a `chief-os-image-prompt` call and renders no text.
 - Deliver the final `.pptx`, not only previews or source code.
 
@@ -125,7 +125,7 @@ Every rule in this skill is binding where it is stated, and nothing here overrid
 - Layout choice: [layouts.md](layouts.md). A card grid is never the default.
 - Charts, icons, and diagrams: the sections above. They set the ban on 3D and decorative chart effects, and the label rule for icons.
 - Evidence and wording: [SKILL.md](../SKILL.md#invariants). It bans fabricated evidence.
-- Motion: the [motion reference](../../chief-os-motion/references/powerpoint.md). It bans motion outside the shared style, and looping or flashing motion.
+- Motion: the `chief-os-motion` skill for PowerPoint. It bans motion outside the shared style, and looping or flashing motion.
 - Illustrations: [images.md](images.md). Every one comes from `chief-os-image-prompt`.
 - No unresolved placeholder text.
 - No export while a quality-gate blocker remains.

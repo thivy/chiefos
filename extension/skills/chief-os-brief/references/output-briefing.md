@@ -71,7 +71,7 @@ interface DailyBriefing {
 
 - Emit exactly these properties. Every one is required; use `null` only where the type allows it.
 - `url` must be a non-empty absolute deep link on every message item and every to-do item. Omit an item rather than emitting a partial or invented one.
-- `date` is the local briefing date in full, e.g. `Wednesday, 23 September 2026`, ordered for the user's locale. `timestamp` and `deadline` follow the date and time rules in [conventions.md](conventions.md).
+- `date` is the local briefing date in full, e.g. `Wednesday, 23 September 2026`, ordered for the user's locale. `timestamp` and `deadline` follow the date and time rules of the `chief-os-design` skill: Voice.
 - `taskTitle` stays `null` until the to-do list is final. Then set it to the exact `title` of the `todo.items` entry that the message created or supports, and leave it `null` when there is none. Each non-null `taskTitle` matches exactly one entry.
 - Any collection may be an empty array.
 - Keep the value in memory for the run, and give it to `/app` as the `chiefos` app's briefing data. Do not save it anywhere else.

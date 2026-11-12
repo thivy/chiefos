@@ -2,7 +2,7 @@
 
 Use the shared model below for email, calendar, Teams chat, and completed meetings, with source-specific profiles in section 6.
 
-Follow `conventions.md` for voice and formatting.
+Follow the `chief-os-design` skill: Voice for voice and formatting.
 
 ## 1. Workflow
 
@@ -117,7 +117,7 @@ Use the source-specific `MessageItem` interfaces and validation rules in [output
 - `authorName` is the sender or organiser; `authorRole` is their role, team, or organisation when known, otherwise their email address.
 - `subject`: keep a recognisable subject line with `RE:`, `FW:`, and tags such as `[EXTERNAL]` removed. Replace only an empty or uninformative one, such as `Quick question`, with a short neutral label naming the business topic.
 - `summary`: 1-2 sentences, under 40 words. Lead with what is needed or what changed, then why it matters and any deadline. Do not repeat the subject.
-- Retrieve `url` with the source data. `recommendedAction` is one imperative sentence under 20 words, following the action rules in `conventions.md`, or `null` when none is owed.
+- Retrieve `url` with the source data. `recommendedAction` is one imperative sentence under 20 words, following the action rules of the `chief-os-design` skill: Voice, or `null` when none is owed.
 
 ## 6. Source Profiles
 

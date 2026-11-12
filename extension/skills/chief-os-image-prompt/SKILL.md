@@ -28,7 +28,7 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 - **Called by another skill:** return the prompt internally, with style and requested settings as separate metadata. Do not post per-item prompts or metadata to user chat.
 - **Direct user request:** show the prompt as Markdown with style and requested settings alongside it.
 - Never generate an image, write a file, or claim an image was created.
-- Write any chat text outside the prompt per the [shared conventions](../chief-os-brief/references/conventions.md).
+- Write any chat text outside the prompt per the `chief-os-design` skill: Voice.
 
 ## References
 
@@ -37,4 +37,4 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 
 ## Caller Rules
 
-A caller that assembles many vignettes into one page follows [illustrated-page.md](references/illustrated-page.md). It is not a style.
+**Illustrated Page.** A caller that assembles many vignettes into one page asks for the `chief-os-image-prompt` skill: Illustrated Page. Read [illustrated-page.md](references/illustrated-page.md) for it. It sets the per-item calls, the assembly of the final prompt, and the generation check. It is not a style.

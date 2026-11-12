@@ -43,10 +43,10 @@ what changed, so it does not repeat the morning back at you.
 
 ---
 
-## The six skills
+## The seven skills
 
-The extension is deliberately small: six skills, each one something you would actually
-ask for out loud.
+The extension is deliberately small: seven skills. Six are something you would actually
+ask for out loud, and one is shared by the others.
 
 | Skill                       | You would say                                   | What it does                                                                                                                                                  |
 | --------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,13 +56,15 @@ ask for out loud.
 | **chief-os-image-prompt**   | "Use chief-os-image-prompt for a coastal scene" | Composes an illustration prompt in a named style, Everyday Doodle or Scientific Editorial. It returns the prompt and never generates the image itself         |
 | **chief-os-powerpoint**     | "Build a deck from these notes"                 | Plans the story, picks a layout for each slide, adds consistent motion and illustrations, checks every slide by eye, and delivers an editable PowerPoint file |
 | **chief-os-motion**         | "Add consistent animation to this page"         | One motion style for web pages and PowerPoint decks: the same effects, timings, and easing, with reduced motion respected                                     |
+| **chief-os-design**         | You never call it yourself                      | The shared look and voice that the others name: the house wording, the colour palette, and the card style                                                     |
 
-**chief-os-brief** is the one that does the work. The other five exist because they are
+**chief-os-brief** is the one that does the work. The other six exist because they are
 genuinely separate things you might want: setting your schedule happens once at setup,
 summarising a meeting is
 something you want right after that meeting rather than at 7am tomorrow, composing an
 image prompt is useful outside a briefing entirely, building a deck is a task of its own,
-and motion is a style you want to keep the same across a page and a deck.
+and motion is a style you want to keep the same across a page and a deck. The shared look
+and voice live in one place, so no skill repeats them.
 
 You can also ask for one part on its own, such as "triage my email" or "what is on my
 calendar", without running the full routine.
@@ -220,24 +222,23 @@ The routine itself does not change, and no other step is affected.
 ```
 chief-os-brief/
   SKILL.md      the nine-step routine, and the safety rules that hold on every run
-  references/   9 documents, grouped by what they govern
+  references/   8 documents, grouped by what they govern
 ```
 
 The safety rules live in `SKILL.md` rather than a reference, because references are only
 read at the step that needs them and these have to hold whether or not one was opened.
 
-| Group         | Documents                                                                               | Governs                                                        |
-| ------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `conventions` | `conventions`                                                                           | Tone and wording across everything you see                     |
-| `triage`      | `triage`                                                                                | How all four sources are read, scored, ranked, and categorised |
-| `output-`     | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory` | The briefing app and output files, and how they look           |
-| `email-`      | `email-draft`, `email-html-design`                                                      | Preparing drafts, and the look of the one email that gets sent |
+| Group     | Documents                                                                               | Governs                                                        |
+| --------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `triage`  | `triage`                                                                                | How all four sources are read, scored, ranked, and categorised |
+| `output-` | `output-briefing`, `output-html-design`, `output-image`, `output-todo`, `output-memory` | The briefing app and output files, and how they look           |
+| `email-`  | `email-draft`, `email-html-design`                                                      | Preparing drafts, and the look of the one email that gets sent |
 
 The order they are consulted during a run:
 
 | Step | Reference consulted                                        | What it decides                                           |
 | ---- | ---------------------------------------------------------- | --------------------------------------------------------- |
-| 0    | `conventions`, `output-memory`, `output-todo`              | Loads the house rules, your context, and unfinished tasks |
+| 0    | `chief-os-design`, `output-memory`, `output-todo`          | Loads the house rules, your context, and unfinished tasks |
 | 1    | `triage`                                                   | What matters today, and in what order                     |
 | 2    | none                                                       | Writes the executive summary                              |
 | 3    | `output-todo`                                              | Updates your task list                                    |
@@ -247,7 +248,7 @@ The order they are consulted during a run:
 | 7    | `output-memory`                                            | Verifies everything, and saves anything worth remembering |
 | 8    | `email-html-design`                                        | Sends the summary to you                                  |
 
-`conventions` is the single home for house style, which is why the tone stays consistent
+`chief-os-design` is the single home for house style, which is why the tone stays consistent
 whether you are reading the briefing, a draft reply, or the summary email, and why no
 other file restates it. `output-html-design` and `email-html-design` are deliberately
 separate: the `chiefos` app is read in a browser and uses the full design system, while
@@ -291,9 +292,10 @@ Skills are registered in the `agentSkills` array of
 - **Adding a step:** add it to `SKILL.md` and name the reference it reads. Steps name their
   own references inline, so there is no separate index to keep in sync.
 - **Adding a skill:** create the folder with a `SKILL.md`, then register it in the
-  manifest. A skill only earns its own folder if a user would ask for it directly.
+  manifest. A skill only earns its own folder if a user would ask for it directly, or if
+  several skills share it.
 - **Adding a rule that applies everywhere:** a safety rule goes in the Invariants list in
-  `SKILL.md`; a wording or formatting rule goes in `conventions.md`. Either way it is
+  `SKILL.md`; a wording or formatting rule goes in the `chief-os-design` skill. Either way it is
   written once, so a rule stated twice is a bug.
 
 The `chiefos` app is built with `/app` from
@@ -304,6 +306,6 @@ Each output has exactly one design source, and the two must never be swapped. Th
 the data they render is defined as TypeScript interfaces in
 [output-briefing.md](extension/skills/chief-os-brief/references/output-briefing.md).
 
-House style for everything the user sees is set in
-[conventions.md](extension/skills/chief-os-brief/references/conventions.md): ASD-STE100
+House style for everything the user sees is set in the `chief-os-design` skill, in
+[conventions.md](extension/skills/chief-os-design/references/conventions.md): ASD-STE100
 Simplified Technical English (Issue 9), no em dashes, concise and action-oriented.

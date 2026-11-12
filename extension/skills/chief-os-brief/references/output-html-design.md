@@ -7,34 +7,11 @@ The binding design system for the `chiefos` app. Build the app with the `/app` s
 
 ## Design Tokens
 
-Declare these on `:root` and use them for every colour; keep hex literals inside that block. The `oklch` value is the source of truth; the hex is the fallback for older engines.
-
-| Token      | Custom property | `oklch`                      | Hex fallback | Use                                 |
-| ---------- | --------------- | ---------------------------- | ------------ | ----------------------------------- |
-| Warm Paper | `--background`  | `oklch(0.978 0.013 56.256)`  | `#fff6f0`    | Page background                     |
-| Ink        | `--foreground`  | `oklch(0.258 0.038 59.8)`    | `#311f10`    | All text, icon strokes, corner dots |
-| White      | `--card`        | `oklch(1 0 0)`               | `#ffffff`    | Overview, cards without a task      |
-| Sage       | `--card-sage`   | `oklch(0.857 0.05 122.449)`  | `#cad6b2`    | Card with a task                    |
-| Lemon      | `--card-lemon`  | `oklch(0.915 0.09 90.159)`   | `#fae19d`    | Card with a task                    |
-| Lilac      | `--card-lilac`  | `oklch(0.824 0.036 303.716)` | `#cac0d9`    | Card with a task                    |
-| Sand       | `--card-sand`   | `oklch(0.856 0.051 67.059)`  | `#e7caad`    | Card with a task                    |
-| Sky        | `--card-sky`    | `oklch(0.858 0.045 237.412)` | none         | Reserved, outside the rotation      |
-| Blush      | `--card-blush`  | `oklch(0.853 0.047 17.284)`  | none         | Reserved, outside the rotation      |
-| Focus ring | `--ring`        | `oklch(0.705 0.015 286.067)` | `#b0aeb6`    | Keyboard focus only                 |
-| Avatar     | `--avatar`      | `oklch(0.987 0.022 95.277)`  | `#fffbeb`    | Empty avatar circle                 |
-
-Derive every tint from Ink with an alpha, never a separate grey:
-
-| Derived     | Value                                                     | Use                  |
-| ----------- | --------------------------------------------------------- | -------------------- |
-| Card border | `color-mix(in oklch, var(--foreground) 5%, transparent)`  | Card outline         |
-| Hairline    | `color-mix(in oklch, var(--foreground) 10%, transparent)` | Rule above Next step |
-| Muted text  | `color-mix(in oklch, var(--foreground) 60%, transparent)` | Captions, metadata   |
-| Body text   | `color-mix(in oklch, var(--foreground) 70%, transparent)` | Card summaries       |
+Apply the `chief-os-design` skill: Palette. Declare its tokens on `:root`, as the custom properties that it names, and use them for every colour; keep hex literals inside that block. Where the app needs alpha, use its Tints, mixed from Ink with `color-mix(in oklch, var(--foreground) <alpha>, transparent)`, never a separate grey.
 
 Set `--radius: 0.625rem`; cards and links use `calc(var(--radius) * 0.6)` (`0.375rem`). Only avatars and corner dots are fully round.
 
-A card with a task takes a pastel, and a card without a task is White. Sage, Lemon, Lilac, and Sand are peers, not status colours: rotate them strictly in that order across the cards with a task, in page order. Sky and Blush exist as tokens but stay out of the rotation.
+Apply the `chief-os-design` skill: Card for the surface. A card with a task takes a pastel, and a card without a task is White, in page order.
 
 ## Typography
 
@@ -75,18 +52,20 @@ Card spacing:
 
 ## Card Anatomy
 
-Every card is `position: relative`, a flex column, with the card border, `border-radius: 0.375rem`, and a soft shadow. The Overview card drops the shadow, and every other card takes the surface that [Design Tokens](#design-tokens) gives it.
+Every card is `position: relative`, a flex column, with the card border, `border-radius: 0.375rem`, and a soft shadow. The Overview card drops the shadow, and every other card takes the surface that the `chief-os-design` skill: Card gives it.
 
 The Overview contains only corner marks, a header, and content, in normal top-to-bottom flow: the header starts at the card's top padding, and the briefing `summary` follows one part gap below it. Corner marks are absolutely positioned and must not occupy layout space.
 
 Order inside a card is fixed. The Overview uses the first three parts below, and every other card uses each part that it has content for. The first of Next step and Toggle in a card takes `margin-top: auto`, so that extra row height collects above it.
 
-1. **Corner marks.** A card-covering overlay with `pointer-events: none` and `opacity: 0.4`. Four 2x2 dot grids sit `0.5rem` from the corners. Dots are round Ink, `0.125rem` wide with `0.125rem` gaps. Using row-major indices, hide `3` at top left, `2` at top right, `1` at bottom left, and `0` at bottom right, leaving three dots per corner.
-2. **Header.** Two `caption` lines with `gap: 0.125rem`: the timestamp first, then the source icon at `opacity: 0.6` and the label on the next line, with `0.5rem` between the icon and the label. Keep each on one line: the timestamp never wraps, and the label ends with an ellipsis when it is too long. Centre the icon on the label line.
+The parts and their order are those of the `chief-os-design` skill: Card. These are the values for the web:
+
+1. **Corner marks.** A card-covering overlay with `pointer-events: none` and `opacity: 0.4`. The grids sit `0.5rem` from the corners. Dots are `0.125rem` wide with `0.125rem` gaps.
+2. **Header.** Two `caption` lines with `gap: 0.125rem`: the timestamp first, then the source icon at `opacity: 0.6` and the label on the next line, with `0.5rem` between the icon and the label. The timestamp never wraps, and the label ends with an ellipsis when it is too long. Centre the icon on the label line.
 3. **Content.** A flex column with `gap: 0.375rem`. `card-title` carries the subject, linked to its source as [Links and Accessibility](#links-and-accessibility) describes, followed by the summary in `card-body`, cut off after six lines.
 4. **Footer.** The avatar, a `2.25rem` round circle filled with the avatar token, then the author name as `display-xs` above the author role as `caption`. Omit the footer when neither name nor role is known.
-5. **Next step.** Only when a recommended action exists. A full-width hairline rule; `0.75rem` below it, the lightbulb icon and the `caption` label `Next step` on one row; then, `0.375rem` lower, the action text at `0.875rem` and weight `500`, across the full width. When the card's task is done, the action text takes `text-decoration: line-through`.
-6. **Toggle.** Only on a card with a task, and always last, as [Tasks](#tasks) describes.
+5. **Next step.** A `0.75rem` gap below the rule, then the lightbulb icon and the `caption` label on one row; then, `0.375rem` lower, the action text at `0.875rem` and weight `500`, across the full width.
+6. **Toggle.** As [Tasks](#tasks) describes.
 
 ## Briefing Image
 
@@ -159,7 +138,7 @@ Draw every icon as inline SVG in the Lucide style: `viewBox="0 0 24 24"`, `fill=
 
 ## Motion
 
-The `chief-os-motion` skill drives all motion in the app. Run it with its [web reference](../../chief-os-motion/references/web.md), and give it the inventory below. Never write a duration, curve, effect, or reduced-motion rule yourself, and never leave a library's default motion in place. The skill's plan, tokens, and checks are the definition of the app's motion, and its token block goes on `:root` next to the colours, unchanged.
+The `chief-os-motion` skill drives all motion in the app. Apply it for the web, and give it the inventory below. Never write a duration, curve, effect, or reduced-motion rule yourself, and never leave a library's default motion in place. The skill's plan, tokens, and checks are the definition of the app's motion, and the token block that it gives for the web goes on `:root` next to the colours, unchanged.
 
 Give the skill these parts, with the build-rule row of the skill that each one takes. The page is rebuilt on every run, so this mapping keeps the result the same each time.
 
@@ -197,7 +176,7 @@ These rules are about this page, and the skill cannot know them:
 
 1. Follow `/app`'s validation workflow and run the app. Confirm that it shows this run's JSON and image, not an earlier run's, that every section shows its cards or its empty state, and that the image loads lazily without delaying the rest of the page.
 2. With `/app`'s preview or browser checks, view the app at `360px`, `40rem`, and `64rem` wide. Confirm that the layout follows this file, nothing clips or scrolls sideways, links open their source in a new tab, and keyboard focus is visible. Open the viewer from the image card, and confirm that it fills the screen, pans with a mouse drag, touch, and the arrow keys, and closes with `Escape` or its close button. Fix each failure and check again.
-3. Check the motion with the `chief-os-motion` skill and its web reference checks, and against the rules in [Motion](#motion): the entrance plays once and never again after a toggle press, and nothing moves except the loading line and the saving icon. Fix each failure and check again.
+3. Check the motion with the `chief-os-motion` skill, for the web, and against the rules in [Motion](#motion): the entrance plays once and never again after a toggle press, and nothing moves except the loading line and the saving icon. Fix each failure and check again.
 4. Confirm that the page shows only the loading line until the app has read the task file, then that the app reads `todo.md` from the ChiefOS folder and shows each located task's status from it. Never write the live file during a check. Test the toggles against an in-memory copy of the file instead: after **Done** and then **Not done**, the task's line must match its original text, ending with the `Reopened.` mark, every other line must stay unchanged, a failed write must return the task to its previous status, and the pressed toggle must show the spinning icon until the write ends.
 5. Temporarily check at least 30 cards of mixed lengths, with and without a task, then empty sections, at the same widths. Confirm that the summary row follows [Layout](#layout) with and without an image, the sections show one, two, and three columns at those widths, cards in one row share its height with their full-width toggles level at the bottom, header labels and timestamps each stay on one line, summaries stop at six lines, only cards with a task take the pastels, done cards fade while their toggles stay at full opacity, and an empty section shows the empty state. Restore this run's JSON before delivery.
 6. Deliver the app through `/app`'s delivery workflow. If `/app` cannot save the app, say why and give its supported artifact or link. If `/app` cannot connect the OneDrive for Business connector, deliver the app with read-only tasks and say so under **For you to do** in the run report. If `/app` cannot include the image file, deliver the app without it and say so in the same place.

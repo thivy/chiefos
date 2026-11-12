@@ -10,7 +10,7 @@ Omit an empty band's label and space. If both collections are empty, stop withou
 
 ## 2. Compose One Prompt per Item
 
-Make one `chief-os-image-prompt` call per item, key moments first, then actions, as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#per-item-calls) sets. Pass all fields marked Rendered in the capture tables as the text whitelist, and context as non-rendering material.
+Make one `chief-os-image-prompt` call per item, key moments first, then actions, as the `chief-os-image-prompt` skill: Illustrated Page sets for per-item calls. Pass all fields marked Rendered in the capture tables as the text whitelist, and context as non-rendering material.
 
 Then one instruction per section, which is what makes the two bands read apart at a glance:
 
@@ -25,7 +25,7 @@ The final prompt is the block below with three substitutions:
 - `{KEY_MOMENT_PROMPTS}` is every key moment prompt returned in stage 2, in timeline order, separated by blank lines.
 - `{FOLLOW_UP_PROMPTS}` is every follow-up action prompt returned in stage 2, in source order, separated by blank lines.
 
-Insert the prompts as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#assemble-the-final-prompt) sets.
+Insert the prompts as the `chief-os-image-prompt` skill: Illustrated Page sets for assembly.
 
 ```
 **Page**
@@ -78,4 +78,4 @@ Next steps:
 
 ## 4. Generate
 
-Generate `visual-minutes.png` as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#generate) sets.
+Generate `visual-minutes.png` as the `chief-os-image-prompt` skill: Illustrated Page sets for generation.

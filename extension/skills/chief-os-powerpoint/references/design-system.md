@@ -43,23 +43,25 @@ A supplied brand theme may remap the colour tokens while preserving semantic rol
 
 ### Default colour roles
 
-| Role           | Palette name | Default   | Use                                             |
-| -------------- | ------------ | --------- | ----------------------------------------------- |
-| `background`   | Warm Paper   | `#FFF6F0` | Standard slide background                       |
-| `foreground`   | Ink          | `#311F10` | Primary text and icon colour                    |
-| `muted`        | Muted Text   | `#76685E` | Secondary text and metadata                     |
-| `subtle`       | White        | `#FFFFFF` | Quiet panels and table bands                    |
-| `border`       | Hairline     | `#F5EBE3` | Rules, dividers, and light outlines             |
-| `brand`        | Ink          | `#311F10` | Primary emphasis and selected data              |
-| `brand-soft`   | Sage         | `#CAD6B2` | Light branded surface                           |
-| `positive`     | Sage         | `#CAD6B2` | Positive or complete status                     |
-| `warning`      | Lemon        | `#FAE19D` | Caution or unresolved status                    |
-| `critical`     | Sand         | `#E7CAAD` | Critical risk or negative status                |
-| `accent`       | Lilac        | `#CAC0D9` | Second supporting accent and categorical series |
-| `dark-surface` | Ink          | `#311F10` | Approved dark or image-overlay slides           |
-| `on-dark`      | Warm Paper   | `#FFF6F0` | Text and icons on dark surfaces                 |
+The palette is that of the `chief-os-design` skill: Palette, and its names and hex values apply here. Use its solid tints, because slides need no alpha for text. These roles map the palette to the slide:
 
-Sage, Sand, Lemon, and Lilac are surface colours. Never use one as text colour. Text and icons on them are Ink. A shape or data mark in one of them must carry an Ink outline or an Ink direct label, because these colours have low contrast against Warm Paper and White. A card is exempt, because its Ink text and outline label it. Use Hairline for rules only, never to hold meaning.
+| Role           | Palette name | Use                                             |
+| -------------- | ------------ | ----------------------------------------------- |
+| `background`   | Warm Paper   | Standard slide background                       |
+| `foreground`   | Ink          | Primary text and icon colour                    |
+| `muted`        | Muted Text   | Secondary text and metadata                     |
+| `subtle`       | White        | Quiet panels and table bands                    |
+| `border`       | Hairline     | Rules, dividers, and light outlines             |
+| `brand`        | Ink          | Primary emphasis and selected data              |
+| `brand-soft`   | Sage         | Light branded surface                           |
+| `positive`     | Sage         | Positive or complete status                     |
+| `warning`      | Lemon        | Caution or unresolved status                    |
+| `critical`     | Sand         | Critical risk or negative status                |
+| `accent`       | Lilac        | Second supporting accent and categorical series |
+| `dark-surface` | Ink          | Approved dark or image-overlay slides           |
+| `on-dark`      | Warm Paper   | Text and icons on dark surfaces                 |
+
+A shape or data mark in a pastel must carry an Ink outline or an Ink direct label, because the pastels have low contrast against Warm Paper and White. A card is exempt, because its Ink text and outline label it. Use Hairline for rules only, never to hold meaning.
 
 Use no more than one primary brand colour and two supporting accent colours on a normal slide. Semantic colours must retain the same meaning throughout the deck. Never rely on colour alone to communicate status or category. Status colours are pale, so each status also carries a label and an icon.
 
@@ -114,7 +116,7 @@ Do not mix Segoe and Georgia inside the same sentence. Do not use Georgia for de
 | ----------------- | -------: | -----------: | ---------------- | ------: | -------------------- |
 | `hero-title`      | 40–54 pt |    0.95–1.05 | Georgia          | 400–600 | 3 lines              |
 | `section-title`   | 34–44 pt |     1.0–1.08 | Georgia          | 400–600 | 3 lines              |
-| `slide-title`     | 26–32 pt |    1.05–1.12 | Segoe Display    | 550–650 | 2 lines              |
+| `slide-title`     | 26–32 pt |    1.05–1.12 | Georgia          | 550–650 | 2 lines              |
 | `large-number`    | 48–76 pt |      0.9–1.0 | Segoe Display    | 600–700 | 1 line               |
 | `large-statement` | 28–38 pt |     1.0–1.12 | Georgia          | 400–600 | 4 lines              |
 | `subheading`      | 18–22 pt |      1.1–1.2 | Segoe Text       | 550–650 | 2 lines              |
@@ -195,34 +197,28 @@ When content exceeds these limits, first simplify, group, visualise, move detail
 
 ## Card Style
 
-The one container style of the deck, taken from the cards of the `chiefos` app: its [design tokens](../../chief-os-brief/references/output-html-design.md#design-tokens) and [card anatomy](../../chief-os-brief/references/output-html-design.md#card-anatomy). The slide values below adapt that style to the slide canvas. Where this section is silent, follow the app.
+Apply the `chief-os-design` skill: Card, for the surface, the colours, and the parts and their order. The slide values below are what differ on the slide canvas.
 
-Use a card only where the principles allow it: grouping, containment, or comparison of peer items. The layouts that may use one are L09, L11, L15, L16, L22, L23, and L24. Never nest a card in a card, and never put a card on a dark surface.
+Use a card only where the principles allow it. The layouts that may use one are L09, L11, L15, L16, L22, L23, and L24. Never put a card on a dark surface.
 
 ### Shape and surface
 
-- A rounded rectangle with `radius-sm`, a `line-hairline` Ink outline at 95% transparency, and a soft outer shadow: Ink at 85% transparency, 6 pt blur, 2 pt down. No gradient.
-- **Peer cards** take a pastel. Rotate Sage, Lemon, Lilac, and Sand strictly in that order, in reading order, and start again from Sage on each slide. The four are peers, not status colours.
+- The radius is `radius-sm`, the outline is `line-hairline`, and the shadow is a soft outer shadow: Ink at 85% transparency, 6 pt blur, 2 pt down. The outline is Ink at 95% transparency.
+- Rotation restarts from Sage on each slide.
 - **Status cards** (L23) take the `positive`, `warning`, or `critical` role instead of the rotation, with a label and an icon, as the colour rules require.
-- A **summary card**, which only supports the slide, such as the context beside a chart, is White with no shadow and no corner marks.
-- Peer cards in one row share one height and one top edge.
-- Use no colour outside the palette.
+- A **summary card** is the context beside a chart or a list.
 
 ### Anatomy
 
-Padding is `space-3` on every side, and the gap between parts is `space-2`. The order is fixed, and a card uses each part that it has content for:
+Padding is `space-3` on every side, and the gap between parts is `space-2`.
 
-1. **Corner marks.** Four 2 × 2 grids of round Ink dots, 0.03 in wide with 0.03 in gaps, `space-1` from each corner, at 60% transparency. Hide dot 3 at top left, 2 at top right, 1 at bottom left, and 0 at bottom right, in row-major order, which leaves three dots per corner. Group them as one decorative object behind the text, and mark it decorative.
-2. **Header.** One or two `caption` lines: a short label such as a category, owner, date, or step number, with an optional 16–20 pt icon before it. Keep each line to one line.
+1. **Corner marks.** Dots 0.03 in wide with 0.03 in gaps, `space-1` from each corner, at 60% transparency. Group them as one object, and mark it decorative.
+2. **Header.** The label is a category, owner, date, or step number, in `caption`, with an optional 16–20 pt icon before it.
 3. **Content.** The title in `subheading`, then the supporting text in `body-compact`, at most four lines. Shorten the text instead of cutting it off.
-4. **Footer.** Only when the card concerns a person: the name in `caption` at weight 550 above the role in `caption`. Add a round picture only when a real one is supplied. Never draw an empty avatar.
-5. **Next step.** Only when an action is owed: a full-width `line-hairline` rule in Ink at 90% transparency, then a lightbulb icon with the `caption` label `Next step`, then the action in `body-compact` at weight 550. In a row of peer cards, align this part to the bottom of each card.
+4. **Footer.** The name in `caption` at weight 550, then the role in `caption`. Add a round picture only when a real one is supplied. Never draw an empty avatar.
+5. **Next step.** The rule is `line-hairline`, Ink at 90% transparency. The action is `body-compact` at weight 550.
 
-The toggle of the app has no slide equivalent. Do not add one.
-
-### Text colour
-
-All text on a pastel is Ink. Muted Text is for White cards and Warm Paper only, because it is too faint on a pastel.
+The toggle has no slide equivalent. Do not add one.
 
 ### Image card
 

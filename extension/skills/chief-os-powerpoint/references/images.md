@@ -53,7 +53,7 @@ Start fresh each run. Never reuse a prompt or an image from an earlier run.
 3. Place the image in its region as the [image rules](visuals-and-quality.md#images-and-visual-assets) set, never stretched.
 4. Keep working image files out of the output folder. The `.pptx` is the only deliverable.
 5. Set alt text as [Accessibility](visuals-and-quality.md#accessibility) sets. Say what the image shows and why it is on the slide, and do not repeat the slide title.
-6. Give the image no animation of its own. It arrives with the slide transition, or by Fade as the [motion reference](../../chief-os-motion/references/powerpoint.md) sets.
+6. Give the image no animation of its own. It arrives with the slide transition, or by Fade as the `chief-os-motion` skill sets for PowerPoint.
 
 ## Check
 

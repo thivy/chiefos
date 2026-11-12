@@ -23,7 +23,7 @@ These hold on every run, whether or not a reference has been read.
 - **Order is meaning.** Key moments run in timeline order and follow-up actions in the order they were agreed. Never reorder either for visual effect.
 - Compose every image prompt through the `chief-os-image-prompt` skill, once per item. Never author, paraphrase, batch, or reuse a prompt yourself.
 - Produce one image. Never split the two bands into separate files.
-- Write every rendered and reported line per the [shared conventions](../chief-os-brief/references/conventions.md), including their ASD-STE100 rules. Use the local time zone for dates and source timing for elapsed markers.
+- Write every rendered and reported line per the `chief-os-design` skill: Voice, including its ASD-STE100 rules. Use the local time zone for dates and source timing for elapsed markers.
 
 ## Workflow
 

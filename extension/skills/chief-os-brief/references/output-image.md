@@ -19,7 +19,7 @@ Use one vignette per task. With zero tasks, generate a date-only page and make z
 
 ## 2. Compose One Prompt per Task
 
-Make one `chief-os-image-prompt` call per task in source order, as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#per-item-calls) sets. Pass all fields marked Rendered above as the text whitelist, and context as non-rendering material.
+Make one `chief-os-image-prompt` call per task in source order, as the `chief-os-image-prompt` skill: Illustrated Page sets for per-item calls. Pass all fields marked Rendered above as the text whitelist, and context as non-rendering material.
 
 ## 3. Assemble the Final Prompt
 
@@ -28,7 +28,7 @@ The final prompt is the block below with two substitutions:
 - `{LOCAL_DATE}` is the top-level `date`, used verbatim and never reformatted.
 - `{TASK_PROMPTS}` is every prompt returned in stage 2, in source order, separated by blank lines.
 
-Insert the prompts as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#assemble-the-final-prompt) sets.
+Insert the prompts as the `chief-os-image-prompt` skill: Illustrated Page sets for assembly.
 
 ```
 **Page**
@@ -60,4 +60,4 @@ Date: {LOCAL_DATE}
 
 ## 4. Generate
 
-Generate `artifact-image.png` as [illustrated-page.md](../../chief-os-image-prompt/references/illustrated-page.md#generate) sets.
+Generate `artifact-image.png` as the `chief-os-image-prompt` skill: Illustrated Page sets for generation.

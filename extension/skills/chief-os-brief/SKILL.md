@@ -50,7 +50,7 @@ These hold on every run, whether or not a reference has been read.
 - Never send email during the run except the single self-addressed summary at step 8. Step 4 only creates or updates unsent Outlook drafts.
 - Compose every image prompt through the `chief-os-image-prompt` skill, once per task. Never author, paraphrase, batch, or reuse a prompt yourself.
 - Build the `chiefos` app with `/app` from `references/output-html-design.md`, and the summary email from `references/email-html-design.md`. Use no other visual language or design system.
-- Drive the motion of the `chiefos` app through the `chief-os-motion` skill with its web reference, as the Motion section of `references/output-html-design.md` sets. Never author, tune, or copy motion values yourself. Give the email no motion.
+- Drive the motion of the `chiefos` app through the `chief-os-motion` skill, for the web, as the Motion section of `references/output-html-design.md` sets. Never author, tune, or copy motion values yourself. Give the email no motion.
 
 ## Workflow
 
@@ -59,7 +59,7 @@ Run the selected steps in order without pausing for confirmation. Scheduled runs
 ### 0. Prepare Working Files
 
 - When step 6 is selected, confirm that `/app` is available. If it is not, stop and say that it must be enabled.
-- Read `references/conventions.md` and apply it to all user-facing output.
+- Apply the `chief-os-design` skill: Voice to all user-facing output.
 - When this is the first ChiefOS run in the conversation and a capability can name the conversation, set its title to `🌻 ChiefOS`, exactly as written. Never change the title on a later run, even when the user changed it. When no capability can name the conversation, continue without a report.
 - Confirm that the ChiefOS folder exists, and create it when it is missing.
 - Read `references/output-memory.md` and `references/output-todo.md`. Create `memory.md` or `todo.md` in the ChiefOS folder when it is missing or empty. Start it from the most recently changed non-empty file of the same name in the output folder or in `Documents/Copilot/Created/chiefos` in the user's OneDrive, when one exists, and otherwise from its reference's template. Never change or delete those older files.

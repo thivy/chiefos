@@ -21,7 +21,7 @@ These hold on every run, whether or not a reference has been read.
 - **Choose a layout by purpose.** Select it from [layouts.md](references/layouts.md) with the selection table. Never pick a layout at random, and never use a card grid as the default for every content type.
 - **Simplify before shrinking.** When content does not fit, simplify, group, visualise, move detail to speaker notes, or split the slide. Never reduce body text below 14 pt.
 - **Native fonts and editable objects.** Use installed fonts only. Keep text, shapes, tables, and charts editable. Use a rendered picture only for a visual that must be one.
-- **One motion style.** Compose every transition and animation through the `chief-os-motion` skill, with its [PowerPoint reference](../chief-os-motion/references/powerpoint.md): the same four effects, the same durations and easing, the same transition on every slide. Motion must have a purpose, and the deck must make full sense with all motion off.
+- **One motion style.** Compose every transition and animation through the `chief-os-motion` skill, for PowerPoint: the same four effects, the same durations and easing, the same transition on every slide. Motion must have a purpose, and the deck must make full sense with all motion off.
 - **Illustrations come from `chief-os-image-prompt`.** Compose every image prompt through that skill, once per image, as [images.md](references/images.md) sets. Never author a prompt yourself and never use another image source for an illustration.
 - **No export with a blocker.** Overlap, overflow, a missing font, and an accessibility failure each block delivery.
 - Write all deck text in the regional English of the user's location. Do not name third-party brands in the deck unless the user's content does.
@@ -40,7 +40,7 @@ If the user supplies a brand theme, remap only the colour tokens in [design-syst
 
 ### 2. Plan the Story
 
-Read [layouts.md](references/layouts.md) and [images.md](references/images.md), and apply the `chief-os-motion` skill with its [PowerPoint reference](../chief-os-motion/references/powerpoint.md). Build the slide plan before any rendering. For each slide, record:
+Read [layouts.md](references/layouts.md) and [images.md](references/images.md), and apply the `chief-os-motion` skill, for PowerPoint. Build the slide plan before any rendering. For each slide, record:
 
 - slide number
 - purpose
@@ -69,7 +69,7 @@ Score every slide with the quality gate in [visuals-and-quality.md](references/v
 
 ### 5. Render and Inspect
 
-Build the `.pptx` with the PowerPoint tools of the session. Render every slide to an image, then inspect each one at normal presentation size against the validation list in [visuals-and-quality.md](references/visuals-and-quality.md#validation-and-delivery). Check the motion of each slide from its animation list as the [motion reference](../chief-os-motion/references/powerpoint.md#authoring-and-checking) sets, because a render does not show motion. Fix every fault, then render again.
+Build the `.pptx` with the PowerPoint tools of the session. Render every slide to an image, then inspect each one at normal presentation size against the validation list in [visuals-and-quality.md](references/visuals-and-quality.md#validation-and-delivery). Check the motion of each slide from its animation list, as the `chief-os-motion` skill sets for PowerPoint, because a render does not show motion. Fix every fault, then render again.
 
 ### 6. Deliver and Report
 
