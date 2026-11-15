@@ -13,6 +13,17 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 - Read the matching reference in full before composing.
 - Apply one style only. Do not blend styles or borrow motifs from another reference.
 
+| Style                      | Suits                                                                    | Text in the image        |
+| -------------------------- | ------------------------------------------------------------------------ | ------------------------ |
+| Everyday Doodle            | Witty, human-scale vignettes of tasks and actions. The default           | Whitelisted fields       |
+| Scientific Editorial       | Explaining a system, process, or piece of research                       | Short whitelisted labels |
+| Prism Grain Silhouette     | Calm, inspirational posters about growth, ambition, courage, or progress | None                     |
+| Spectrum Grain Collage     | Bold, creative, retro-contemporary images about momentum or a launch     | None                     |
+| Blue-Glow Halftone Concept | One clear metaphor from two unlikely objects, in Swiss editorial design  | None                     |
+| Luminous Glitch Hologram   | Technology, AI, innovation, or data, as one glowing subject on black     | None                     |
+
+A style that shows no text cannot carry a caller's rendered fields. When the supplied content has rendered fields, choose a style that shows text.
+
 ## Compose the Prompt
 
 - Resolve the reference's placeholders with concrete values from the supplied content, following its definitions and examples.
@@ -34,6 +45,14 @@ Compose one complete image prompt in a named style. Return the prompt only; the 
 
 - [Everyday Doodle](references/everyday-doodle.md)
 - [Scientific Editorial](references/scientific-editorial.md)
+- [Prism Grain Silhouette](references/prism-grain-silhouette.md)
+- [Spectrum Grain Collage](references/spectrum-grain-collage.md)
+- [Blue-Glow Halftone Concept](references/blue-glow-halftone.md)
+- [Luminous Glitch Hologram](references/luminous-glitch-hologram.md)
+
+## Shared Rules
+
+**Text-Free.** The last four styles render no text and no real-looking people. Read [text-free-rules.md](references/text-free-rules.md) with the style. It is not a style.
 
 ## Caller Rules
 

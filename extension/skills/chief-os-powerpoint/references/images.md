@@ -27,12 +27,11 @@ An image needs a reason. Write that reason in the slide plan as the required vis
 
 Pick one named style and use it for every image in the deck. Never mix styles.
 
-- `Everyday Doodle` is the default.
-- `Scientific Editorial` suits technical, research, and analytical decks.
+Choose from the styles that the `chief-os-image-prompt` skill lists, by what each suits. `Everyday Doodle` is the default. Every style works for slides, because the text whitelist is empty.
 
 Use only a style that `chief-os-image-prompt` lists. State the style in the final report. Name the style in each call. Do not describe it yourself.
 
-The Everyday Doodle style sits on a warm ivory studio background. Treat that background as part of the picture. Crop the image into its own region on the slide. Do not blend it into the slide background and do not recolour it.
+Every style has a background of its own, such as warm ivory paper or near-black. Treat that background as part of the picture. Crop the image into its own region on the slide. Do not blend it into the slide background and do not recolour it.
 
 ## Compose One Prompt per Image
 
