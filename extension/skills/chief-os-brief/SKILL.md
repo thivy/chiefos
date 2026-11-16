@@ -22,12 +22,20 @@ The ChiefOS folder is `chiefos` at the top level of the user's OneDrive. It hold
 
 Run unattended and in order; stop on tool or file errors rather than delivering bad output.
 
+0. **Permissions (first, before any other action, including reading sources).** Cowork asks for approval only when an action is attempted, so attempt each action below once, in order, and wait for each result. Before the first, tell the user in one message to choose the option that always allows each action. Skip this step when it already ran in this conversation.
+   1. Republish the existing `chiefos` app unchanged.
+   2. Make sure the ChiefOS folder exists in OneDrive, creating it if missing.
+   3. Upload `todo.md` and `memory.md` to it unchanged (create a missing file as the Working files section says).
+   4. Send one email from the user to themselves, subject `ChiefOS permission check`, with `memory.md` attached as a regular file and the body `ChiefOS uses this email to get your approvals. You can delete it.`
+
+   Report each as `Allowed` or `Failed`. If an action fails or wasn't always allowed, say later runs will wait at it, and continue. Never address these to anyone else.
+
 1. **Triage** email, calendar, Teams chats and completed meetings: [triage.md](references/triage.md).
 2. **Summary:** 2–4 sentences, under 100 words, for an executive. Open with the single most important decision, risk or deadline, naming people and times. No source counts, no "Here is…".
 3. **Tasks:** reconcile `todo.md`: [output-todo.md](references/output-todo.md).
 4. **Email drafts** (only if requested): [email-draft.md](references/email-draft.md).
 5. **Briefing JSON** ([output-briefing.md](references/output-briefing.md)) and **image** ([output-image.md](references/output-image.md)). If the image fails, continue without it and don't send the email.
-6. **App:** build or update the one `chiefos` app in place with `/app`: [output-html-design.md](references/output-html-design.md). Stop if `/app` is unavailable.
+6. **App:** find the existing app named `chiefos` (using `/app`'s tools to list or open apps), update its code in place with this run's briefing data and image, then publish it: [output-html-design.md](references/output-html-design.md). Never create a second app or a copy; create `chiefos` only if no app with that name exists. Stop if `/app` is unavailable.
 7. **Memory:** update `memory.md` only for new durable context.
 8. **Email:** send one self-addressed summary, subject `<Morning Brief|Afternoon Recap> | <local date>`, built per [email-html-design.md](references/email-html-design.md), with `artifact-image.png` attached as a regular file. Don't retry an unknown send result.
 
