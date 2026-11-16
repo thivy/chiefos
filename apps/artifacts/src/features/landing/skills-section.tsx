@@ -88,28 +88,19 @@ function SkillsSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card-sky">
+          <Card className="bg-card-blush">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataCode>/chief-os-image-prompt</SourceMetadataCode>
+                <SourceMetadataCode>/chief-os-powerpoint</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>
               <div>
-                Composes an illustration prompt in a named style: Everyday Doodle, Scientific
-                Editorial, or one of four text-free poster styles. It returns the prompt only, which
-                keeps every vignette in your briefing image and visual minutes consistent and true
-                to the facts. The first two styles can carry text. The four poster styles show no
-                text, which suits deck illustrations.
+                Turns notes, documents, or meeting content into an editable PowerPoint deck. It
+                plans the story, gives every slide one clear message and a fitting layout, adds
+                consistent motion and illustrations, and checks each slide by eye before it saves
+                the file. Slides use the ChiefOS palette and card style.
               </div>
-              <ul className="flex flex-col gap-2 pt-2">
-                {IMAGE_STYLES.map((style) => (
-                  <li key={style.name} className="flex flex-col text-sm text-pretty">
-                    <span className="font-[550]">{style.name}</span>
-                    <span className="text-foreground/75">{style.description}</span>
-                  </li>
-                ))}
-              </ul>
             </CardContent>
           </Card>
 
@@ -128,19 +119,28 @@ function SkillsSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card-blush sm:col-span-2">
+          <Card className="bg-card-sky sm:col-span-2">
             <CardHeader>
               <SourceMetadata>
-                <SourceMetadataCode>/chief-os-powerpoint</SourceMetadataCode>
+                <SourceMetadataCode>/chief-os-image-prompt</SourceMetadataCode>
               </SourceMetadata>
             </CardHeader>
             <CardContent>
               <div>
-                Turns notes, documents, or meeting content into an editable PowerPoint deck. It
-                plans the story, gives every slide one clear message and a fitting layout, adds
-                consistent motion and illustrations, and checks each slide by eye before it saves
-                the file. Slides use the ChiefOS palette and card style.
+                Composes an illustration prompt in a named style: Everyday Doodle, Scientific
+                Editorial, or one of four text-free poster styles. It returns the prompt only, which
+                keeps every vignette in your briefing image and visual minutes consistent and true
+                to the facts. The first two styles can carry text. The four poster styles show no
+                text, which suits deck illustrations.
               </div>
+              <ul className="grid grid-cols-1 gap-x-8 gap-y-3 pt-2 sm:grid-cols-2 lg:grid-cols-3">
+                {IMAGE_STYLES.map((style) => (
+                  <li key={style.name} className="flex flex-col text-sm text-pretty">
+                    <span className="font-[550]">{style.name}</span>
+                    <span className="text-foreground/75">{style.description}</span>
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         </div>
