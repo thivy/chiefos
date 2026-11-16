@@ -1,46 +1,27 @@
 # To-Do
 
-Reconcile the live `todo.md` with the email, chat, calendar, and meeting recap triage results.
+Reconcile the live `todo.md` with this run's triage.
 
-## Workflow
+## Rules
 
-### Stage 1. Load the Existing Task File
+- Read active `- [ ]` and completed `- [x]` tasks. Keep active tasks unless resolved or merged; keep completed ones as history.
+- Match by source/thread and the specific obligation, not title or URL alone. A recorded completion stays completed despite unchanged source messages; a genuinely new obligation becomes a new task rather than reopening the old one.
+- A task ending with the `Reopened.` mark stays active until the user completes it, even if the source looks resolved. Keep the mark when merging or updating it.
+- Create one `Active` task per outstanding user-owned response, decision, approval, delivery, preparation, conflict or follow-up. Skip FYI and noise. Merge duplicates, keeping the strongest label, earliest deadline, clearest owner and best link.
+- Mark `Completed` only on explicit user confirmation or source evidence of resolution, never because time passed.
+- Fields follow `TodoItem` in [output-briefing.md](output-briefing.md). `title`: imperative, max 8 words (`Send the Contoso renewal price to Sam`). `summary`: one sentence on why it matters. `recommendedAction`: next step or completion note. `sourceContext`: the source label only. `url`: from the originating item.
+- Replace `todo.md` in place. The briefing's `todo.items` holds active tasks plus completions confirmed by this run, not all history.
 
-Work only on the live `todo.md`.
+## Status changes (made by the app's task toggle)
 
-- Read both active `- [ ]` and completed `- [x]` tasks. Preserve active tasks unless resolved or merged, and retain completed tasks as completion history.
-- Match by source or thread and the specific obligation, not title or URL alone. A recorded completion, including an explicit user completion, stays completed despite unchanged source messages. New evidence of a distinct obligation creates a new active task; it does not reopen the old one.
-- A task that ends with the `Reopened.` mark stays active until the user completes it, even when source evidence shows it resolved. Keep the mark when you merge or update that task.
+Edit only the one task line, found by its exact bold title and `Link:` URL; leave every other line untouched.
 
-### Stage 2. Generate the Todos
+- **Done:** move to the end of `## Completed`, `- [ ]` → `- [x]`, `Next step:` → `Completed:`, remove a trailing `Reopened.`.
+- **Not done:** move to the end of `## Active`, `- [x]` → `- [ ]`, `Completed:` → `Next step:`, append ` Reopened.`.
 
-Only after Stage 1 is complete:
+If the line already has the new status, do nothing. If it isn't found exactly once, change nothing and report it.
 
-- Create one `Active` todo for each unmatched, outstanding user-owned response, decision, approval, delivery, preparation item, conflict resolution, or follow-up.
-- Skip informational, noise, and FYI-only items unless they carry a specific user-owned next step.
-- Merge source items that describe the same obligation into one todo, keeping the strongest source label, earliest deadline, clearest owner, and best link. Emit no duplicates.
-- Newly mark a task `Completed` only on explicit user confirmation or source evidence of resolution. Age or a meeting time having passed is not evidence.
-- Set `sourceContext` to the source label alone, such as `Important`, `Conflicts`, `Preparation`, `To Do`, or `Waiting`. Never add a chat, thread, or meeting name to it.
-- Write `title` as an imperative of at most 8 words naming the decision or deliverable, e.g. `Send the Contoso renewal price to Sam`. Put why it matters in a one-sentence `summary`, and the next step or completion note in `recommendedAction`.
-- Copy `url` from the originating triage item. A manual todo uses the absolute source URL supplied with it.
-- Replace `todo.md` in place with the reconciled active tasks and completion history. For the briefing's `todo.items`, include active tasks and completions confirmed by this run's source evidence, not the entire completion history.
-
-## Status Changes
-
-The user changes a task's status with the task toggle in the `chiefos` app. Each change edits one task line and keeps every other line exactly as it was.
-
-- **Done:** move the line to the end of `## Completed`. Change `- [ ]` to `- [x]` and `Next step:` to `Completed:`, and remove a `Reopened.` mark from the end of the line.
-- **Not done:** move the line to the end of `## Active`. Change `- [x]` to `- [ ]` and `Completed:` to `Next step:`, and end the line with the `Reopened.` mark, after a space.
-
-Locate the line by its exact bold title and `Link:` URL. When the line already has the new status, change nothing. When the line or its target section is not found exactly once, change nothing and report it.
-
-## Output Schema
-
-`TodoItem` in [output-briefing.md](output-briefing.md) defines the fields. Use it as the single source of the shape.
-
-## Markdown Template
-
-Use the following template to generate `todo.md`:
+## Template
 
 ```markdown
 # Your Tasks

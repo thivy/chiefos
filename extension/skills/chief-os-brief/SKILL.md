@@ -1,123 +1,45 @@
 ---
 name: chief-os-brief
-description: "Use when generating a daily assistant briefing or triaging Microsoft 365 signals: morning brief, start-of-day briefing, afternoon recap, end-of-day recap, daily wrap-up, tomorrow prep, recent Teams meeting recap, or triaging email, calendar, Teams chat, or completed meetings on their own."
+description: "Daily assistant briefing and Microsoft 365 triage: morning brief, afternoon/end-of-day recap, tomorrow prep, or triage of email, calendar, Teams chats and recent meetings."
 ---
 
 # ChiefOS Brief
 
-Produce the daily assistant briefing, refresh Microsoft 365 priorities, and update the action list. Each numbered step names the reference to read before running it.
+Triage the user's Microsoft 365 signals and deliver a briefing: a prioritised summary, an updated task list, an illustrated task image, the `chiefos` app, and a summary email to themselves.
 
-## Modes
+**Mode:** Morning Brief (priorities, preparation, time-sensitive follow-up) or Afternoon Recap (what changed since morning, open decisions, overdue replies, tomorrow's prep). Use the mode the user names; otherwise Morning before local noon, Afternoon after. Plan the steps from the request: a one-source triage or a to-do update needs only the relevant steps. Draft or send email only when asked.
 
-- **Morning Brief:** lead with today's priorities, preparation, and time-sensitive follow-up.
-- **Afternoon Recap:** lead with changes since morning, decisions made or still open, overdue responses, and tomorrow preparation.
+## Working files
 
-Run exactly one mode unless the user asks for both. Use the mode the user names, whatever the time. Otherwise use Morning Brief before local noon and Afternoon Recap from noon onward.
+The ChiefOS folder is `chiefos` at the top level of the user's OneDrive. It holds:
 
-## Run Scope
+- `todo.md`: live task list ([output-todo.md](references/output-todo.md)).
+- `memory.md`: durable context for triage ([output-memory.md](references/output-memory.md)).
 
-Select the row matching the request before running any steps. Honour explicit exclusions; asking for tasks or artifacts does not authorise drafting or sending email.
+`artifact-image.png` goes in the output folder. Create missing files from their templates; seed them from the newest non-empty copy in the output folder or `Documents/Copilot/Created/chiefos` when one exists, without altering the old copy. Re-read a live file just before replacing it and keep edits the user or app made meanwhile. Never create timestamped or backup copies.
 
-| Request                          | Steps                                 |
-| -------------------------------- | ------------------------------------- |
-| Full briefing                    | 0 through 8                           |
-| One-source triage                | 0, 1 for that source; report directly |
-| To-do update                     | 0, 1, 3, 7                            |
-| Briefing artifacts without email | 0, 1, 2, 3, 5, 6, 7                   |
+## Pipeline
 
-For partial runs, draft only when explicitly requested, after step 3. Send only when explicitly requested after steps 0, 1, 2, 3, 5, 6, and 7 succeed; step 4 is required only when selected. Scope triage to named sources, preserving existing tasks from other sources.
+Run unattended and in order; stop on tool or file errors rather than delivering bad output.
 
-## Working Files
+1. **Triage** email, calendar, Teams chats and completed meetings: [triage.md](references/triage.md).
+2. **Summary:** 2–4 sentences, under 100 words, for an executive. Open with the single most important decision, risk or deadline, naming people and times. No source counts, no "Here is…".
+3. **Tasks:** reconcile `todo.md`: [output-todo.md](references/output-todo.md).
+4. **Email drafts** (only if requested): [email-draft.md](references/email-draft.md).
+5. **Briefing JSON** ([output-briefing.md](references/output-briefing.md)) and **image** ([output-image.md](references/output-image.md)). If the image fails, continue without it and don't send the email.
+6. **App:** build or update the one `chiefos` app in place with `/app`: [output-html-design.md](references/output-html-design.md). Stop if `/app` is unavailable.
+7. **Memory:** update `memory.md` only for new durable context.
+8. **Email:** send one self-addressed summary, subject `<Morning Brief|Afternoon Recap> | <local date>`, built per [email-html-design.md](references/email-html-design.md), with `artifact-image.png` attached as a regular file. Don't retry an unknown send result.
 
-Use these working files. Create missing inputs at step 0 and replace outputs only for selected steps. Never create timestamped, backup, or history copies.
+## Rules
 
-- `todo.md`: the live task file, in the ChiefOS folder.
-- `memory.md`: durable local context used by triage, in the ChiefOS folder.
-- `artifact-image.png`: the illustrated task list, in the output folder.
+- **Evidence only.** Never invent people, links, dates, commitments, owners or attachments; omit the item instead. Don't infer importance from a title, domain or tone alone. Say so when evidence conflicts.
+- Report outcomes from tool results, not assumptions. Keep scoring detail out of artifacts.
+- Never store secrets or sensitive personal data in working files.
+- Never send email except the step 8 summary. Drafts stay unsent.
+- Every image prompt comes from `chief-os-image-prompt`, one per task; never write your own. App motion comes from `chief-os-motion`. Visual language comes from the references above and `chief-os-design`.
+- On the first ChiefOS run in a conversation, title it `🌻 ChiefOS` if possible.
 
-The ChiefOS folder is the `chiefos` folder at the top level of the user's OneDrive (My files). Every run, every ChiefOS skill, and the `chiefos` app use the same two files in it, whatever the conversation. Read a live file again immediately before you replace it, and apply your changes to that current content, keeping any edit that the user or the `chiefos` app made since your last read.
+## Run report
 
-The briefing itself is the `chiefos` app. The built-in `/app` skill builds it and keeps its working files in its own workspace. Update that one app in place every run, and never create a second app or a copy.
-
-## Invariants
-
-These hold on every run, whether or not a reference has been read.
-
-- **Evidence only.** Never invent a person, recipient, link, fact, commitment, date, deadline, decision, owner, attachment, or signature. Omit the item instead.
-- **Verifiable sources only.** Use only what is present in the item, its linked context, the calendar, the address book, or `memory.md`. Never infer importance, relationships, or deadlines from a title, domain, tone, or metadata alone. When evidence conflicts, state the conflict and recommend verification; when it is ambiguous, take the lower defensible reading.
-- **Report actual outcomes.** Base completion and delivery reports on tool results, never assumptions.
-- **Nothing internal leaks.** Keep scoring detail out of artifacts; show a separate scorecard only on explicit request. Never store secrets or sensitive personal data in a working file.
-- Never send email during the run except the single self-addressed summary at step 8. Step 4 only creates or updates unsent Outlook drafts.
-- Compose every image prompt through the `chief-os-image-prompt` skill, once per task. Never author, paraphrase, batch, or reuse a prompt yourself.
-- Build the `chiefos` app with `/app` from `references/output-html-design.md`, and the summary email from `references/email-html-design.md`. Use no other visual language or design system.
-- Drive the motion of the `chiefos` app through the `chief-os-motion` skill, for the web, as the Motion section of `references/output-html-design.md` sets. Never author, tune, or copy motion values yourself. Give the email no motion.
-
-## Workflow
-
-Run the selected steps in order without pausing for confirmation. Scheduled runs are unattended, so never stop at a status note or an offer to continue; take the next step. Stop on tool or file errors rather than continuing to delivery.
-
-### 0. Prepare Working Files
-
-- When step 6 is selected, confirm that `/app` is available. If it is not, stop and say that it must be enabled.
-- Apply the `chief-os-design` skill: Voice to all user-facing output.
-- When this is the first ChiefOS run in the conversation and a capability can name the conversation, set its title to `🌻 ChiefOS`, exactly as written. Never change the title on a later run, even when the user changed it. When no capability can name the conversation, continue without a report.
-- Confirm that the ChiefOS folder exists, and create it when it is missing.
-- Read `references/output-memory.md` and `references/output-todo.md`. Create `memory.md` or `todo.md` in the ChiefOS folder when it is missing or empty. Start it from the most recently changed non-empty file of the same name in the output folder or in `Documents/Copilot/Created/chiefos` in the user's OneDrive, when one exists, and otherwise from its reference's template. Never change or delete those older files.
-- Read both files back from the ChiefOS folder, and stop when either is still missing or empty. Report each file that this step created and where its content came from.
-- Treat `memory.md` as read-only until step 7, and load both active tasks and completion history from `todo.md`.
-- **Afternoon Recap:** also read the briefing data in the existing `chiefos` app, when present, as the morning baseline. Do not fail the recap when none exists.
-
-### 1. Triage Current Signals
-
-Read `references/triage.md`, then triage the selected sources in order: email, calendar, Teams chats and channel threads, and completed Teams meetings. Use each profile's time window. Do not derive to-dos yet.
-
-Before scoring, reconcile obligation state with loaded completion history using the matching rule in `references/output-todo.md`. Unchanged messages must not describe a completed obligation as still owed in summaries, source cards, or recommended actions. This does not hide new, distinct obligations from the same source.
-
-**Afternoon Recap:** omit completed or informational items unless they explain a resolved decision, a blocker, a new commitment, or tomorrow's preparation. Do not repeat stale morning items that are no longer actionable.
-
-### 2. Build the Summary
-
-Write the top-level `summary` from the triaged items: 2 to 4 sentences, under 100 words, no bullet points.
-
-Write for an executive audience: concise, strategic, decision-oriented. Open with the one decision, risk, or deadline that matters most today, then the next most important. Cover, when relevant, decisions needed today, recent meeting commitments, calendar conflicts and preparation, stakeholder commitments, deadlines, risks, blockers, and waiting items, naming the people and times involved. Do not open with "Here is" or "This briefing", and do not recite volumes by source such as "5 emails and 3 chats". When nothing needs attention, say so in one sentence. Mention missing data only when its absence changes the executive view.
-
-### 3. Update the To-Do Output
-
-Reconcile `todo.md` using `references/output-todo.md`, which owns completion, merging, and the briefing's task selection. Carry unresolved tasks forward; in Afternoon Recap, include evidenced tomorrow-preparation actions.
-
-### 4. Draft Email Actions
-
-Read `references/email-draft.md`, then use the final active todos as the source for creating, updating, leaving unchanged, or skipping Outlook drafts. Run this only after `todo.md` is final. No eligible email actions is a valid outcome.
-
-### 5. Build the Briefing and Image
-
-- Read `references/output-briefing.md`, then build the briefing JSON using its schema and keep it in memory.
-- Set `greeting` for the mode, `date` to the current local date, and `person_name` from the signed-in user's Microsoft 365 profile.
-- Before rendering, check that names, dates, times, deadlines, and task status agree wherever they repeat across the summary, cards, and tasks. Correct any mismatch from the evidence. Also check every `summary` and `recommendedAction` against its length limit in `references/triage.md` or `references/output-todo.md`, and shorten any that is too long.
-- Read `references/output-image.md`, then follow it to compose one prompt per task, generate the combined image, and save `artifact-image.png`. Report the number of `chief-os-image-prompt` calls made. When the image fails, report the failure, continue to step 6 without the image, and do not send the email at step 8.
-
-### 6. Build the Briefing App
-
-Read `references/output-html-design.md`, then build or update the `chiefos` app from the JSON and this run's `artifact-image.png` with `/app`, and check and deliver it as that reference describes.
-
-### 7. Update Memory
-
-Update `memory.md` per its reference only for new durable context. Otherwise leave it unchanged.
-
-### 8. Send the Email Summary
-
-Send only after the selected earlier steps succeed.
-
-1. Resolve the signed-in user's primary Outlook mailbox from Microsoft 365 profile data.
-2. Read `references/email-html-design.md` in full and build the body from the final JSON using its layout and section order.
-3. Attach this run's `artifact-image.png` as a regular file attachment named `artifact-image.png` with content type `image/png`. Do not inline it or substitute a path, URL, or data URL. Stop with `Failed` if the attachment cannot be verified.
-4. Send one email from the signed-in user to that same mailbox, subject `<Morning Brief|Afternoon Recap> | <local date>`.
-5. Report the exact `Sent` or `Failed` result. Do not retry an unknown result, which could duplicate the send.
-
-## Run Report
-
-End every run with one short chat report under these headings, in this order, writing `There are no items.` under any that is empty:
-
-1. **For you to do:** anything the run could not finish without the user, such as a failed step, ambiguous draft matches, or a missing signature.
-2. **Not included:** anything left out or unverified for lack of evidence, and where it was checked.
-3. **Done:** each selected step's outcome, with the `chiefos` app's link or artifact when step 6 ran.
+End with three short headings, writing `There are no items.` under any that is empty: **For you to do** (what needs the user), **Not included** (left out or unverified, and why), **Done** (outcomes, with the app link).

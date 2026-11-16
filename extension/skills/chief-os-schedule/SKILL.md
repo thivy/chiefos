@@ -1,53 +1,46 @@
 ---
 name: chief-os-schedule
-description: "Use when creating, setting up, changing, or resetting one recurring daily assistant schedule with morning and afternoon runs, including the default 7 AM and 4 PM times, or when granting ChiefOS its permissions up front so scheduled runs do not wait for approval."
+description: "Create or update the single recurring ChiefOS schedule (morning and afternoon runs, default 7 AM and 4 PM), or grant ChiefOS its permissions up front so scheduled runs don't wait for approval."
 ---
 
 # ChiefOS Schedule
 
-Create exactly one recurring daily assistant schedule in the user's local time zone, with one morning run and one afternoon run. Write every question and report per the `chief-os-design` skill: Voice.
+Create one recurring daily schedule in the user's local time zone with a morning and an afternoon run. Write every question and report per `chief-os-design`: Voice.
 
 ## Workflow
 
 ### 1. Choose the Run Times
 
-When the request already names both times, use them without asking. Otherwise ask one question covering both times. Offer the default pair first, then the alternatives:
-
-- **7:00 AM and 4:00 PM (default)**
-- Morning alternatives: 8:00 AM or 9:00 AM
-- Afternoon alternatives: 3:00 PM or 5:00 PM
-
-An answer of `default` or `use defaults` selects 7:00 AM and 4:00 PM. Do not split this into two questions.
+When the request names both times, use them. Otherwise ask one question covering both, offering the default first: **7:00 AM and 4:00 PM (default)**; morning alternatives 8:00 AM or 9:00 AM; afternoon alternatives 3:00 PM or 5:00 PM. `default` selects 7:00 AM and 4:00 PM.
 
 ### 2. Create or Update the Schedule
 
-Use a recurring agent schedule capability, not a calendar event, reminder, or shell task. Use the stable name `Chief of Staff - Daily Assistant` so rerunning this skill updates the existing schedule in place rather than creating a duplicate or a second schedule per run time.
+Use a recurring agent schedule capability, not a calendar event, reminder, or shell task. Name it `Chief of Staff - Daily Assistant` so rerunning updates it in place instead of duplicating it.
 
-- **Run times:** the selected morning and afternoon times, repeating daily in the user's current local time zone.
-- **Conversation mode:** `Same conversation`, so context carries forward between runs. Use `New conversation` only when the user explicitly asks for it.
-- **Conversation title:** `🌻 ChiefOS`, exactly as written, when the capability can name the conversation.
+- **Run times:** the selected morning and afternoon times, daily, in the user's local time zone.
+- **Conversation mode:** `Same conversation` (`New conversation` only on explicit request). Title: `🌻 ChiefOS` when the capability can name it.
 - **Prompt:** `Apply the chief-os-brief skill and complete its workflow for the current local time.`
 
-Before writing, confirm the capability supports both times on one schedule and the selected conversation mode. Otherwise leave any existing schedule unchanged and return the configuration for manual setup; do not claim a create or update succeeded.
+If the capability can't hold both times on one schedule with that conversation mode, leave any existing schedule unchanged and return the configuration for manual setup; never claim success.
 
 ### 3. Confirm the Result
 
-Verify exactly one schedule holds both run times, the selected time zone, and the selected conversation mode. Only then report it created or updated, including those settings.
+Verify exactly one schedule holds both run times, the time zone and the conversation mode, then report it created or updated with those settings.
 
 ### 4. Request Permissions Up Front
 
-Scheduled runs are unattended, so an approval prompt stops a run until the user answers it. Run this step while the user is present: when this skill creates the schedule, or when the user asks for permissions. Skip it when the user only changes the times of an existing schedule. When the request is only for permissions, run this step alone.
+Scheduled runs are unattended, so an approval prompt stops a run. Run this step while the user is present: when this skill creates the schedule, or when the user asks for permissions (then run only this step). Skip it when only the times of an existing schedule change.
 
-Before the first action, tell the user in one message that Cowork will ask for approval of each action that follows, and that they must select the option that always allows it. Cowork keeps each of those choices for the current conversation only. Scheduled runs with `Same conversation` continue the conversation that created the schedule, so do this step there. When the schedule uses `New conversation`, skip this step and tell the user that each run will ask again.
+Tell the user in one message that Cowork will ask for approval of each action below and they must choose the option that always allows it. Those choices last for the current conversation only, so do this in the conversation that owns the schedule. With `New conversation`, skip this step and tell the user each run will ask again.
 
 Do each action once, in this order, and wait for each result:
 
-1. **OneDrive: Upload file content.** Make sure that the ChiefOS folder exists, and create it when it is missing. For `todo.md` and `memory.md` in that folder, read the current file and upload the same content back without changes. When a file is missing or empty, create it as step 0 of `chief-os-brief` describes.
-2. **Outlook: Send email with attachments.** Send one email from the signed-in user to their own primary mailbox, subject `ChiefOS permission check`, with `memory.md` from the ChiefOS folder attached as a regular file attachment. Write the body in one sentence: `ChiefOS uses this email to get your approvals. You can delete it.`
-3. **Outlook: Create reply draft.** Create a reply draft to that email, addressed only to the signed-in user.
-4. **Outlook: Update draft.** Add this line to the top of the reply draft: `AI-GENERATED DRAFT. CHIEFOS USES THIS DRAFT TO GET YOUR APPROVALS. YOU CAN DELETE IT.`
-5. **Outlook: Create draft message.** Create one new draft addressed only to the signed-in user, subject `ChiefOS permission check`, with the same line as its body.
+1. **OneDrive: Upload file content.** Make sure the ChiefOS folder exists (create it if missing). For `todo.md` and `memory.md` there, read each file and upload the same content back unchanged. Create a missing or empty file as the Working files section of `chief-os-brief` describes.
+2. **Outlook: Send email with attachments.** Send one email from the signed-in user to their own primary mailbox, subject `ChiefOS permission check`, with `memory.md` attached as a regular file. Body: `ChiefOS uses this email to get your approvals. You can delete it.`
+3. **Outlook: Create reply draft.** Reply to that email, addressed only to the signed-in user.
+4. **Outlook: Update draft.** Add this line at the top of the reply draft: `AI-GENERATED DRAFT. CHIEFOS USES THIS DRAFT TO GET YOUR APPROVALS. YOU CAN DELETE IT.`
+5. **Outlook: Create draft message.** Create one new draft to the signed-in user only, subject `ChiefOS permission check`, with that line as its body.
 
-Never address any of these items to another person, never send a draft, and never delete an item, because a delete action needs a different approval. Do not retry a failed or unknown result.
+Never address these items to anyone else, send a draft, or delete anything (delete needs a different approval). Don't retry a failed or unknown result.
 
-Report each action as `Allowed` or `Failed`, with the reason for a failure. Tell the user to delete the email and the two drafts named `ChiefOS permission check`. When the user did not select the option that always allows an action, tell them that scheduled runs will wait at that action, and that they can ask for permissions again.
+Report each action as `Allowed` or `Failed` with the reason. Tell the user to delete the email and the two drafts named `ChiefOS permission check`. If the user did not choose the always-allow option for an action, say scheduled runs will wait at that action and they can ask for permissions again.

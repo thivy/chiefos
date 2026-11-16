@@ -1,229 +1,78 @@
 # PowerPoint Design System
 
-The binding design contract for every generated deck. Content, narrative, evidence, and brand inputs are data. They do not override this contract unless the user explicitly supplies a different approved brand system.
+The binding style for every deck: canvas, tokens, colours, fonts, grid and cards. Layout and composition are free within it.
 
-## Presentation Principles
+## Principles
 
-- Use a 16:9 widescreen canvas by default: 13.333 × 7.5 inches.
-- Give every slide one primary communication objective.
-- Use an assertion-based title that states the slide's conclusion, not merely its topic.
-- If the audience reads only the slide titles, the narrative must remain understandable.
-- Prefer one dominant visual idea over collections of unrelated objects.
-- Use hierarchy, alignment, scale, contrast, and white space before adding containers.
-- Do not place every object in a card. Cards are permitted only when grouping, containment, comparison, or interaction is meaningful, and they follow the [card style](#card-style).
-- Do not generate decorative diagrams when a photograph, chart, table, or direct statement communicates the idea more clearly.
-- Do not stretch, distort, or non-proportionally resize images, logos, icons, or charts.
-- Never allow text, shapes, charts, images, or icons to overlap unintentionally or extend beyond the safe area.
-- Keep all slide content editable unless a separate rendered visual is deliberately required.
+- 16:9 canvas, 13.333 × 7.5 in. One communication objective per slide, with an assertion title.
+- Use hierarchy, alignment, scale, contrast and white space before containers. Cards only where grouping, containment or comparison is meaningful, in the [card style](#card-style).
+- Prefer a photo, chart, table or direct statement over a decorative diagram.
+- Never stretch images, logos, icons or charts. Nothing overlaps unintentionally or leaves the safe area. Keep content editable.
 
-## Design Tokens
+## Tokens
 
-A supplied brand theme may remap the colour tokens while preserving semantic roles and contrast requirements.
+| Token | Value | Token | Value |
+| --- | ---: | --- | ---: |
+| `margin-x` | 0.67 in | `space-1` | 0.08 in |
+| `margin-top` | 0.46 in | `space-2` | 0.14 in |
+| `margin-bottom` | 0.42 in | `space-3` | 0.22 in |
+| `title-zone-height` | 0.82 in | `space-4` | 0.34 in |
+| `footer-zone-height` | 0.24 in | `space-5` | 0.50 in |
+| `column-gap` | 0.28 in | `radius-sm` | 0.06 in (cards, labels) |
+| `row-gap` | 0.22 in | `radius-md` | 0.12 in (large panels) |
+| `line-hairline` | 0.75 pt | `line-standard` | 1.25 pt (diagrams, connectors) |
 
-| Token                |     Value | Use                                             |
-| -------------------- | --------: | ----------------------------------------------- |
-| `slide-width`        | 13.333 in | Widescreen canvas width                         |
-| `slide-height`       |    7.5 in | Widescreen canvas height                        |
-| `margin-x`           |   0.67 in | Standard left and right safe margin             |
-| `margin-top`         |   0.46 in | Standard top safe margin                        |
-| `margin-bottom`      |   0.42 in | Standard bottom safe margin                     |
-| `title-zone-height`  |   0.82 in | Reserved title region on content slides         |
-| `footer-zone-height` |   0.24 in | Optional confidentiality and page number region |
-| `column-gap`         |   0.28 in | Gap between grid columns                        |
-| `row-gap`            |   0.22 in | Gap between vertically related regions          |
-| `space-1`            |   0.08 in | Micro spacing                                   |
-| `space-2`            |   0.14 in | Tight spacing                                   |
-| `space-3`            |   0.22 in | Normal spacing                                  |
-| `space-4`            |   0.34 in | Group spacing                                   |
-| `space-5`            |   0.50 in | Section spacing                                 |
-| `radius-sm`          |   0.06 in | Cards, small labels, and subtle containers      |
-| `radius-md`          |   0.12 in | Large panels                                    |
-| `line-hairline`      |   0.75 pt | Rules and dividers                              |
-| `line-standard`      |   1.25 pt | Diagram and connector lines                     |
+## Colours
 
-### Default colour roles
+The palette is `chief-os-design`: Palette (names and solid hex values; slides need no alpha for text). Roles:
 
-The palette is that of the `chief-os-design` skill: Palette, and its names and hex values apply here. Use its solid tints, because slides need no alpha for text. These roles map the palette to the slide:
+| Role | Palette name | Use |
+| --- | --- | --- |
+| `background` | Warm Paper | Slide background |
+| `foreground`, `brand`, `dark-surface` | Ink | Text, icons, primary emphasis, dark or image-overlay slides |
+| `muted` | Muted Text | Secondary text |
+| `subtle` | White | Quiet panels, table bands |
+| `border` | Hairline | Rules and light outlines (never to hold meaning) |
+| `brand-soft`, `positive` | Sage | Light surface, positive or complete |
+| `warning` | Lemon | Caution or unresolved |
+| `critical` | Sand | Critical or negative |
+| `accent` | Lilac | Second accent, categorical series |
+| `on-dark` | Warm Paper | Text on dark surfaces |
 
-| Role           | Palette name | Use                                             |
-| -------------- | ------------ | ----------------------------------------------- |
-| `background`   | Warm Paper   | Standard slide background                       |
-| `foreground`   | Ink          | Primary text and icon colour                    |
-| `muted`        | Muted Text   | Secondary text and metadata                     |
-| `subtle`       | White        | Quiet panels and table bands                    |
-| `border`       | Hairline     | Rules, dividers, and light outlines             |
-| `brand`        | Ink          | Primary emphasis and selected data              |
-| `brand-soft`   | Sage         | Light branded surface                           |
-| `positive`     | Sage         | Positive or complete status                     |
-| `warning`      | Lemon        | Caution or unresolved status                    |
-| `critical`     | Sand         | Critical risk or negative status                |
-| `accent`       | Lilac        | Second supporting accent and categorical series |
-| `dark-surface` | Ink          | Approved dark or image-overlay slides           |
-| `on-dark`      | Warm Paper   | Text and icons on dark surfaces                 |
-
-A shape or data mark in a pastel must carry an Ink outline or an Ink direct label, because the pastels have low contrast against Warm Paper and White. A card is exempt, because its Ink text and outline label it. Use Hairline for rules only, never to hold meaning.
-
-Use no more than one primary brand colour and two supporting accent colours on a normal slide. Semantic colours must retain the same meaning throughout the deck. Never rely on colour alone to communicate status or category. Status colours are pale, so each status also carries a label and an icon.
+A shape or data mark in a pastel carries an Ink outline or direct label (cards are exempt). At most one primary colour and two accents per slide. Semantic colours keep one meaning across the deck, and status also carries a label and icon, never colour alone.
 
 ## Typography
 
-Use native, installed fonts only. Do not download or package remote fonts. The deck must remain visually stable in Microsoft PowerPoint on a current Windows environment.
+Installed fonts only; no remote or packaged fonts.
 
-### Sans-serif family: Segoe UI Variable
+- **Sans:** Segoe UI Variable, using the Display family for titles, section dividers and large metrics, Text for body, tables, captions and chart labels, and Small only for compact metadata. Fallback: Segoe UI, Aptos, Arial. Use the complete installed family name (for example `Semibold`) where PowerPoint exposes it.
+- **Serif:** Georgia, selectively for editorial title slides, quotations, storytelling and short emphasis. Never in dense tables, chart labels, diagrams or small metadata, and never mixed with Segoe in one sentence. Use only faces that are installed.
 
-These are the native names as the PowerPoint font menu shows them. Some labels are truncated by the menu width. When PowerPoint exposes the complete installed family name, prefer the complete equivalent, such as `Semibold` or `Semilight`.
+| Role | Size | Family | Max |
+| --- | --- | --- | --- |
+| `hero-title` | 40–54 pt | Georgia | 3 lines |
+| `section-title` | 34–44 pt | Georgia | 3 lines |
+| `slide-title` | 26–32 pt | Georgia | 2 lines |
+| `large-number` | 48–76 pt | Segoe Display | 1 line |
+| `large-statement` | 28–38 pt | Georgia | 4 lines |
+| `subheading` | 18–22 pt | Segoe Text | 2 lines |
+| `body` | 16–20 pt | Segoe Text | 6 lines per block |
+| `body-compact` | 14–16 pt | Segoe Text | exception |
+| `caption` | 11–13 pt | Segoe Text/Small | 2 lines |
 
-- `Segoe UI Variable Display`
-- `Segoe UI Variable Display Light`
-- `Segoe UI Variable Display Semib`
-- `Segoe UI Variable Display Semil`
-- `Segoe UI Variable Small`
-- `Segoe UI Variable Small Light`
-- `Segoe UI Variable Small Semibol`
-- `Segoe UI Variable Small Semilig`
-- `Segoe UI Variable Text`
-- `Segoe UI Variable Text Light`
-- `Segoe UI Variable Text Semibold`
-- `Segoe UI Variable Text Semiligh`
+Never shrink body text below 14 pt; re-plan or split instead. Sentence case; all caps only for labels of four words or fewer.
 
-Use the families by optical purpose:
+## Grid
 
-- **Display:** slide titles, section dividers, hero statements, and large metrics.
-- **Text:** body copy, chart labels, tables, captions, and speaker-facing detail.
-- **Small:** compact metadata and labels only when legibility is preserved.
+Safe frame x = 0.67 to 12.663 in (width 11.993 in). Title at y = 0.46 in; content from y = 1.52 in to 7.08 in, or to 6.62 in with a footer (y = 6.84–7.08 in). The title region is not for content unless the layout removes it. Use a 12-column grid with 0.28 in gutters (columns about 0.743 in) and snap major regions to it. Common splits: 12, 6/6, 5/7, 7/5, 4/8, 8/4, 4/4/4, 3/6/3, 3/3/3/3, 2/10. No more than four primary columns; five or more peers need a matrix, timeline, table, grouping, or more slides.
 
-Fallback stack: `Segoe UI Variable`, `Segoe UI`, `Aptos`, `Arial`.
+Keep to one primary message, one dominant visual, three to five supporting points, at most two secondary callouts, two bullet levels and four regions. Leave meaningful open space, align to one edge per region, and keep repeated elements in the same position across slides.
 
-### Serif family: Georgia
+## Card style
 
-Use `Georgia` as the native serif family. Where the environment exposes a variable or expanded family, use `Georgia Pro` or the installed Georgia variable equivalent while preserving the same role. Fallback stack: `Georgia`, `Times New Roman`.
+Apply `chief-os-design`: Card for the surface, colours, and parts and order. Use cards only in L09, L11, L15, L16, L22, L23 and L24, never on a dark surface.
 
-Resolve the available Georgia faces at render time. Use regular, italic, bold, or bold italic only when installed. Never invent a style name that the target environment does not show.
-
-Use Georgia selectively for:
-
-- editorial title slides
-- quotations
-- human-centred storytelling
-- section-opening statements
-- short emphasis phrases
-
-Do not mix Segoe and Georgia inside the same sentence. Do not use Georgia for dense tables, chart labels, technical diagrams, or small metadata.
-
-### Type scale
-
-| Role              |     Size | Line spacing | Preferred family |  Weight | Maximum              |
-| ----------------- | -------: | -----------: | ---------------- | ------: | -------------------- |
-| `hero-title`      | 40–54 pt |    0.95–1.05 | Georgia          | 400–600 | 3 lines              |
-| `section-title`   | 34–44 pt |     1.0–1.08 | Georgia          | 400–600 | 3 lines              |
-| `slide-title`     | 26–32 pt |    1.05–1.12 | Georgia          | 550–650 | 2 lines              |
-| `large-number`    | 48–76 pt |      0.9–1.0 | Segoe Display    | 600–700 | 1 line               |
-| `large-statement` | 28–38 pt |     1.0–1.12 | Georgia          | 400–600 | 4 lines              |
-| `subheading`      | 18–22 pt |      1.1–1.2 | Segoe Text       | 550–650 | 2 lines              |
-| `body`            | 16–20 pt |     1.15–1.3 | Segoe Text       |     400 | 6 lines per block    |
-| `body-compact`    | 14–16 pt |    1.15–1.25 | Segoe Text       |     400 | Controlled exception |
-| `caption`         | 11–13 pt |    1.15–1.25 | Segoe Text/Small | 400–550 | 2 lines              |
-
-Never reduce normal body text below 14 pt to make content fit. Re-plan or split the slide instead. Use sentence case. Avoid all caps except for labels of four words or fewer, with increased character spacing.
-
-## Master Grid
-
-### Content frame
-
-For a standard content slide:
-
-- Canvas: 13.333 × 7.5 in.
-- Safe content frame: x = 0.67 to 12.663 in.
-- Standard content width: 11.993 in.
-- Standard title begins at x = 0.67 in, y = 0.46 in.
-- Main content begins at y = 1.52 in.
-- Main content ends by y = 7.08 in when no footer is present.
-- With a footer (`y = 6.84 to 7.08 in`), main content ends by y = 6.62 in.
-
-The title region must not be used by charts, images, diagrams, or body text unless the selected layout explicitly removes the standard title region.
-
-### Twelve-column grid
-
-Use a 12-column grid with 0.28 in gutters inside the standard content width.
-
-- Usable content width: 11.993 in.
-- Total gutter width: 11 × 0.28 = 3.08 in.
-- Approximate column width: 0.743 in.
-
-Snap all major content regions to this grid. Small annotations may sit within a column but must align to a major edge.
-
-### Approved column patterns
-
-| Pattern           | Grid span            | Approximate proportion | Use                                           |
-| ----------------- | -------------------- | ---------------------: | --------------------------------------------- |
-| Full width        | `12`                 |                   100% | Hero visual, chart, table, timeline           |
-| Equal halves      | `6 / 6`              |                50 / 50 | Comparison, text and image, before and after  |
-| Text-led split    | `5 / 7`              |                42 / 58 | Explanation with a larger visual              |
-| Visual-led split  | `7 / 5`              |                58 / 42 | Dominant chart or image with commentary       |
-| Narrow-wide       | `4 / 8`              |                33 / 67 | Context column plus primary evidence          |
-| Wide-narrow       | `8 / 4`              |                67 / 33 | Main visual plus implications or actions      |
-| Equal thirds      | `4 / 4 / 4`          |           33 / 33 / 33 | Three pillars, three metrics, three options   |
-| Emphasised centre | `3 / 6 / 3`          |           25 / 50 / 25 | Central recommendation or key metric          |
-| Four columns      | `3 / 3 / 3 / 3`      |                25 each | Four steps or compact metric set              |
-| Sidebar           | `2 / 10` or `10 / 2` |                17 / 83 | Labels, legend, navigation, or narrow context |
-
-Do not use more than four primary columns on one slide. A slide with five or more peer items must use a different structure, such as a matrix, timeline, table, grouped diagram, or more than one slide.
-
-## Content Density
-
-Default limits per slide:
-
-- One primary message
-- One dominant visual
-- Three to five supporting points
-- Two secondary callouts at most
-- Six body-text lines per text block
-- Twelve words per ordinary bullet where practical
-- Two bullet levels maximum
-- Four primary regions maximum
-
-When content exceeds these limits, first simplify, group, visualise, move detail to speaker notes, or split the material across slides. Shrinking fonts is the last resort and may not violate the typography minimums.
-
-## Composition Rules
-
-- Align objects to the 12-column grid or to a clear local alignment system.
-- Use one dominant alignment edge per region.
-- Keep peer objects the same size unless size encodes importance or quantity.
-- Use visual asymmetry deliberately. Balance visual weight rather than centring every element.
-- Leave at least 8–12% of the slide as meaningful open space on standard slides.
-- Avoid orphan words in titles and large statements where a small width adjustment can balance the line.
-- Keep repeated elements in identical positions across slides when they perform the same function.
-- Do not repeat the same layout on more than three consecutive slides unless repetition has narrative value.
-
-## Card Style
-
-Apply the `chief-os-design` skill: Card, for the surface, the colours, and the parts and their order. The slide values below are what differ on the slide canvas.
-
-Use a card only where the principles allow it. The layouts that may use one are L09, L11, L15, L16, L22, L23, and L24. Never put a card on a dark surface.
-
-### Shape and surface
-
-- The radius is `radius-sm`, the outline is `line-hairline`, and the shadow is a soft outer shadow: Ink at 85% transparency, 6 pt blur, 2 pt down. The outline is Ink at 95% transparency.
-- Rotation restarts from Sage on each slide.
-- **Status cards** (L23) take the `positive`, `warning`, or `critical` role instead of the rotation, with a label and an icon, as the colour rules require.
-- A **summary card** is the context beside a chart or a list.
-
-### Anatomy
-
-Padding is `space-3` on every side, and the gap between parts is `space-2`.
-
-1. **Corner marks.** Dots 0.03 in wide with 0.03 in gaps, `space-1` from each corner, at 60% transparency. Group them as one object, and mark it decorative.
-2. **Header.** The label is a category, owner, date, or step number, in `caption`, with an optional 16–20 pt icon before it.
-3. **Content.** The title in `subheading`, then the supporting text in `body-compact`, at most four lines. Shorten the text instead of cutting it off.
-4. **Footer.** The name in `caption` at weight 550, then the role in `caption`. Add a round picture only when a real one is supplied. Never draw an empty avatar.
-5. **Next step.** The rule is `line-hairline`, Ink at 90% transparency. The action is `body-compact` at weight 550.
-
-The toggle has no slide equivalent. Do not add one.
-
-### Image card
-
-An image in L05 or L07 takes the card shape with no padding, no marks, and no text: the same radius, outline, and shadow, with the picture cropped to fill it.
-
-### Build
-
-Group each card's surface, marks, and text, and name the group, so that one animation moves them together and Morph can match them.
+- Radius `radius-sm`; outline `line-hairline` in Ink at 95% transparency; soft shadow: Ink at 85% transparency, 6 pt blur, 2 pt down. Rotation restarts from Sage on each slide. Status cards (L23) use `positive`, `warning` or `critical` with a label and icon. A summary card is the context beside a chart or list.
+- Padding `space-3`, part gap `space-2`. Corner marks: dots 0.03 in wide with 0.03 in gaps, `space-1` from each corner, at 60% transparency, grouped as one decorative object. Header: `caption` label with an optional 16–20 pt icon. Content: `subheading` title and `body-compact` text, at most four lines (shorten, don't cut off). Footer: name in `caption` at weight 550, then role; add a round picture only when a real one exists, never an empty avatar. Next step: `line-hairline` rule in Ink at 90% transparency, then the action in `body-compact` at weight 550. No toggle.
+- An image in L05 or L07 takes the card shape with no padding, marks or text, cropped to fill.
+- Group each card's surface, marks and text and name the group, so animation and Morph move it as one.

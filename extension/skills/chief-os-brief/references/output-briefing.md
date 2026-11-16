@@ -1,17 +1,17 @@
 # Briefing Output
 
-The single source for the in-memory briefing schema and shared rendering rules. Other references use these fields without redefining their types.
+Schema for the in-memory briefing, shared by the app and the email.
 
 ## 1. Schema
-
-Message items become message cards, with `summary` as the card body. To-do items become tasks, with `title` as the task text and `url` linking the task to its source. A message's `taskTitle` names the task that the message created or supports.
 
 ```ts
 type Nullable<T> = T | null;
 
 interface MessageItem {
   source: "email" | "chat" | "calendar" | "meeting";
-  sourceLabel: string;
+  sourceLabel: string; // email/chat: Important | To Do | Waiting
+  // calendar: Priority Meetings | Conflicts | Preparation | Optional
+  // meeting: To Do | Waiting | Decision
   timestamp: string;
   authorName: Nullable<string>;
   authorRole: Nullable<string>;
@@ -20,26 +20,6 @@ interface MessageItem {
   url: string;
   recommendedAction: Nullable<string>;
   taskTitle: Nullable<string>;
-}
-
-interface EmailItem extends MessageItem {
-  source: "email";
-  sourceLabel: "Important" | "To Do" | "Waiting";
-}
-
-interface ChatItem extends MessageItem {
-  source: "chat";
-  sourceLabel: "Important" | "To Do" | "Waiting";
-}
-
-interface CalendarItem extends MessageItem {
-  source: "calendar";
-  sourceLabel: "Priority Meetings" | "Conflicts" | "Preparation" | "Optional";
-}
-
-interface MeetingRecapItem extends MessageItem {
-  source: "meeting";
-  sourceLabel: "To Do" | "Waiting" | "Decision";
 }
 
 interface TodoItem {
@@ -57,31 +37,24 @@ interface TodoItem {
 interface DailyBriefing {
   date: string;
   greeting: string;
-  person_name: string;
+  person_name: string; // from the user's Microsoft 365 profile
   summary: string;
-  emails: EmailItem[];
-  calendar: CalendarItem[];
-  chats: ChatItem[];
-  recaps: MeetingRecapItem[];
+  emails: MessageItem[]; // source "email"
+  calendar: MessageItem[]; // source "calendar"
+  chats: MessageItem[]; // source "chat"
+  recaps: MessageItem[]; // source "meeting"
   todo: { items: TodoItem[] };
 }
 ```
 
 ### Rules
 
-- Emit exactly these properties. Every one is required; use `null` only where the type allows it.
-- `url` must be a non-empty absolute deep link on every message item and every to-do item. Omit an item rather than emitting a partial or invented one.
-- `date` is the local briefing date in full, e.g. `Wednesday, 23 September 2026`, ordered for the user's locale. `timestamp` and `deadline` follow the date and time rules of the `chief-os-design` skill: Voice.
-- `taskTitle` stays `null` until the to-do list is final. Then set it to the exact `title` of the `todo.items` entry that the message created or supports, and leave it `null` when there is none. Each non-null `taskTitle` matches exactly one entry.
-- Any collection may be an empty array.
-- Keep the value in memory for the run, and give it to `/app` as the `chiefos` app's briefing data. Do not save it anywhere else.
+- Emit exactly these properties; use `null` only where allowed. Every `url` is a non-empty absolute deep link; omit an item rather than invent one.
+- `date` is the local date in full, e.g. `Wednesday, 23 September 2026`. `timestamp` and `deadline` follow `chief-os-design`: Voice.
+- Once the to-do list is final, set each message's `taskTitle` to the exact `title` of the `todo.items` entry it created or supports, else `null`. Each non-null value matches exactly one entry.
+- Before rendering, check that names, dates, times and status agree wherever repeated, and that `summary` and `recommendedAction` meet their length limits.
+- Keep the JSON in memory for the run and give it to `/app`; don't save it elsewhere.
 
 ## 2. Render
 
-Both the app and the email preserve item wording and source order, omit null fields, and show their specified empty states.
-
-An empty section shows `There are no items.` as muted text, without a card. The section heading stays.
-
-Insert briefing text as text, never as markup. Where a renderer builds HTML strings, as the email does, escape `&`, `<`, and `>`, and also `"` in attribute values.
-
-For the `chiefos` app, use [output-html-design.md](output-html-design.md): greeting, person name and date, then Overview containing `summary` beside the briefing image, then Email, Calendar, Teams Chat, Meeting Recaps, and Other Tasks, on one page.
+Preserve item wording and order and omit null fields. An empty section keeps its heading and shows muted `There are no items.` with no card. Insert text as text, never markup; escape `&`, `<`, `>` (and `"` in attributes) when building HTML strings. Page order: greeting, name and date, Overview (`summary` beside the image), Email, Calendar, Teams Chat, Meeting Recaps, Other Tasks.

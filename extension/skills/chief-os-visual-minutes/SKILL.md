@@ -1,6 +1,6 @@
 ---
 name: chief-os-visual-minutes
-description: "Use when visually summarising one meeting: visual minutes, illustrated meeting recap, meeting summary image, sketch my meeting, break this meeting into key moments and follow-ups, or turn a meeting transcript, recap, or chat into a picture. Produces one illustrated page holding the key moments along the meeting timeline and the follow-up actions that came out of it."
+description: "Turn one meeting (transcript, recap, or chat) into a single illustrated visual-minutes page: key moments along the timeline plus follow-up actions with owners and due dates."
 ---
 
 # ChiefOS Visual Minutes
@@ -9,50 +9,21 @@ Turn one meeting into a single illustrated page with two bands: chronological ke
 
 ## Working File
 
-One file in the output folder, created when missing and replaced in place every run. Never create timestamped, backup, or history copies.
+`visual-minutes.png` in the output folder, replaced in place each run. Never create timestamped or backup copies.
 
-- `visual-minutes.png`: the illustrated minutes.
+## Rules
 
-## Invariants
-
-These hold on every run, whether or not a reference has been read.
-
-- **Evidence only.** Never invent a moment, decision, owner, date, number, commitment, or attendee. Attribute a statement only to a speaker the source names. Omit the item instead.
-- **Verifiable sources only.** Use the meeting evidence allowed by `references/meeting-capture.md`, which owns conflict resolution. Never infer decisions or owners from a title, agenda, tone, or attendee list.
-- **Two collections only.** Every rendered item is either a key moment or a follow-up action. Never add a third band, and never move an item between bands to balance the layout.
-- **Order is meaning.** Key moments run in timeline order and follow-up actions in the order they were agreed. Never reorder either for visual effect.
-- Compose every image prompt through the `chief-os-image-prompt` skill, once per item. Never author, paraphrase, batch, or reuse a prompt yourself.
-- Produce one image. Never split the two bands into separate files.
-- Write every rendered and reported line per the `chief-os-design` skill: Voice, including its ASD-STE100 rules. Use the local time zone for dates and source timing for elapsed markers.
+- **Evidence only.** Never invent a moment, decision, owner, date, number, commitment or attendee, and attribute a statement only to a speaker the source names. Use only the evidence `references/meeting-capture.md` allows; never infer from a title, agenda, tone or attendee list. Omit the item instead.
+- **Two collections only:** key moments (timeline order) and follow-up actions (order agreed). Never add a band, move items between bands, or reorder for visual effect.
+- Compose every image prompt through `chief-os-image-prompt`, once per item; never write your own. Produce one image.
+- Write every line per `chief-os-design`: Voice. Use the local time zone for dates and source timing for elapsed markers.
 
 ## Workflow
 
-Run these steps in order without pausing for confirmation. Stop or ask only where a step or its reference says to; the step 3 report does not wait for approval.
+Run in order without pausing for confirmation, except where a reference says to ask.
 
-### 1. Resolve and Read the Meeting
-
-Read `references/meeting-capture.md`, then follow its resolve and collect stages to settle which meeting is being summarised and gather its evidence.
-
-Stop and say so when the meeting has not happened yet, or when it has no recap, transcript, or chat to read. Do not summarise a meeting from its invitation alone.
-
-### 2. Build the Two Collections
-
-Continue in `references/meeting-capture.md` and build the key moments, then the follow-up actions, with every field it requires on each item.
-
-Apply its evidence and merge rules. Either collection may be empty; if both are empty, report that no supported moments or actions were found and stop without generating an image.
-
-### 3. Report the Breakdown
-
-Before generating anything, write both collections to chat as two short lists under the section labels that `references/output-image.md` spells out, key moments first with their markers, then follow-up actions with their owner and due date. Say plainly where an owner or date was not recorded.
-
-Keep rendered wording identical between chat and image. Report source gaps, conflicts, empty collections, and merges separately.
-
-### 4. Generate the Image
-
-Read `references/output-image.md`, then follow it to compose one prompt per item, assemble the combined prompt, generate the image, and save `visual-minutes.png`.
-
-Report the number of `chief-os-image-prompt` calls made, which must equal the total number of items across both collections.
-
-### 5. Report the Result
-
-Report the meeting, band counts, and saved file on generation success; otherwise report the failure.
+1. **Resolve and read the meeting** per `references/meeting-capture.md`. Stop and say so when the meeting hasn't happened or has no recap, transcript or chat. Never summarise from the invitation alone.
+2. **Build the two collections** per the same reference. If both are empty, report that no supported moments or actions were found and stop.
+3. **Report the breakdown in chat** before generating: key moments with markers, then follow-up actions with owner and due date (say where one wasn't recorded), under the labels `references/output-image.md` gives. Wording matches the image. Report gaps, conflicts and merges separately. This doesn't wait for approval.
+4. **Generate the image** per `references/output-image.md`, saving `visual-minutes.png`. Report the `chief-os-image-prompt` call count, which must equal the total items.
+5. **Report** the meeting, band counts and saved file, or the failure.
