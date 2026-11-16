@@ -135,9 +135,12 @@ function SkillsSection() {
                 to the facts. The first two styles can carry text. The four poster styles show no
                 text, which suits deck illustrations.
               </div>
-              <ul className="grid grid-cols-1 gap-x-8 gap-y-3 pt-2 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="grid grid-cols-1 gap-x-8 gap-y-3 pt-6 sm:grid-cols-2 lg:grid-cols-3">
                 {IMAGE_STYLES.map((style) => (
-                  <li key={style.name} className="flex flex-col text-sm text-pretty">
+                  <li
+                    key={style.name}
+                    className="flex flex-col text-[0.8125rem] leading-snug text-pretty"
+                  >
                     <span className="font-[550]">{style.name}</span>
                     <span className="text-foreground/75">{style.description}</span>
                   </li>
