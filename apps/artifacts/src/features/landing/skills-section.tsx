@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "../../components/card";
 import { ContentContainer } from "../../components/container";
 import { SourceMetadata, SourceMetadataCode } from "../../components/source-metadata";
 import { Text } from "../../components/text";
+import { SkillsFlow } from "./skills-flow";
 
 const IMAGE_STYLES = [
   {
@@ -57,6 +58,7 @@ function SkillsSection() {
             decks.
           </Text>
         </div>
+        <SkillsFlow />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Card className="bg-card-sage">
             <CardHeader>
