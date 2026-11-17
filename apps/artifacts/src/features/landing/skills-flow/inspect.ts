@@ -9,6 +9,8 @@ interface Trace {
   changes: string[][];
   // Every helper edge that this run fires, so the diagram can show the path ahead.
   planned: EdgeId[];
+  // What the caller asks each helper for, by edge, for the label on the line.
+  labels: Partial<Record<EdgeId, string>>;
 }
 
 function diffState(before: FlowState, after: FlowState): string[] {
@@ -86,7 +88,12 @@ function buildTrace(entry: EntryId): Trace {
     (edge): edge is EdgeId => edge !== null && !edge.startsWith("schedule>brief"),
   );
 
-  const trace = { states, changes, planned };
+  const labels: Trace["labels"] = {};
+  for (const { event } of RUNS[entry].steps) {
+    if (event.type === "helper_called") labels[`${event.caller}>${event.helper}`] = event.use;
+  }
+
+  const trace = { states, changes, planned, labels };
   traces.set(entry, trace);
   return trace;
 }

@@ -86,7 +86,7 @@ function Flow() {
             </p>
           </div>
 
-          <Diagram planned={trace.planned} state={state} event={event} />
+          <Diagram planned={trace.planned} labels={trace.labels} state={state} event={event} />
 
           <div className="grid gap-3 sm:grid-cols-2">
             <Chips label="Reads" items={run.inputs} done={state.inputs} verb="read" />
