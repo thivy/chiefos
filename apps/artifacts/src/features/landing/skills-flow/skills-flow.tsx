@@ -7,7 +7,7 @@ import { StaticFlow } from "./static-flow";
 const STATIC_LEAD =
   "Four skills can start a run. Each one asks the same three helpers for what it needs.";
 const INTERACTIVE_LEAD =
-  "Every run is a list of events, and one reducer turns each event into the next state. Pick a starting point, then step through a real run.";
+  "Pick a starting point, then step through an example run to see which skills ask each other for help, and why.";
 
 // The interactive flow and Motion load only when this section nears the screen.
 // The static map shows until then, and stays if the load fails.

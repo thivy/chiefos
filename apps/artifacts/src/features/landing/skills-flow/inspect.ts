@@ -5,47 +5,10 @@ import type { EdgeId, EntryId, FlowEvent, FlowState, SkillId } from "./reducer";
 interface Trace {
   // states[0] is the initial state. states[i] is the state after event i.
   states: FlowState[];
-  // changes[i] lists what event i changed, one line each.
-  changes: string[][];
   // Every helper edge that this run fires, so the diagram can show the path ahead.
   planned: EdgeId[];
   // What the caller asks each helper for, by edge, for the label on the line.
   labels: Partial<Record<EdgeId, string>>;
-}
-
-function diffState(before: FlowState, after: FlowState): string[] {
-  const lines: string[] = [];
-
-  for (const skill of Object.keys(after.skills) as (keyof FlowState["skills"])[]) {
-    if (before.skills[skill] !== after.skills[skill]) {
-      lines.push(`skills.${skill}: ${before.skills[skill]} → ${after.skills[skill]}`);
-    }
-  }
-  for (const helper of Object.keys(after.calls) as (keyof FlowState["calls"])[]) {
-    if (before.calls[helper] !== after.calls[helper]) {
-      lines.push(`calls.${helper}: ${before.calls[helper]} → ${after.calls[helper]}`);
-    }
-  }
-  for (const edge of after.edges.filter((item) => !before.edges.includes(item))) {
-    lines.push(`edges: + ${edge}`);
-  }
-  for (const input of after.inputs.filter((item) => !before.inputs.includes(item))) {
-    lines.push(`inputs: + ${input}`);
-  }
-  for (const artifact of after.artifacts.filter((item) => !before.artifacts.includes(item))) {
-    lines.push(`artifacts: + ${artifact}`);
-  }
-
-  return lines;
-}
-
-function formatEvent(event: FlowEvent): string {
-  const lines = Object.entries(event).map(([key, value]) =>
-    Array.isArray(value)
-      ? `  ${key}: [${value.join(", ")}]`
-      : `  ${key}: ${typeof value === "string" ? `"${value}"` : value}`,
-  );
-  return `{\n${lines.join(",\n")}\n}`;
 }
 
 const traces = new Map<EntryId, Trace>();
@@ -76,12 +39,8 @@ function buildTrace(entry: EntryId): Trace {
   if (cached) return cached;
 
   const states = [initialState];
-  const changes: string[][] = [];
   for (const { event } of RUNS[entry].steps) {
-    const before = states[states.length - 1];
-    const after = reducer(before, event);
-    states.push(after);
-    changes.push(diffState(before, after));
+    states.push(reducer(states[states.length - 1], event));
   }
 
   const planned = [...new Set(RUNS[entry].steps.map(({ event }) => edgeOf(event)))].filter(
@@ -93,10 +52,10 @@ function buildTrace(entry: EntryId): Trace {
     if (event.type === "helper_called") labels[`${event.caller}>${event.helper}`] = event.use;
   }
 
-  const trace = { states, changes, planned, labels };
+  const trace = { states, planned, labels };
   traces.set(entry, trace);
   return trace;
 }
 
-export { actorsOf, buildTrace, edgeOf, formatEvent, ownerOf };
+export { actorsOf, buildTrace, edgeOf, ownerOf };
 export type { Trace };

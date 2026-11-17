@@ -15,13 +15,13 @@ type InputId =
   | "documents";
 
 type ArtifactId =
-  | "Chief of Staff - Daily Assistant"
-  | "todo.md"
-  | "artifact-image.png"
-  | "chiefos app"
+  | "Daily schedule"
+  | "Task list"
+  | "Briefing image"
+  | "ChiefOS app"
   | "Summary email"
-  | "visual-minutes.png"
-  | "q4-budget-review.pptx";
+  | "Meeting page"
+  | "Q4 budget deck";
 
 type EdgeId = `${SkillId}>${SkillId}`;
 
