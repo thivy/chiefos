@@ -8,7 +8,6 @@ import { Chips } from "./chips";
 import { Diagram } from "./diagram";
 import { buildTrace } from "./inspect";
 import type { EntryId } from "./reducer";
-import { ReducerSource } from "./reducer-source";
 import { RUNS } from "./runs";
 import { ENTRY_IDS, SKILLS } from "./skills";
 import { StepPanel } from "./step-panel";
@@ -90,7 +89,7 @@ function Flow() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             <Chips label="Reads" items={run.inputs} done={state.inputs} verb="read" />
-            <Chips label="Produces" items={run.artifacts} done={state.artifacts} verb="saved" />
+            <Chips label="Makes" items={run.artifacts} done={state.artifacts} verb="made" />
           </div>
 
           <div className="flex flex-col gap-3 border-t border-foreground/10 pt-5">
@@ -115,8 +114,7 @@ function Flow() {
             </div>
           </div>
 
-          <StepPanel key={entry} steps={run.steps} trace={trace} cursor={cursor} />
-          <ReducerSource type={event?.type ?? null} />
+          <StepPanel key={entry} steps={run.steps} cursor={cursor} />
           <p aria-live="polite" className="sr-only">
             {announcement}
           </p>

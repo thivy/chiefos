@@ -93,7 +93,7 @@ function Node({ id, status, calls, active }: NodeProps) {
   const { name, command, tone, Icon } = SKILLS[id];
   const StatusIcon = STATUS_ICON[status];
   const caption = calls
-    ? `${STATUS_LABEL[status]} · ${calls} ${calls === 1 ? "call" : "calls"}`
+    ? `${STATUS_LABEL[status]} · asked ${calls} ${calls === 1 ? "time" : "times"}`
     : STATUS_LABEL[status];
 
   return (
